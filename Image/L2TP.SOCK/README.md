@@ -92,7 +92,7 @@ In the connection definition window, you can set proxy settings.
 
 ### Git
 
-Due to [cstan](https://cstan.io/?p=11673&lang=en), there are two ways to set proxy for `git:
+Due to [cstan](https://cstan.io/?p=11673&lang=en), there are two ways to set proxy for `git`:
 
 - Inline - `git -c http.proxy=socks5h://localhost:5511 ...`
 - Global - `git config --global http.proxy socks5h://localhost:5511` (to unset `git config --global --unset http.proxy`)
