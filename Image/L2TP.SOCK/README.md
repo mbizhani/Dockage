@@ -86,8 +86,16 @@ proxy_password=
 
 ### Database Tools
 
-It depends on the tool. [DBeaver](https://dbeaver.io/) is an open source database tool that supports SOCKS proxy. 
-In the connection definition window, you can set proxy settings.
+[DBeaver](https://dbeaver.io/) is one of open source DB tools that supports SOCKS for connection to database. 
+In the connection definition window, you can set proxy settings. However, since it is based on Java and it needs
+JDBC drive, at the end it really depends on the JDBC drive support for SOCKS.
+
+**Note**: Due to [Oracle](https://support.oracle.com/knowledge/Middleware/2589708_1.html), its JDBC drive support for SOCKS has changed:
+> SOCKS proxy no longer works with JDBC 12.2 and up.
+  Previously, the "socksProxyHost" and "socksProxyPort" Java Properties were used to allow the JDBC thin driver to 
+  connect to a databases through a SOCKS proxy. This worked in versions 11.x and 12.1.x.
+  Starting in 12.2.x, these settings no longer take effect, and connections are not sent through the SOCKS proxy. 
+  The problem also exists in version 18.x.
 
 
 ### Git
@@ -114,4 +122,8 @@ there are three ways to set SOCKS for maven:
 
 1. Globally - edit `~/.m2/settings.xml` and add proxy
 2. Shell Scope - `export MAVEN_OPTS="-DsocksProxyHost=localhost -DsocksProxyPort=5511"`
-3. Passing JVM Options - `mvn -DsocksProxyHost=localhost -DsocksProxyPort=5511 ...`
+3. Inline - `mvn -DsocksProxyHost=localhost -DsocksProxyPort=5511 ...`
+
+## Acknowledge
+
+During developing this project, I asked lots of questions from my friend [Saeb](http://sae13.ir/). Thank you Saeb.
