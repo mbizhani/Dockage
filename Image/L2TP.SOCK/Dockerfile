@@ -14,6 +14,6 @@ EXPOSE 5511
 
 ENV VPN_HOST='' VPN_PSK='' VPN_USER='' VPN_PASS='' \
     SSH_HOST='' SSH_USER='' SSH_PASS='' \
-    IPSEC_IKE='3des-sha1-modp1024!' IPSEC_ESP='3des-md5!'
+    IPSEC_IKE='3des-sha1-modp1024!' IPSEC_ESP='3des-md5!' PPP_MTU='1400'
 
 CMD ["/run.sh"]

@@ -1,4 +1,4 @@
-# L2TP/IPSec VPN with SOCKS5 Proxy
+# L2TP/IPSec VPN with SOCKS5 Proxy via Docker
 
 In this example an image is created to connect to an L2TP/IPSec VPN server, 
 and then it provides a SOCKS5 proxy service via `ssh -D` to a server in the VPN zone.
@@ -6,7 +6,13 @@ So `SSH_HOST` refers to a host in the VPN zone with SSH service enabled.
 
 ## Create Image
 
-The command to create the image: `docker build -t l2tp-ipsec:01 .`
+The commands to create the image:
+
+```
+git clone https://github.com/mbizhani/Dockage.git
+cd Dockage/Image/L2TP.SOCK/
+docker build -t l2tp-ipsec:01 .
+```
 
 ## Run
 
@@ -33,6 +39,11 @@ The `VPN_PSK` is the pre-shared key.
 **Note**: To find supporting encryption algorithms of the server, run the following command:
 
 `docker run l2tp-ipsec:01 ike-scan HOST`
+
+**DeBug-01**: Tonight, unfortunately the ssh client in the image could not connect. I run the ssh with `-v` for debug. 
+The process got stuck after `debug1: expecting SSH2_MSG_KEX_DH_GEX_REPLY`.
+This post, [ServerFault](https://serverfault.com/questions/210408/cannot-ssh-debug1-expecting-ssh2-msg-kex-dh-gex-reply), 
+suggests setting MTU=1400. So I defined an env var `PPP_MTU=1400` in `Dockerfile`.
 
 ## About the Process
 

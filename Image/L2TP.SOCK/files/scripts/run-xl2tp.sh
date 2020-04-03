@@ -24,8 +24,8 @@ require-mschap-v2
 noccp
 noauth
 idle 1800
-mtu 1464
-mru 1464
+mtu ${PPP_MTU}
+mru ${PPP_MTU}
 defaultroute
 debug
 connect-delay 5000
