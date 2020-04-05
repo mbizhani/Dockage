@@ -1,7 +1,7 @@
-# OpenVPN with HTTP/SOCKS5 Proxy via Docker
+# OpenVPN with SOCKS5/HTTP Proxy via Docker
 
 In this example an image is created to connect to an OpenVPN server, 
-and then it provides a HTTP/SOCKS5 proxy service via `Squid`/`Dante` 
+and then it provides a SOCKS5/HTTP proxy service via `Dante`/`Squid` 
 in the container.
 
 ## Create Image
@@ -17,7 +17,7 @@ docker build -t localproxy:1 .
 ## Run
 
 In this image you can use only SOCKS5 proxy, or HTTP proxy, or even both of them together.
-Now suppose you have a file having openvpn connection information, called `myvpn.ovpn`.
+Now suppose you have a file having OpenVPN connection information, called `myvpn.ovpn`.
 For passing username and password create a file called `myrealm.txt` beside your OVPN file as
 
 ```
@@ -25,7 +25,7 @@ USERNAME
 PASSWORD
 ```
 
-You can start your vpn/proxy container executing following command 
+You can start your vpn/proxy container executing following command just
 inside the directory having two previous files:
 
 ```
