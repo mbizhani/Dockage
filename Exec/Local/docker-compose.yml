@@ -1,0 +1,86 @@
+version: '3.6'
+
+services:
+
+  mongo:
+    image: mongo:4.0.13-xenial
+    ports:
+      - 27017:27017
+    volumes:
+      - ./MongoDB:/data/db
+    networks:
+      - net
+
+  oracle:
+    image: store/oracle/database-enterprise:12.2.0.1
+    tty: true
+    ports:
+      - 1521:1521
+    volumes:
+      - ./OracleDB:/ORCL
+    networks:
+      - net
+
+  postgres:
+    image: postgres:12.2
+    ports:
+      - 5432:5432
+    environment:
+      # POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./Postgres:/var/lib/postgresql/data
+    networks:
+      - net
+
+  mysql8:
+    image: mysql:8.0.19
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./Mysql8:/var/lib/mysql
+    networks:
+      - net
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:5.3.1-1
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    volumes:
+      - ./ZookeeperData:/var/lib/zookeeper/data
+      - ./ZookeeperLog:/var/lib/zookeeper/log
+    ports:
+      - 2181:2181
+    networks:
+      - net
+
+  kafka:
+    image: confluentinc/cp-kafka:5.3.1-1
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+      # Multi-Net Config
+      # KAFKA_LISTENERS: INSIDE://:29092,OUTSIDE://:9092
+      # KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:29092,OUTSIDE://localhost:9092
+      # KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      # KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+
+      # All-Same-Net Simple Config
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+    volumes:
+      - ./Kafka/data:/var/lib/kafka/data
+    ports:
+      - 9092:9092
+    networks:
+      - net
+
+networks:
+  net:
+    external: true
+    name: mynet
