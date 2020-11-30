@@ -1,5 +1,5 @@
 # Dockage
-This repo is for a bunch of work around with Docker. 
+This repo is for a bunch of works around Docker & K8S. 
 
 ## Images
 This section has real examples for creating Docker images for specific purposes:
@@ -10,5 +10,6 @@ This section has real examples for creating Docker images for specific purposes:
 ## Exec
 Using Docker Compose, Swarm, and Kubernetes
 
-- [Local](/Exec/Local) - Centralized services for local dev [Ref](https://www.devocative.org/article/tech/docker02)  
+- [Local](/Exec/Local) - Centralized services for local dev [Docker to the Point - Part 2](https://www.devocative.org/article/tech/docker02)  
+- [DevOps](/Exec/DevOps) - Setup a DevOps environment with CI/CD [Docker to the Point - Part 3](https://www.devocative.org/article/tech/docker03)  
 

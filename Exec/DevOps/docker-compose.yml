@@ -1,0 +1,93 @@
+version: '3.6'
+
+services:
+
+  gitlab:
+    image: gitlab/gitlab-ce:${GITLAB_VER:?err}
+    hostname: ${GITLAB_DOMAIN:?err}
+    restart: always
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        gitlab_rails['registry_enabled'] = false
+        registry['enable'] = false
+        gitlab_rails['backup_keep_time'] = 604800
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.gitlab.loadbalancer.server.port=80"
+      - "traefik.http.routers.gitlab.service=gitlab"
+      - "traefik.http.routers.gitlab.entrypoints=http"
+      - "traefik.http.routers.gitlab.rule=Host(`${GITLAB_DOMAIN:?err}`)"
+    volumes:
+      - ${VOL_BASE_DIR:?err}/gitlab/config:/etc/gitlab
+      - ${VOL_BASE_DIR:?err}/gitlab/logs:/var/log/gitlab
+      - ${VOL_BASE_DIR:?err}/gitlab/data:/var/opt/gitlab
+    networks:
+      - net
+
+  gitlab-runner:
+    image: gitlab/gitlab-runner:${GITLAB_RUNNER_VER:?err}
+    restart: always
+    privileged: true
+    volumes:
+      - ${VOL_BASE_DIR:?err}/gitlab-runner/config:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - net
+
+  nexus:
+    image: sonatype/nexus3:${NEXUS_VER:?err}
+    restart: always
+    labels:
+      - "traefik.enable=true"
+
+      - "traefik.http.services.nexus.loadbalancer.server.port=8081"
+      - "traefik.http.routers.nexus.entrypoints=http"
+      - "traefik.http.routers.nexus.service=nexus"
+      - "traefik.http.routers.nexus.rule=Host(`${NEXUS_DOMAIN:?err}`)"
+
+      - "traefik.http.services.nexusDocker.loadbalancer.server.port=8082"
+      - "traefik.http.routers.nexusDocker.service=nexusDocker"
+      - "traefik.http.routers.nexusDocker.entrypoints=http"
+      - "traefik.http.routers.nexusDocker.rule=Host(`${NEXUS_DOMAIN:?err}`) && PathPrefix(`/v2/`)"
+    ports:
+      # Docker Group Repo
+      - 8082:8082
+      # Docker Private Repo
+      - 8083:8083
+    volumes:
+      - ${VOL_BASE_DIR:?err}/nexus:/nexus-data
+    networks:
+      - net
+
+  traefik:
+    image: traefik:${TRAEFIK_VER:?err}
+    command:
+      - "--providers.docker"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.http.address=:80"
+      # Dashboard
+      - "--api"
+      - "--entrypoints.traefik.address=:8080"
+    restart: always
+    labels:
+      # Dashboard
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.entrypoints=traefik"
+      - "traefik.http.routers.api.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.api.service=api@internal"
+      - "traefik.http.routers.api.middlewares=dashAuth,dashRdir"
+      - "traefik.http.middlewares.dashAuth.basicauth.users=admin:$$apr1$$PSIlVhdx$$Np60QsO9D2zneaUjWdaqA0"
+      - "traefik.http.middlewares.dashRdir.redirectregex.regex=^(http://[^:/]+(:\\d+)?)(/|/dashboard)$$"
+      - "traefik.http.middlewares.dashRdir.redirectregex.replacement=$${1}/dashboard/"
+    ports:
+      - 80:80
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - net
+
+networks:
+  net:
+    external: true
+    name: ${EXT_NET:?err}
