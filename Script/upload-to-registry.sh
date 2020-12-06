@@ -1,6 +1,7 @@
 #!/bin/bash
 
 PULL_SERVER=""
+
 PUSH_SERVER="${PULL_SERVER}"
 PUSH_SERVER_USER=
 PUSH_SERVER_PASS=
@@ -8,15 +9,20 @@ PUSH_SERVER_PASS=
 if [ "$1" ]; then
   if [ "$PUSH_SERVER_USER" ]; then
     docker login -u "$PUSH_SERVER_USER" -p "$PUSH_SERVER_PASS" "$PUSH_SERVER"
+    LOGIN_STATUS="$?"
+    if [ "$LOGIN_STATUS" != "0" ]; then
+      echo "Invalid Login!"
+      exit 1
+    fi
   fi
 
-  SEARCH=$1
+  SEARCH="$1"
 
   docker images | grep -E "^$SEARCH" | awk '{print "docker tag "$1":"$2" '$PUSH_SERVER'/"$1":"$2}' | bash
 
   docker images | grep -E "^$SEARCH" | awk '{print "docker push '$PUSH_SERVER'/"$1":"$2}' | bash
-
-  if [ "$?" == "0" ]; then
+  PUSH_STATUS="$?"
+  if [ "$PUSH_STATUS" == "0" ]; then
 
     PULL_IMAGES=$(docker images | grep -E "^$SEARCH" | awk '{print "docker pull '$PULL_SERVER'/"$1":"$2}')
 
@@ -24,7 +30,7 @@ if [ "$1" ]; then
 
     docker images | grep -E "^$SEARCH" | awk '{print "docker rmi "$1":"$2}' | bash
 
-    read -p "Pull tagged images (y)? "
+    read -p "Pull tagged images (y)? " -r
     if [[ $REPLY =~ ^[Yy]$ ]]; then
       echo "$PULL_IMAGES" | bash
     else
