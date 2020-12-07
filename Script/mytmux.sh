@@ -1,17 +1,20 @@
 #!/bin/bash
 
-tmux_command="tmux new-session -d"
+CMD_ARR=( "$@" )
+CMD_ARR_LEN=${#CMD_ARR[@]}
 
-if [ "$1" ]; then
-  tmux_command+=" $1"
-
-  for cmd in "${@:2}"; do
-    tmux_command+=" \; split-window $cmd"
-  done
-else
-  tmux_command+=" bash"
+if [ $CMD_ARR_LEN -eq 0 ]; then
+  CMD_ARR=('bash' 'bash')
+elif [ $CMD_ARR_LEN -eq 1 ]; then
+  CMD_ARR+=('bash')
 fi
 
-tmux_command+="\; attach \; select-layout even-vertical"
+TMUX_CMD="tmux new-session -d ${CMD_ARR[0]}"
 
-eval "$tmux_command"
+for cmd in "${CMD_ARR[@]:1}"; do
+  TMUX_CMD+=" \; split-window $cmd"
+done
+
+TMUX_CMD+=" \; attach \; select-layout even-vertical"
+
+eval "$TMUX_CMD"
