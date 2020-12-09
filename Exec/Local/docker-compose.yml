@@ -80,6 +80,18 @@ services:
     networks:
       - net
 
+  registry:
+    image: registry:2.7.1
+    environment:
+      # REQUIRED TO DELETE IMAGES
+      REGISTRY_STORAGE_DELETE_ENABLED: "true"
+    volumes:
+      - ./Registry:/var/lib/registry
+    ports:
+      - 80:5000
+    networks:
+      - net
+
 networks:
   net:
     external: true
