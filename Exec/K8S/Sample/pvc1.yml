@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sample-pvc1
+spec:
+  accessModes:          # REQUIRED
+    - ReadWriteOnce
+  resources:            # REQUIRED
+    requests:
+      storage: 1Gi
+  selector:
+    matchLabels:
+      type: nfs
+      target: sample1

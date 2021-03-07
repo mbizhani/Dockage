@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: sample-pv2
+  labels:
+    type: nfs
+    target: sample2
+spec:
+  accessModes:                             # REQUIRED
+    - ReadWriteOnce
+  capacity:                                # REQUIRED
+    storage: 1Gi                           # UNITS: Ki,Mi,Gi,Ti (power-of-two units)
+  #volumeMode: Filesystem                  # Filesystem (default), Block
+  #persistentVolumeReclaimPolicy: Retain   # Retain (default), Delete, Recycle (deprecated)
+  nfs:
+    path: /opt/NFS/TEST
+    server: nfs.server.local

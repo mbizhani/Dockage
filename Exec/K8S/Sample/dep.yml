@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-dep
+  template:  # POD DEFINITION vvv
+    metadata:
+      labels:
+        app: test-dep
+    spec:
+      containers:
+        - name: busybox
+          image: busybox:1.32
+          tty: true
+        - name: nginx
+          image: nginx:1.18.0

@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-pod
+  labels:
+    app: test-pod
+
+spec:
+  containers:
+
+    - name: nginx
+      image: nginx:1.18.0
+
+    - name: busybox
+      image: busybox:1.32
+      command:
+        - sh
+        - -c
+        - |
+          for i in $(seq 2 2 8); do
+            echo "Main: $i" >> /var/main.log
+            sleep 2
+          done
+          sh
+      tty: true
+      lifecycle:
+        postStart:
+          exec:
+            command:
+              - sh
+              - -c
+              - |
+                for i in $(seq 1 1 8); do
+                  echo "PostStart: $i" >> /var/post-start.log
+                  sleep 2
+                done

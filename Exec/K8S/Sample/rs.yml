@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: sample-rs
+
+spec:
+  replicas: 2
+  selector: # REQUIRED
+    matchLabels:
+      app: test-rs
+  template: # POD DEFINITION vvv
+    metadata:
+      labels:
+        app: test-rs
+    spec:
+      containers:
+        - name: busybox
+          image: busybox:1.32
+          tty: true
+        - name: nginx
+          image: nginx:1.18.0
