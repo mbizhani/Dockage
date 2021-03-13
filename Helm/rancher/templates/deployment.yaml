@@ -51,6 +51,10 @@ spec:
             - name: CATTLE_SYSTEM_CATALOG
               value: bundled
             {{- end }}
+            {{- if .Values.rancher.restrictedAdmin }}
+            - name: CATTLE_RESTRICTED_DEFAULT_ADMIN
+              value: "true"
+            {{- end }}
           ports:
             - name: http
               containerPort: 80
@@ -69,15 +73,18 @@ spec:
             periodSeconds: 30
           resources:
       {{- toYaml .Values.resources | nindent 12 }}
+
       {{- with .Values.nodeSelector }}
       nodeSelector:
       {{- toYaml . | nindent 8 }}
       {{- end }}
+
       {{- with .Values.affinity }}
       affinity:
       {{- toYaml . | nindent 8 }}
       {{- end }}
+
       {{- with .Values.tolerations }}
       tolerations:
-  {{- toYaml . | nindent 8 }}
-  {{- end }}
+      {{- toYaml . | nindent 8 }}
+      {{- end }}

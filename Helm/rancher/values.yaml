@@ -1,6 +1,7 @@
 rancher:
   systemDefaultRegistry: ""
   useBundledSystemChart: true
+  restrictedAdmin: false
 
 replicaCount: 1
 
