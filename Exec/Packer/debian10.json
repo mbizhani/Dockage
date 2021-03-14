@@ -1,8 +1,9 @@
 {
   "variables": {
     "vm_name": "deb10pkr",
-    "numvcpus": "2",
-    "memsize": "2048",
+    "cpus": "2",
+    "cpus_cores": "1",
+    "memory": "2048",
     "disk_size": "20480",
     "iso_url": "/home/mehdi/Downloads/ISO/debian-10.6.0-amd64-DVD-1.iso",
     "iso_checksum": "none",
@@ -21,28 +22,26 @@
         "<enter>"
       ],
       "boot_wait": "{{ user `boot_wait` }}",
+      "cores": "{{ user `cpus_cores` }}",
+      "cpus": "{{ user `cpus` }}",
       "disk_adapter_type": "scsi",
       "disk_size": "{{ user `disk_size` }}",
       "disk_type_id": "1",
       "guest_os_type": "debian10-64",
       "headless": false,
       "http_directory": "http",
-      "iso_url": "{{ user `iso_url` }}",
       "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_url": "{{ user `iso_url` }}",
+      "memory": "{{ user `memory` }}",
       "output_directory": "{{ user `base_output_dir` }}/{{ user `vm_name` }}",
       "shutdown_command": "echo 'packer' | sudo -S /sbin/shutdown -hP now",
       "ssh_password": "{{ user `ssh_password` }}",
       "ssh_port": 22,
       "ssh_username": "{{ user `ssh_username` }}",
       "ssh_timeout": "30m",
+      "version": 15,
       "vm_name": "{{ user `vm_name` }}",
-      "vmdk_name": "{{ user `vm_name` }}",
-      "vmx_data": {
-        "memsize": "{{ user `memsize` }}",
-        "numvcpus": "{{ user `numvcpus` }}",
-        "cpuid.coresPerSocket": "2",
-        "virtualHW.version": "15"
-      }
+      "vmdk_name": "{{ user `vm_name` }}"
     },
     {
       "type": "virtualbox-iso",
@@ -59,7 +58,7 @@
       "http_directory": "http",
       "iso_checksum": "{{ user `iso_checksum` }}",
       "iso_url": "{{ user `iso_url` }}",
-      "shutdown_command": "echo 'packer'|sudo -S shutdown -P now",
+      "shutdown_command": "echo 'packer' | sudo -S /sbin/shutdown -hP now",
       "ssh_password": "{{ user `ssh_password` }}",
       "ssh_port": 22,
       "ssh_username": "{{ user `ssh_username` }}",
@@ -70,13 +69,13 @@
           "modifyvm",
           "{{.Name}}",
           "--memory",
-          "{{ user `memsize` }}"
+          "{{ user `memory` }}"
         ],
         [
           "modifyvm",
           "{{.Name}}",
           "--cpus",
-          "{{ user `numvcpus` }}"
+          "{{ user `cpus` }}"
         ]
       ]
     }
@@ -84,11 +83,8 @@
   "provisioners": [
     {
       "type": "shell",
-      "execute_command": "echo 'packer'|{{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "inline": [
-        "apt -y update && apt -y upgrade",
-        "apt -y install vim open-vm-tools"
-      ]
+      "execute_command": "echo 'packer' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/init.sh"
     }
   ]
 }
