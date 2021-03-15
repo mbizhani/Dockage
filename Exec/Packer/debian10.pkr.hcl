@@ -39,6 +39,11 @@ variable "memory_GB" {
   default = 2
 }
 
+variable "mirror" {
+  type    = bool
+  default = false
+}
+
 variable "ssh_password" {
   type    = string
   default = "packer"
@@ -55,7 +60,12 @@ variable "vm_name" {
 }
 
 source "vmware-iso" "vmware" {
-  boot_command      = ["<esc><wait>", "auto ", "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<wait>", "<enter>"]
+  boot_command      = [
+    "<esc><wait>",
+    "auto ",
+    "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
+    "apt-setup/use_mirror=${var.mirror} <wait>",
+    "<enter>"]
   boot_wait         = "${var.boot_wait}"
   cores             = "${var.cpus_cores}"
   cpus              = "${var.cpus * var.cpus_cores}"

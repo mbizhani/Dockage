@@ -24,6 +24,7 @@
   - [Packer - Unattended Installation for Debian](https://www.packer.io/guides/automatic-operating-system-installs/preseed_ubuntu)  
   - [partman-auto-recipe.txt](https://salsa.debian.org/installer-team/debian-installer/-/raw/master/doc/devel/partman-auto-recipe.txt)
   - [LVM Problem](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=687160)
+  - [multi line late_command sample](https://unix.stackexchange.com/questions/556413/how-do-i-set-mirrors-in-etc-apt-sources-list-with-a-debian-preseed-file)
 - Preseeding Special Config Items
   - `d-i partman-basicfilesystems/no_swap boolean false` - [[REF](https://lists.debian.org/debian-user/2012/08/msg01558.html)
   - `d-i partman-auto-lvm/no_boot boolean true` - found in `/var/log/installer/cdebconf/questions.dat` 
