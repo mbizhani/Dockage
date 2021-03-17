@@ -1,0 +1,4441 @@
+Name: anna/choose_modules
+Template: anna/choose_modules
+Owners: d-i
+Variables:
+ CHOICES-C = choose-mirror, crypto-dm-modules-4.19.0-11-amd64-di, driver-injection-disk-detect, espeakup-udeb, event-modules-4.19.0-11-amd64-di, fdisk-udeb, fuse-modules-4.19.0-11-amd64-di, load-media, lowmem, mbr-udeb, multipath-modules-4.19.0-11-amd64-di, nbd-modules-4.19.0-11-amd64-di, network-console, openssh-client-udeb, parted-udeb, ppp-modules-4.19.0-11-amd64-di, ppp-udeb, reiserfsprogs-udeb, rescue-mode, scsi-nic-modules-4.19.0-11-amd64-di, sound-modules-4.19.0-11-amd64-di, squashfs-modules-4.19.0-11-amd64-di, udf-modules-4.19.0-11-amd64-di
+ CHOICES = choose-mirror: Choose mirror to install from (menu item), crypto-dm-modules-4.19.0-11-amd64-di: devicemapper crypto module, driver-injection-disk-detect: Detect OEM driver injection disks, espeakup-udeb: Configure the speech synthesizer voice, event-modules-4.19.0-11-amd64-di: Event support, fdisk-udeb: Manually partition a hard drive (fdisk), fuse-modules-4.19.0-11-amd64-di: FUSE modules, load-media: Load installer components from removable media, lowmem: free memory for lowmem install, mbr-udeb: Master Boot Record for IBM-PC compatible computers, multipath-modules-4.19.0-11-amd64-di: Multipath support, nbd-modules-4.19.0-11-amd64-di: Network Block Device modules, network-console: Continue installation remotely using SSH, openssh-client-udeb: secure shell client for the Debian installer, parted-udeb: Manually partition a hard drive (parted), ppp-modules-4.19.0-11-amd64-di: PPP drivers, ppp-udeb: Point-to-Point Protocol (PPP) - package for Debian Installer, reiserfsprogs-udeb: User-level tools for ReiserFS filesystems, rescue-mode: mount requested partition and start a rescue shell, scsi-nic-modules-4.19.0-11-amd64-di: SCSI drivers for converged NICs, sound-modules-4.19.0-11-amd64-di: sound support, squashfs-modules-4.19.0-11-amd64-di: squashfs modules, udf-modules-4.19.0-11-amd64-di: UDF modules
+
+Name: anna/choose_modules_lowmem
+Template: anna/choose_modules_lowmem
+Owners: d-i
+
+Name: anna/install_failed
+Template: anna/install_failed
+Owners: d-i
+
+Name: anna/no_kernel_modules
+Template: anna/no_kernel_modules
+Owners: d-i
+
+Name: anna/progress_step_conf
+Template: anna/progress_step_conf
+Owners: d-i
+Variables:
+ PACKAGE = partman-crypto
+
+Name: anna/progress_step_retr
+Template: anna/progress_step_retr
+Owners: d-i
+Variables:
+ PACKAGE = partman-crypto
+
+Name: anna/progress_title
+Template: anna/progress_title
+Owners: d-i
+
+Name: anna/retriever
+Template: anna/retriever
+Value: cdrom-retriever
+Owners: d-i
+
+Name: anna/standard_modules
+Template: anna/standard_modules
+Owners: d-i
+
+Name: apt-mirror-setup
+Template: debian-installer/dummy
+Value: boolean true
+Owners: d-i
+Flags: seen
+Variables:
+ ID = apt-mirror-setup
+
+Name: apt-setup/cdrom/failed
+Template: apt-setup/cdrom/failed
+Owners: apt-cdrom-setup
+
+Name: apt-setup/cdrom/media-change
+Template: apt-setup/cdrom/media-change
+Owners: apt-cdrom-setup
+Variables:
+ LABEL = Debian GNU/Linux 10.6.0 _Buster_ - Official amd64 DVD Binary-1 20200926-10:17
+
+Name: apt-setup/cdrom/set-double
+Template: apt-setup/cdrom/set-double
+Owners: apt-cdrom-setup
+
+Name: apt-setup/cdrom/set-failed
+Template: apt-setup/cdrom/set-failed
+Owners: apt-cdrom-setup
+
+Name: apt-setup/cdrom/set-first
+Template: apt-setup/cdrom/set-first
+Value: false
+Owners: apt-cdrom-setup
+Flags: seen
+Variables:
+ LABEL = Debian GNU/Linux 10.6.0 _Buster_ - Official amd64 DVD Binary-1 20200926-10:17
+
+Name: apt-setup/cdrom/set-next
+Template: apt-setup/cdrom/set-next
+Owners: apt-cdrom-setup
+
+Name: apt-setup/contrib
+Template: apt-setup/contrib
+Value: false
+Owners: apt-mirror-setup
+
+Name: apt-setup/disable-cdrom-entries
+Template: apt-setup/disable-cdrom-entries
+Owners: apt-cdrom-setup
+
+Name: apt-setup/enable-source-repositories
+Template: apt-setup/enable-source-repositories
+Owners: apt-setup-udeb
+
+Name: apt-setup/local/key-error
+Template: apt-setup/local/key-error
+Owners: apt-setup-udeb
+
+Name: apt-setup/mirror/error
+Template: apt-setup/mirror/error
+Owners: apt-mirror-setup
+
+Name: apt-setup/multiarch
+Template: apt-setup/multiarch
+Owners: apt-setup-udeb
+
+Name: apt-setup/no_mirror
+Template: apt-setup/no_mirror
+Owners: apt-mirror-setup
+
+Name: apt-setup/non-free
+Template: apt-setup/non-free
+Owners: apt-mirror-setup
+
+Name: apt-setup/progress/backports
+Template: apt-setup/progress/backports
+Owners: apt-setup-udeb
+
+Name: apt-setup/progress/cdrom
+Template: apt-setup/progress/cdrom
+Owners: apt-cdrom-setup
+
+Name: apt-setup/progress/fallback
+Template: apt-setup/progress/fallback
+Owners: apt-setup-udeb
+Variables:
+ SCRIPT = services-select
+
+Name: apt-setup/progress/local
+Template: apt-setup/progress/local
+Owners: apt-setup-udeb
+
+Name: apt-setup/progress/mirror
+Template: apt-setup/progress/mirror
+Owners: apt-mirror-setup
+
+Name: apt-setup/progress/security
+Template: apt-setup/progress/security
+Owners: apt-setup-udeb
+
+Name: apt-setup/progress/title
+Template: apt-setup/progress/title
+Owners: apt-setup-udeb
+
+Name: apt-setup/progress/updates
+Template: apt-setup/progress/updates
+Owners: apt-setup-udeb
+
+Name: apt-setup/security_host
+Template: apt-setup/security_host
+Owners: apt-setup-udeb
+
+Name: apt-setup/service-failed
+Template: apt-setup/service-failed
+Owners: apt-setup-udeb
+
+Name: apt-setup/services-select
+Template: apt-setup/services-select
+Owners: apt-setup-udeb
+Variables:
+ SEC_HOST = security.debian.org
+
+Name: apt-setup/use/cd
+Template: apt-setup/use/cd
+Owners: apt-cdrom-setup
+
+Name: apt-setup/use/cd-note
+Template: apt-setup/use/cd-note
+Owners: apt-cdrom-setup
+
+Name: apt-setup/use/cd-set1
+Template: apt-setup/use/cd-set1
+Owners: apt-cdrom-setup
+
+Name: apt-setup/use/cd-set2
+Template: apt-setup/use/cd-set2
+Owners: apt-cdrom-setup
+
+Name: apt-setup/use/dvd
+Template: apt-setup/use/dvd
+Owners: apt-cdrom-setup
+
+Name: apt-setup/use/inet1
+Template: apt-setup/use/inet1
+Owners: apt-cdrom-setup
+
+Name: apt-setup/use/inet2
+Template: apt-setup/use/inet2
+Owners: apt-cdrom-setup
+
+Name: apt-setup/use/netinst
+Template: apt-setup/use/netinst
+Owners: apt-cdrom-setup
+
+Name: apt-setup/use/netinst_old
+Template: apt-setup/use/netinst_old
+Owners: apt-cdrom-setup
+
+Name: apt-setup/use_mirror
+Template: apt-setup/use_mirror
+Value: true
+Owners: unknown, apt-mirror-setup
+Flags: seen
+Variables:
+ ID = apt-setup/use_mirror
+ EXPLANATION = You are installing from a DVD. Even though the DVD contains a large selection of packages, some may be missing. If you have a reasonably good Internet connection, use of a mirror is suggested if you plan to install a graphical desktop environment.
+
+Name: auto-install/defaultroot
+Template: auto-install/defaultroot
+Owners: network-preseed
+
+Name: auto-install/enable
+Template: auto-install/enable
+Value: true
+Owners: unknown, network-preseed
+Flags: seen
+Variables:
+ ID = auto-install/enable
+
+Name: babelbox/info
+Template: babelbox/info
+Owners: d-i
+
+Name: base-installer/cannot_install
+Template: base-installer/cannot_install
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap-failed
+Template: base-installer/debootstrap-failed
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/error-abnormal
+Template: base-installer/debootstrap/error-abnormal
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/error-exitcode
+Template: base-installer/debootstrap/error-exitcode
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/error/couldntdl
+Template: base-installer/debootstrap/error/couldntdl
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/error/invalidrel
+Template: base-installer/debootstrap/error/invalidrel
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/error/missingrelentry
+Template: base-installer/debootstrap/error/missingrelentry
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/error/nogetrel
+Template: base-installer/debootstrap/error/nogetrel
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/error/nogetrelsig
+Template: base-installer/debootstrap/error/nogetrelsig
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/error/unknownrelsig
+Template: base-installer/debootstrap/error/unknownrelsig
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/fallback-error
+Template: base-installer/debootstrap/fallback-error
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/fallback-info
+Template: base-installer/debootstrap/fallback-info
+Owners: bootstrap-base
+Variables:
+ INFO = Chosen extractor for .deb packages: ar
+ SECTION = Retrieving packages
+
+Name: base-installer/debootstrap/fallback-warning
+Template: base-installer/debootstrap/fallback-warning
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/info/basesuccess
+Template: base-installer/debootstrap/info/basesuccess
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/info/checkingsizes
+Template: base-installer/debootstrap/info/checkingsizes
+Owners: bootstrap-base
+Variables:
+ SUBST0 = main
+ SUBST1 = file:///cdrom
+ SECTION = Finding package sizes
+
+Name: base-installer/debootstrap/info/confbase
+Template: base-installer/debootstrap/info/confbase
+Owners: bootstrap-base
+Variables:
+ SECTION = Unpacking the base system
+
+Name: base-installer/debootstrap/info/configuring
+Template: base-installer/debootstrap/info/configuring
+Owners: bootstrap-base
+Variables:
+ SUBST0 = systemd
+ SECTION = Configuring the base system
+
+Name: base-installer/debootstrap/info/confreq
+Template: base-installer/debootstrap/info/confreq
+Owners: bootstrap-base
+Variables:
+ SECTION = Unpacking required packages
+
+Name: base-installer/debootstrap/info/extracting
+Template: base-installer/debootstrap/info/extracting
+Owners: bootstrap-base
+Variables:
+ SUBST0 = tzdata
+ SECTION = Extracting packages
+
+Name: base-installer/debootstrap/info/instbase
+Template: base-installer/debootstrap/info/instbase
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/info/instcore
+Template: base-installer/debootstrap/info/instcore
+Owners: bootstrap-base
+Variables:
+ SECTION = Installing core packages
+
+Name: base-installer/debootstrap/info/newbase
+Template: base-installer/debootstrap/info/newbase
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/info/newrequired
+Template: base-installer/debootstrap/info/newrequired
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/info/redundantbase
+Template: base-installer/debootstrap/info/redundantbase
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/info/releasesig
+Template: base-installer/debootstrap/info/releasesig
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/info/resolvebase
+Template: base-installer/debootstrap/info/resolvebase
+Owners: bootstrap-base
+Variables:
+ SECTION = Retrieving Packages files
+
+Name: base-installer/debootstrap/info/resolvereq
+Template: base-installer/debootstrap/info/resolvereq
+Owners: bootstrap-base
+Variables:
+ SECTION = Retrieving Packages files
+
+Name: base-installer/debootstrap/info/retrieving
+Template: base-installer/debootstrap/info/retrieving
+Owners: bootstrap-base
+Variables:
+ SUBST0 = vim-tiny
+ SUBST1 = 2:8.1.0875-5
+ SECTION = Retrieving packages
+
+Name: base-installer/debootstrap/info/unpackbase
+Template: base-installer/debootstrap/info/unpackbase
+Owners: bootstrap-base
+Variables:
+ SECTION = Configuring required packages
+
+Name: base-installer/debootstrap/info/unpacking
+Template: base-installer/debootstrap/info/unpacking
+Owners: bootstrap-base
+Variables:
+ SUBST0 = vim-tiny
+ SECTION = Unpacking the base system
+
+Name: base-installer/debootstrap/info/unpackreq
+Template: base-installer/debootstrap/info/unpackreq
+Owners: bootstrap-base
+Variables:
+ SECTION = Installing core packages
+
+Name: base-installer/debootstrap/info/validating
+Template: base-installer/debootstrap/info/validating
+Owners: bootstrap-base
+Variables:
+ SUBST0 = vim-tiny
+ SUBST1 = 2:8.1.0875-5
+ SECTION = Retrieving packages
+
+Name: base-installer/debootstrap/info/validrelsig
+Template: base-installer/debootstrap/info/validrelsig
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/progress/downrelsig
+Template: base-installer/debootstrap/progress/downrelsig
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/section/confbase
+Template: base-installer/debootstrap/section/confbase
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/section/confreq
+Template: base-installer/debootstrap/section/confreq
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/section/downdebs
+Template: base-installer/debootstrap/section/downdebs
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/section/downmainpkgs
+Template: base-installer/debootstrap/section/downmainpkgs
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/section/downpkgs
+Template: base-installer/debootstrap/section/downpkgs
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/section/downrel
+Template: base-installer/debootstrap/section/downrel
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/section/extractpkgs
+Template: base-installer/debootstrap/section/extractpkgs
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/section/instbase
+Template: base-installer/debootstrap/section/instbase
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/section/instcore
+Template: base-installer/debootstrap/section/instcore
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/section/sizedebs
+Template: base-installer/debootstrap/section/sizedebs
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/section/unpackbase
+Template: base-installer/debootstrap/section/unpackbase
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/section/unpackreq
+Template: base-installer/debootstrap/section/unpackreq
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap/warning/retrying
+Template: base-installer/debootstrap/warning/retrying
+Owners: bootstrap-base
+
+Name: base-installer/debootstrap_script
+Template: base-installer/debootstrap_script
+Owners: bootstrap-base
+
+Name: base-installer/excludes
+Template: base-installer/excludes
+Owners: bootstrap-base
+
+Name: base-installer/includes
+Template: base-installer/includes
+Owners: bootstrap-base
+
+Name: base-installer/initramfs-tools/driver-policy
+Template: base-installer/initramfs-tools/driver-policy
+Value: most
+Owners: bootstrap-base
+
+Name: base-installer/initramfs/generator
+Template: base-installer/initramfs/generator
+Owners: bootstrap-base
+
+Name: base-installer/initramfs/unsupported
+Template: base-installer/initramfs/unsupported
+Owners: bootstrap-base
+
+Name: base-installer/install-recommends
+Template: base-installer/install-recommends
+Owners: base-installer
+
+Name: base-installer/kernel/altmeta
+Template: base-installer/kernel/altmeta
+Owners: bootstrap-base
+
+Name: base-installer/kernel/failed-install
+Template: base-installer/kernel/failed-install
+Owners: bootstrap-base
+
+Name: base-installer/kernel/failed-package-install
+Template: base-installer/kernel/failed-package-install
+Owners: bootstrap-base
+
+Name: base-installer/kernel/image
+Template: base-installer/kernel/image
+Value: linux-image-amd64
+Owners: bootstrap-base
+Variables:
+ KERNELS = linux-image-4.19.0-10-amd64,linux-image-4.19.0-11-amd64,linux-image-amd64
+
+Name: base-installer/kernel/linux/extra-packages
+Template: base-installer/kernel/linux/extra-packages
+Owners: bootstrap-base
+
+Name: base-installer/kernel/linux/extra-packages-2.6
+Template: base-installer/kernel/linux/extra-packages-2.6
+Owners: bootstrap-base
+
+Name: base-installer/kernel/linux/initramfs-tools/driver-policy
+Template: base-installer/kernel/linux/initramfs-tools/driver-policy
+Owners: bootstrap-base
+
+Name: base-installer/kernel/linux/initrd-2.6
+Template: base-installer/kernel/linux/initrd-2.6
+Owners: bootstrap-base
+
+Name: base-installer/kernel/linux/link_in_boot
+Template: base-installer/kernel/linux/link_in_boot
+Owners: bootstrap-base
+
+Name: base-installer/kernel/no-kernels-found
+Template: base-installer/kernel/no-kernels-found
+Owners: bootstrap-base
+
+Name: base-installer/kernel/override-image
+Template: debian-installer/dummy
+Value: linux-server
+Owners: d-i
+Flags: seen
+Variables:
+ ID = base-installer/kernel/override-image
+
+Name: base-installer/kernel/skip-install
+Template: base-installer/kernel/skip-install
+Owners: bootstrap-base
+
+Name: base-installer/no_codename
+Template: base-installer/no_codename
+Owners: bootstrap-base
+
+Name: base-installer/no_target_mounted
+Template: base-installer/no_target_mounted
+Owners: base-installer
+
+Name: base-installer/progress/fallback
+Template: base-installer/progress/fallback
+Owners: base-installer
+Variables:
+ SCRIPT = partman-md
+
+Name: base-installer/progress/hw-detect
+Template: base-installer/progress/hw-detect
+Owners: d-i
+
+Name: base-installer/progress/installing-base
+Template: base-installer/progress/installing-base
+Owners: base-installer
+
+Name: base-installer/progress/netcfg
+Template: base-installer/progress/netcfg
+Owners: netcfg
+
+Name: base-installer/progress/preparing
+Template: base-installer/progress/preparing
+Owners: base-installer
+
+Name: base-installer/progress/register-modules
+Template: base-installer/progress/register-modules
+Owners: d-i
+
+Name: base-installer/section/apt_update
+Template: base-installer/section/apt_update
+Owners: base-installer
+
+Name: base-installer/section/configure_apt
+Template: base-installer/section/configure_apt
+Owners: base-installer, bootstrap-base
+
+Name: base-installer/section/install_extra
+Template: base-installer/section/install_extra
+Owners: base-installer
+
+Name: base-installer/section/install_extra_package
+Template: base-installer/section/install_extra_package
+Owners: base-installer
+Variables:
+ SUBST0 = console-setup
+
+Name: base-installer/section/install_kernel_package
+Template: base-installer/section/install_kernel_package
+Owners: bootstrap-base
+Variables:
+ SUBST0 = linux-image-amd64
+
+Name: base-installer/section/install_linux
+Template: base-installer/section/install_linux
+Owners: bootstrap-base
+
+Name: base-installer/section/pick_kernel
+Template: base-installer/section/pick_kernel
+Owners: bootstrap-base
+
+Name: base-installer/section/setup_dev
+Template: base-installer/section/setup_dev
+Owners: base-installer
+
+Name: base-installer/unclean_target_cancel
+Template: base-installer/unclean_target_cancel
+Owners: base-installer
+
+Name: base-installer/use_unclean_target
+Template: base-installer/use_unclean_target
+Owners: base-installer
+
+Name: ca-certificates/title
+Template: ca-certificates/title
+
+Name: cdrom-checker/askmount
+Template: cdrom-checker/askmount
+Owners: d-i
+
+Name: cdrom-checker/firstcd
+Template: cdrom-checker/firstcd
+Owners: d-i
+
+Name: cdrom-checker/md5file_failed
+Template: cdrom-checker/md5file_failed
+Owners: d-i
+
+Name: cdrom-checker/mismatch
+Template: cdrom-checker/mismatch
+Owners: d-i
+
+Name: cdrom-checker/mntfailed
+Template: cdrom-checker/mntfailed
+Owners: d-i
+
+Name: cdrom-checker/nextcd
+Template: cdrom-checker/nextcd
+Owners: d-i
+
+Name: cdrom-checker/passed
+Template: cdrom-checker/passed
+Owners: d-i
+
+Name: cdrom-checker/progress_step
+Template: cdrom-checker/progress_step
+Owners: d-i
+
+Name: cdrom-checker/progress_title
+Template: cdrom-checker/progress_title
+Owners: d-i
+
+Name: cdrom-checker/start
+Template: cdrom-checker/start
+Owners: d-i
+
+Name: cdrom-checker/wrongcd
+Template: cdrom-checker/wrongcd
+Owners: d-i
+
+Name: cdrom-detect/cdrom_device
+Template: cdrom-detect/cdrom_device
+Value: /dev/sr0
+Owners: d-i
+
+Name: cdrom-detect/cdrom_fs
+Template: cdrom-detect/cdrom_fs
+Value: iso9660
+Owners: d-i
+
+Name: cdrom-detect/cdrom_module
+Template: cdrom-detect/cdrom_module
+Owners: d-i
+
+Name: cdrom-detect/detect_progress_title
+Template: cdrom-detect/detect_progress_title
+Owners: d-i
+
+Name: cdrom-detect/eject
+Template: cdrom-detect/eject
+Owners: d-i
+
+Name: cdrom-detect/hybrid
+Template: cdrom-detect/hybrid
+Owners: d-i
+
+Name: cdrom-detect/load_media
+Template: cdrom-detect/load_media
+Owners: d-i
+
+Name: cdrom-detect/manual_config
+Template: cdrom-detect/manual_config
+Owners: d-i
+
+Name: cdrom-detect/no-release
+Template: cdrom-detect/no-release
+Owners: d-i
+
+Name: cdrom-detect/retry
+Template: cdrom-detect/retry
+Owners: d-i
+
+Name: cdrom-detect/scanning_progress_step
+Template: cdrom-detect/scanning_progress_step
+Owners: d-i
+Variables:
+ DIR = /cdrom/pool/main/z
+
+Name: cdrom-detect/scanning_progress_title
+Template: cdrom-detect/scanning_progress_title
+Owners: d-i
+
+Name: cdrom-detect/success
+Template: cdrom-detect/success
+Owners: d-i
+Variables:
+ cdname = Debian GNU/Linux 10.6.0 "Buster" - Official amd64 DVD Binary-1 20200926-10:17
+
+Name: cdrom-detect/unetbootin_detected
+Template: cdrom-detect/unetbootin_detected
+Owners: d-i
+
+Name: cdrom-detect/usb-hdd
+Template: cdrom-detect/usb-hdd
+Owners: d-i
+
+Name: cdrom-detect/wrong-cd
+Template: cdrom-detect/wrong-cd
+Owners: d-i
+
+Name: cdrom/codename
+Template: cdrom/codename
+Value: buster
+Owners: d-i
+
+Name: cdrom/suite
+Template: cdrom/suite
+Value: stable
+Owners: d-i
+
+Name: clock-setup/hwclock-wait
+Template: clock-setup/hwclock-wait
+Owners: clock-setup
+
+Name: clock-setup/ntp
+Template: clock-setup/ntp
+Owners: clock-setup
+
+Name: clock-setup/ntp-server
+Template: clock-setup/ntp-server
+Owners: clock-setup
+
+Name: clock-setup/progress/hwclock
+Template: clock-setup/progress/hwclock
+Owners: clock-setup
+
+Name: clock-setup/progress/ntp
+Template: clock-setup/progress/ntp
+Owners: clock-setup
+
+Name: clock-setup/progress/title
+Template: clock-setup/progress/title
+Owners: clock-setup
+
+Name: clock-setup/system-time-changed
+Template: clock-setup/system-time-changed
+Value: true
+Owners: clock-setup
+
+Name: clock-setup/utc
+Template: clock-setup/utc
+Value: true
+Owners: clock-setup
+Flags: seen
+
+Name: clock-setup/utc-auto
+Template: debian-installer/dummy
+Value: true
+Owners: d-i
+Flags: seen
+Variables:
+ ID = clock-setup/utc-auto
+
+Name: console-setup/ask_detect
+Template: debian-installer/dummy
+Value: false
+Owners: d-i
+Flags: seen
+Variables:
+ ID = console-setup/ask_detect
+
+Name: d-i
+Template: debian-installer/dummy
+Value: select full-upgrade
+Owners: d-i
+Flags: seen
+Variables:
+ ID = d-i
+
+Name: debconf-apt-progress/info
+Template: debconf-apt-progress/info
+
+Name: debconf-apt-progress/preparing
+Template: debconf-apt-progress/preparing
+
+Name: debconf/button-cancel
+Template: debconf/button-cancel
+Owners: d-i
+
+Name: debconf/button-continue
+Template: debconf/button-continue
+Owners: d-i
+
+Name: debconf/button-goback
+Template: debconf/button-goback
+Owners: d-i
+
+Name: debconf/button-no
+Template: debconf/button-no
+Owners: d-i
+
+Name: debconf/button-yes
+Template: debconf/button-yes
+Owners: d-i
+
+Name: debconf/cont-prompt
+Template: debconf/cont-prompt
+Owners: d-i
+
+Name: debconf/frontend
+Template: debconf/frontend
+Owners: d-i
+
+Name: debconf/help-line
+Template: debconf/help-line
+Owners: d-i
+
+Name: debconf/help-line-f1
+Template: debconf/help-line-f1
+Owners: d-i
+
+Name: debconf/language
+Template: debian-installer/language
+Value: en
+Owners: d-i
+
+Name: debconf/no
+Template: debconf/no
+Owners: d-i
+
+Name: debconf/priority
+Template: debconf/priority
+Value: critical
+Owners: d-i
+Flags: seen
+
+Name: debconf/show-password
+Template: debconf/show-password
+Owners: d-i
+
+Name: debconf/showold
+Template: debconf/showold
+Owners: d-i
+
+Name: debconf/text-error
+Template: debconf/text-error
+Owners: d-i
+
+Name: debconf/text-help-clear
+Template: debconf/text-help-clear
+Owners: d-i
+
+Name: debconf/text-help-goback
+Template: debconf/text-help-goback
+Owners: d-i
+
+Name: debconf/text-help-help
+Template: debconf/text-help-help
+Owners: d-i
+
+Name: debconf/text-help-keystroke
+Template: debconf/text-help-keystroke
+Owners: d-i
+
+Name: debconf/text-help-keystrokes
+Template: debconf/text-help-keystrokes
+Owners: d-i
+
+Name: debconf/text-help-nextchoices
+Template: debconf/text-help-nextchoices
+Owners: d-i
+
+Name: debconf/text-help-otherchoices
+Template: debconf/text-help-otherchoices
+Owners: d-i
+
+Name: debconf/text-help-prevchoices
+Template: debconf/text-help-prevchoices
+Owners: d-i
+
+Name: debconf/text-prompt
+Template: debconf/text-prompt
+Owners: d-i
+
+Name: debconf/text-prompt-default
+Template: debconf/text-prompt-default
+Owners: d-i
+
+Name: debconf/text-prompt-default-string
+Template: debconf/text-prompt-default-string
+Owners: d-i
+
+Name: debconf/translations-dropped
+Template: debconf/translations-dropped
+Owners: d-i
+
+Name: debconf/yes
+Template: debconf/yes
+Owners: d-i
+
+Name: debian-installer/add-kernel-opts
+Template: debian-installer/add-kernel-opts
+Owners: d-i
+
+Name: debian-installer/allow_unauthenticated
+Template: debian-installer/allow_unauthenticated
+Owners: d-i
+
+Name: debian-installer/allow_unauthenticated_ssl
+Template: debian-installer/allow_unauthenticated_ssl
+Owners: d-i
+
+Name: debian-installer/apt-setup-udeb/title
+Template: debian-installer/apt-setup-udeb/title
+Owners: apt-setup-udeb
+
+Name: debian-installer/bootstrap-base/title
+Template: debian-installer/bootstrap-base/title
+Owners: bootstrap-base
+
+Name: debian-installer/cdebconf-priority/title
+Template: debian-installer/cdebconf-priority/title
+Owners: d-i
+
+Name: debian-installer/cdrom-checker/title
+Template: debian-installer/cdrom-checker/title
+Owners: d-i
+
+Name: debian-installer/cdrom-detect/title
+Template: debian-installer/cdrom-detect/title
+Owners: d-i
+
+Name: debian-installer/choose-mirror/title
+Template: debian-installer/choose-mirror/title
+Owners: choose-mirror-bin
+
+Name: debian-installer/clock-setup/title
+Template: debian-installer/clock-setup/title
+Owners: clock-setup
+
+Name: debian-installer/console-setup-udeb/title
+Template: debian-installer/console-setup-udeb/title
+Owners: d-i
+
+Name: debian-installer/consoledisplay
+Template: debian-installer/consoledisplay
+Value: console-setup
+Owners: d-i
+
+Name: debian-installer/country
+Template: debian-installer/country
+Value: US
+Owners: d-i
+
+Name: debian-installer/di-utils-reboot/title
+Template: debian-installer/di-utils-reboot/title
+Owners: d-i
+
+Name: debian-installer/di-utils-shell/title
+Template: debian-installer/di-utils-shell/title
+Owners: d-i
+
+Name: debian-installer/disk-detect/title
+Template: debian-installer/disk-detect/title
+Owners: disk-detect
+
+Name: debian-installer/dummy
+Template: debian-installer/dummy
+Owners: d-i
+
+Name: debian-installer/eject-udeb/title
+Template: debian-installer/eject-udeb/title
+Owners: eject-udeb
+
+Name: debian-installer/ethdetect/title
+Template: debian-installer/ethdetect/title
+Owners: ethdetect
+
+Name: debian-installer/exit/always_halt
+Template: debian-installer/exit/always_halt
+Owners: d-i
+
+Name: debian-installer/exit/halt
+Template: debian-installer/exit/halt
+Owners: d-i
+
+Name: debian-installer/exit/poweroff
+Template: debian-installer/exit/poweroff
+Owners: d-i
+
+Name: debian-installer/file-preseed/title
+Template: debian-installer/file-preseed/title
+Owners: d-i
+
+Name: debian-installer/finish-install/title
+Template: debian-installer/finish-install/title
+Owners: finish-install
+
+Name: debian-installer/framebuffer
+Template: debian-installer/framebuffer
+Owners: d-i
+
+Name: debian-installer/grub-installer/title
+Template: debian-installer/grub-installer/title
+Owners: grub-installer
+
+Name: debian-installer/language
+Template: debian-installer/language
+Value: en
+Owners: d-i
+
+Name: debian-installer/load-cdrom/title
+Template: debian-installer/load-cdrom/title
+Owners: d-i
+
+Name: debian-installer/locale
+Template: debian-installer/locale
+Value: en_US.UTF-8
+Owners: d-i
+
+Name: debian-installer/localechooser/title
+Template: debian-installer/localechooser/title
+Owners: d-i
+
+Name: debian-installer/main-menu
+Template: debian-installer/main-menu
+Value: Finish the installation
+Owners: d-i
+Variables:
+ MENU = Choose language, Access software for a blind person using a braille display, Configure the keyboard, Detect and mount CD-ROM, Load installer components from CD, Detect network hardware, Configure the network, Download debconf preconfiguration file, Set up users and passwords, Configure the clock, Detect disks, Partition disks, Install the base system, Configure the package manager, Select and install software, Install the GRUB boot loader on a hard disk, Continue without boot loader, Finish the installation, Change debconf priority, Check the CD-ROM(s) integrity, Save debug logs, Execute a shell, Eject a CD from the drive, Abort the installation
+
+Name: debian-installer/main-menu-title
+Template: debian-installer/main-menu-title
+Owners: d-i
+
+Name: debian-installer/main-menu/item-failure
+Template: debian-installer/main-menu/item-failure
+Owners: d-i
+
+Name: debian-installer/missing-provide
+Template: debian-installer/missing-provide
+Owners: d-i
+
+Name: debian-installer/netcfg-static/title
+Template: debian-installer/netcfg-static/title
+Owners: netcfg
+
+Name: debian-installer/netcfg/title
+Template: debian-installer/netcfg/title
+Owners: netcfg
+
+Name: debian-installer/network-preseed/title
+Template: debian-installer/network-preseed/title
+Owners: network-preseed
+
+Name: debian-installer/nobootloader/title
+Template: debian-installer/nobootloader/title
+Owners: nobootloader
+
+Name: debian-installer/partman-base/title
+Template: debian-installer/partman-base/title
+Owners: partman-base
+
+Name: debian-installer/partman-lvm/title
+Template: debian-installer/partman-lvm/title
+Owners: partman-lvm
+
+Name: debian-installer/pkgsel/title
+Template: debian-installer/pkgsel/title
+Owners: pkgsel
+
+Name: debian-installer/save-logs/title
+Template: debian-installer/save-logs/title
+Owners: d-i
+
+Name: debian-installer/shell-plugin
+Template: debian-installer/shell-plugin
+Owners: d-i
+
+Name: debian-installer/shell-plugin-default-title
+Template: debian-installer/shell-plugin-default-title
+Owners: d-i
+
+Name: debian-installer/terminal-plugin-unavailable
+Template: debian-installer/terminal-plugin-unavailable
+Owners: d-i
+
+Name: debian-installer/theme
+Template: debian-installer/theme
+Owners: d-i
+
+Name: debian-installer/user-setup-udeb/title
+Template: debian-installer/user-setup-udeb/title
+Owners: user-setup-udeb
+
+Name: debian-installer/workaround-gtk
+Template: debian-installer/workaround-gtk
+Owners: d-i
+
+Name: di-utils-reboot/really_reboot
+Template: di-utils-reboot/really_reboot
+Owners: d-i
+
+Name: di-utils-shell/do-shell
+Template: di-utils-shell/do-shell
+Owners: d-i
+
+Name: disk-detect/cannot_find
+Template: disk-detect/cannot_find
+Owners: disk-detect
+
+Name: disk-detect/detect_progress_title
+Template: disk-detect/detect_progress_title
+Owners: disk-detect
+
+Name: disk-detect/dmraid/enable
+Template: disk-detect/dmraid/enable
+Owners: disk-detect
+
+Name: disk-detect/module_select
+Template: disk-detect/module_select
+Owners: disk-detect
+
+Name: disk-detect/multipath/enable
+Template: disk-detect/multipath/enable
+Owners: disk-detect
+
+Name: ethdetect/cannot_find
+Template: ethdetect/cannot_find
+Owners: ethdetect
+
+Name: ethdetect/detect_progress_title
+Template: ethdetect/detect_progress_title
+Owners: ethdetect
+
+Name: ethdetect/module_select
+Template: ethdetect/module_select
+Owners: ethdetect
+
+Name: ethdetect/prompt_missing_firmware
+Template: ethdetect/prompt_missing_firmware
+Owners: ethdetect
+
+Name: ethdetect/use_firewire_ethernet
+Template: ethdetect/use_firewire_ethernet
+Owners: ethdetect
+
+Name: finish-install/keep-consoles
+Template: finish-install/keep-consoles
+Owners: finish-install
+
+Name: finish-install/progress/apt-cdrom-setup
+Template: finish-install/progress/apt-cdrom-setup
+Owners: apt-cdrom-setup
+
+Name: finish-install/progress/cdrom-detect
+Template: finish-install/progress/cdrom-detect
+Owners: d-i
+
+Name: finish-install/progress/clock-setup
+Template: finish-install/progress/clock-setup
+Owners: clock-setup
+
+Name: finish-install/progress/config-target-network
+Template: finish-install/progress/config-target-network
+Owners: finish-install
+
+Name: finish-install/progress/fallback
+Template: finish-install/progress/fallback
+Owners: finish-install
+Variables:
+ SCRIPT = random-seed
+
+Name: finish-install/progress/framebuffer-module-linux-i386
+Template: finish-install/progress/framebuffer-module-linux-i386
+Owners: finish-install
+
+Name: finish-install/progress/localechooser
+Template: finish-install/progress/localechooser
+Owners: d-i
+
+Name: finish-install/progress/reboot
+Template: finish-install/progress/reboot
+Owners: finish-install
+
+Name: finish-install/progress/save-logs
+Template: finish-install/progress/save-logs
+Owners: d-i
+
+Name: finish-install/progress/title
+Template: finish-install/progress/title
+Owners: finish-install
+
+Name: finish-install/progress/tzsetup
+Template: finish-install/progress/tzsetup
+Owners: tzsetup-udeb
+
+Name: finish-install/progress/umount
+Template: finish-install/progress/umount
+Owners: finish-install
+
+Name: finish-install/progress/user-setup
+Template: finish-install/progress/user-setup
+Owners: user-setup-udeb
+
+Name: finish-install/reboot_in_progress
+Template: finish-install/reboot_in_progress
+Value: 
+Owners: finish-install
+Flags: seen
+
+Name: grub-installer/apt-install-failed
+Template: grub-installer/apt-install-failed
+Owners: grub-installer
+
+Name: grub-installer/bootdev
+Template: grub-installer/bootdev
+Value: /dev/sda
+Owners: grub-installer
+Flags: seen
+
+Name: grub-installer/choose_bootdev
+Template: grub-installer/choose_bootdev
+Owners: grub-installer
+
+Name: grub-installer/force-efi-extra-removable
+Template: grub-installer/force-efi-extra-removable
+Owners: grub-installer
+
+Name: grub-installer/grub-install-failed
+Template: grub-installer/grub-install-failed
+Owners: grub-installer
+
+Name: grub-installer/grub2_instead_of_grub_legacy
+Template: grub-installer/grub2_instead_of_grub_legacy
+Owners: grub-installer
+
+Name: grub-installer/grub_not_mature_on_this_platform
+Template: grub-installer/grub_not_mature_on_this_platform
+Owners: grub-installer
+
+Name: grub-installer/make_active
+Template: grub-installer/make_active
+Owners: grub-installer
+
+Name: grub-installer/mounterr
+Template: grub-installer/mounterr
+Owners: grub-installer
+
+Name: grub-installer/multipath
+Template: grub-installer/multipath
+Owners: grub-installer
+
+Name: grub-installer/multipath-error
+Template: grub-installer/multipath-error
+Owners: grub-installer
+
+Name: grub-installer/only_debian
+Template: grub-installer/only_debian
+Value: true
+Owners: grub-installer
+Flags: seen
+
+Name: grub-installer/password-mismatch
+Template: grub-installer/password-mismatch
+Owners: grub-installer
+
+Name: grub-installer/progress/step_bootdev
+Template: grub-installer/progress/step_bootdev
+Owners: grub-installer
+
+Name: grub-installer/progress/step_config_loader
+Template: grub-installer/progress/step_config_loader
+Owners: grub-installer
+
+Name: grub-installer/progress/step_force_efi_removable
+Template: grub-installer/progress/step_force_efi_removable
+Owners: grub-installer
+
+Name: grub-installer/progress/step_install
+Template: grub-installer/progress/step_install
+Owners: grub-installer
+Variables:
+ GRUB = grub2
+
+Name: grub-installer/progress/step_install_loader
+Template: grub-installer/progress/step_install_loader
+Owners: grub-installer
+Variables:
+ BOOTDEV = /dev/sda
+
+Name: grub-installer/progress/step_mount_filesystems
+Template: grub-installer/progress/step_mount_filesystems
+Owners: grub-installer
+
+Name: grub-installer/progress/step_os-probe
+Template: grub-installer/progress/step_os-probe
+Owners: grub-installer
+
+Name: grub-installer/progress/step_update_debconf_efi_removable
+Template: grub-installer/progress/step_update_debconf_efi_removable
+Owners: grub-installer
+
+Name: grub-installer/progress/step_update_etc
+Template: grub-installer/progress/step_update_etc
+Owners: grub-installer
+
+Name: grub-installer/progress/title
+Template: grub-installer/progress/title
+Owners: grub-installer
+
+Name: grub-installer/sataraid
+Template: grub-installer/sataraid
+Owners: grub-installer
+
+Name: grub-installer/sataraid-error
+Template: grub-installer/sataraid-error
+Owners: grub-installer
+
+Name: grub-installer/skip
+Template: grub-installer/skip
+Owners: grub-installer
+
+Name: grub-installer/update-grub-failed
+Template: grub-installer/update-grub-failed
+Owners: grub-installer
+
+Name: grub-installer/with_other_os
+Template: grub-installer/with_other_os
+Value: true
+Owners: grub-installer
+Flags: seen
+
+Name: hw-detect/detect_progress_step
+Template: hw-detect/detect_progress_step
+Owners: d-i
+
+Name: hw-detect/hardware_init_step
+Template: hw-detect/hardware_init_step
+Owners: d-i
+
+Name: hw-detect/load-ide
+Template: hw-detect/load-ide
+Owners: d-i
+
+Name: hw-detect/load_firmware
+Template: hw-detect/load_firmware
+Owners: d-i
+
+Name: hw-detect/load_media
+Template: hw-detect/load_media
+Owners: d-i
+
+Name: hw-detect/load_progress_step
+Template: hw-detect/load_progress_step
+Owners: d-i
+
+Name: hw-detect/modprobe_error
+Template: hw-detect/modprobe_error
+Owners: d-i
+
+Name: hw-detect/pcmcia_resources
+Template: hw-detect/pcmcia_resources
+Owners: d-i
+
+Name: hw-detect/pcmcia_step
+Template: hw-detect/pcmcia_step
+Owners: d-i
+
+Name: hw-detect/retry_params
+Template: hw-detect/retry_params
+Owners: d-i
+
+Name: hw-detect/select_modules
+Template: hw-detect/select_modules
+Owners: d-i
+
+Name: hw-detect/start_pcmcia
+Template: hw-detect/start_pcmcia
+Owners: d-i
+
+Name: keyboard-configuration/altgr
+Template: keyboard-configuration/altgr
+Value: The default for the keyboard layout
+Owners: d-i
+
+Name: keyboard-configuration/compose
+Template: keyboard-configuration/compose
+Value: No compose key
+Owners: d-i
+
+Name: keyboard-configuration/ctrl_alt_bksp
+Template: keyboard-configuration/ctrl_alt_bksp
+Value: false
+Owners: d-i
+
+Name: keyboard-configuration/layout
+Template: keyboard-configuration/layout
+Owners: d-i
+Flags: seen
+
+Name: keyboard-configuration/layoutcode
+Template: keyboard-configuration/layoutcode
+Value: us
+Owners: d-i
+Flags: seen
+
+Name: keyboard-configuration/model
+Template: keyboard-configuration/model
+Owners: d-i
+Flags: seen
+
+Name: keyboard-configuration/modelcode
+Template: keyboard-configuration/modelcode
+Value: pc105
+Owners: d-i
+Flags: seen
+
+Name: keyboard-configuration/optionscode
+Template: keyboard-configuration/optionscode
+Value: 
+Owners: d-i
+
+Name: keyboard-configuration/other
+Template: keyboard-configuration/other
+Owners: d-i
+
+Name: keyboard-configuration/store_defaults_in_debconf_db
+Template: keyboard-configuration/store_defaults_in_debconf_db
+Value: true
+Owners: d-i
+
+Name: keyboard-configuration/switch
+Template: keyboard-configuration/switch
+Value: No temporary switch
+Owners: d-i
+
+Name: keyboard-configuration/toggle
+Template: keyboard-configuration/toggle
+Value: No toggling
+Owners: d-i
+
+Name: keyboard-configuration/unsupported_config_layout
+Template: keyboard-configuration/unsupported_config_layout
+Owners: d-i
+
+Name: keyboard-configuration/unsupported_config_options
+Template: keyboard-configuration/unsupported_config_options
+Owners: d-i
+
+Name: keyboard-configuration/unsupported_layout
+Template: keyboard-configuration/unsupported_layout
+Owners: d-i
+
+Name: keyboard-configuration/unsupported_options
+Template: keyboard-configuration/unsupported_options
+Owners: d-i
+
+Name: keyboard-configuration/variant
+Template: keyboard-configuration/variant
+Owners: d-i
+Flags: seen
+
+Name: keyboard-configuration/variantcode
+Template: keyboard-configuration/variantcode
+Value: 
+Owners: d-i
+
+Name: keyboard-configuration/xkb-keymap
+Template: keyboard-configuration/xkb-keymap
+Value: us
+Owners: d-i
+Flags: seen
+
+Name: libpam-runtime/title
+Template: libpam-runtime/title
+
+Name: localechooser/continentlist
+Template: localechooser/continentlist
+Owners: d-i
+
+Name: localechooser/countrylist/Africa
+Template: localechooser/countrylist/Africa
+Owners: d-i
+
+Name: localechooser/countrylist/Antarctica
+Template: localechooser/countrylist/Antarctica
+Owners: d-i
+
+Name: localechooser/countrylist/Asia
+Template: localechooser/countrylist/Asia
+Owners: d-i
+
+Name: localechooser/countrylist/Atlantic_Ocean
+Template: localechooser/countrylist/Atlantic_Ocean
+Owners: d-i
+
+Name: localechooser/countrylist/Caribbean
+Template: localechooser/countrylist/Caribbean
+Owners: d-i
+
+Name: localechooser/countrylist/Central_America
+Template: localechooser/countrylist/Central_America
+Owners: d-i
+
+Name: localechooser/countrylist/Europe
+Template: localechooser/countrylist/Europe
+Owners: d-i
+
+Name: localechooser/countrylist/Indian_Ocean
+Template: localechooser/countrylist/Indian_Ocean
+Owners: d-i
+
+Name: localechooser/countrylist/North_America
+Template: localechooser/countrylist/North_America
+Owners: d-i
+
+Name: localechooser/countrylist/Oceania
+Template: localechooser/countrylist/Oceania
+Owners: d-i
+
+Name: localechooser/countrylist/South_America
+Template: localechooser/countrylist/South_America
+Owners: d-i
+
+Name: localechooser/countrylist/other
+Template: localechooser/countrylist/other
+Owners: d-i
+
+Name: localechooser/help/locale
+Template: localechooser/help/locale
+Owners: d-i
+
+Name: localechooser/languagelist
+Template: localechooser/languagelist
+Value: en
+Owners: d-i
+Flags: seen
+Variables:
+ CODES = C, sq, ar, ast, eu, be, bs, bg, ca, zh_CN, zh_TW, hr, cs, da, nl, en, eo, et, fi, fr, gl, ka, de, el, he, hu, is, id, ga, it, ja, kk, ko, ku, lo, lv, lt, mk, se_NO, nb_NO, nn_NO, fa, pl, pt, pt_BR, ro, ru, sr, sk, sl, es, sv, tl, tg, th, tr, uk, ug, vi, cy
+ NAMES_EN = C, Albanian, Arabic, Asturian, Basque, Belarusian, Bosnian, Bulgarian, Catalan, Chinese (Simplified), Chinese (Traditional), Croatian, Czech, Danish, Dutch, English, Esperanto, Estonian, Finnish, French, Galician, Georgian, German, Greek, Hebrew, Hungarian, Icelandic, Indonesian, Irish, Italian, Japanese, Kazakh, Korean, Kurdish, Lao, Latvian, Lithuanian, Macedonian, Northern Sami, Norwegian Bokmaal, Norwegian Nynorsk, Persian, Polish, Portuguese, Portuguese (Brazil), Romanian, Russian, Serbian (Cyrillic), Slovak, Slovenian, Spanish, Swedish, Tagalog, Tajik, Thai, Turkish, Ukrainian, Uyghur, Vietnamese, Welsh
+ NAMES_BOTH = C${!TAB}-${!TAB}No localization, Albanian${!TAB}-${!TAB}Shqip, Arabic${!TAB}-${!TAB}عربي, Asturian${!TAB}-${!TAB}Asturianu, Basque${!TAB}-${!TAB}Euskara, Belarusian${!TAB}-${!TAB}Беларуская, Bosnian${!TAB}-${!TAB}Bosanski, Bulgarian${!TAB}-${!TAB}Български, Catalan${!TAB}-${!TAB}Català, Chinese (Simplified)${!TAB}-${!TAB}中文(简体), Chinese (Traditional)${!TAB}-${!TAB}中文(繁體), Croatian${!TAB}-${!TAB}Hrvatski, Czech${!TAB}-${!TAB}Čeština, Danish${!TAB}-${!TAB}Dansk, Dutch${!TAB}-${!TAB}Nederlands, English${!TAB}-${!TAB}English, Esperanto${!TAB}-${!TAB}Esperanto, Estonian${!TAB}-${!TAB}Eesti, Finnish${!TAB}-${!TAB}Suomi, French${!TAB}-${!TAB}Français, Galician${!TAB}-${!TAB}Galego, Georgian${!TAB}-${!TAB}ქართული, German${!TAB}-${!TAB}Deutsch, Greek${!TAB}-${!TAB}Ελληνικά, Hebrew${!TAB}-${!TAB}עברית, Hungarian${!TAB}-${!TAB}Magyar, Icelandic${!TAB}-${!TAB}Íslenska, Indonesian${!TAB}-${!TAB}Bahasa Indonesia, Irish${!TAB}-${!TAB}Gaeilge, Italian${!TAB}-${!TAB}Italiano, Japanese${!TAB}-${!TAB}日本語, Kazakh${!TAB}-${!TAB}Қазақ, Korean${!TAB}-${!TAB}한국어, Kurdish${!TAB}-${!TAB}Kurdî, Lao${!TAB}-${!TAB}ລາວ, Latvian${!TAB}-${!TAB}Latviski, Lithuanian${!TAB}-${!TAB}Lietuviškai, Macedonian${!TAB}-${!TAB}Македонски, Northern Sami${!TAB}-${!TAB}Sámegillii, Norwegian Bokmaal${!TAB}-${!TAB}Norsk bokmål, Norwegian Nynorsk${!TAB}-${!TAB}Norsk nynorsk, Persian${!TAB}-${!TAB}فارسی, Polish${!TAB}-${!TAB}Polski, Portuguese${!TAB}-${!TAB}Português, Portuguese (Brazil)${!TAB}-${!TAB}Português do Brasil, Romanian${!TAB}-${!TAB}Română, Russian${!TAB}-${!TAB}Русский, Serbian (Cyrillic)${!TAB}-${!TAB}Српски, Slovak${!TAB}-${!TAB}Slovenčina, Slovenian${!TAB}-${!TAB}Slovenščina, Spanish${!TAB}-${!TAB}Español, Swedish${!TAB}-${!TAB}Svenska, Tagalog${!TAB}-${!TAB}Tagalog, Tajik${!TAB}-${!TAB}Тоҷикӣ, Thai${!TAB}-${!TAB}ภาษาไทย, Turkish${!TAB}-${!TAB}Türkçe, Ukrainian${!TAB}-${!TAB}Українська, Uyghur${!TAB}-${!TAB}ئۇيغۇرچە, Vietnamese${!TAB}-${!TAB}Tiếng Việt, Welsh${!TAB}-${!TAB}Cymraeg
+
+Name: localechooser/preferred-locale
+Template: localechooser/preferred-locale
+Owners: d-i
+
+Name: localechooser/shortlist
+Template: localechooser/shortlist/en
+Value: US
+Owners: d-i
+Flags: seen
+Variables:
+ TXT1 = Country, territory or area:
+ TXT2 = The selected location will be used to set your time zone and also for example to help select the system locale. Normally this should be the country where you live.
+ TXT3 = This is a shortlist of locations based on the language you selected. Choose "other" if your location is not listed.
+
+Name: localechooser/shortlist/ar
+Template: localechooser/shortlist/ar
+Owners: d-i
+
+Name: localechooser/shortlist/bn
+Template: localechooser/shortlist/bn
+Owners: d-i
+
+Name: localechooser/shortlist/bo
+Template: localechooser/shortlist/bo
+Owners: d-i
+
+Name: localechooser/shortlist/ca
+Template: localechooser/shortlist/ca
+Owners: d-i
+
+Name: localechooser/shortlist/de
+Template: localechooser/shortlist/de
+Owners: d-i
+
+Name: localechooser/shortlist/el
+Template: localechooser/shortlist/el
+Owners: d-i
+
+Name: localechooser/shortlist/en
+Template: localechooser/shortlist/en
+Owners: d-i
+
+Name: localechooser/shortlist/es
+Template: localechooser/shortlist/es
+Owners: d-i
+
+Name: localechooser/shortlist/eu
+Template: localechooser/shortlist/eu
+Owners: d-i
+
+Name: localechooser/shortlist/fr
+Template: localechooser/shortlist/fr
+Owners: d-i
+
+Name: localechooser/shortlist/it
+Template: localechooser/shortlist/it
+Owners: d-i
+
+Name: localechooser/shortlist/nl
+Template: localechooser/shortlist/nl
+Owners: d-i
+
+Name: localechooser/shortlist/pa
+Template: localechooser/shortlist/pa
+Owners: d-i
+
+Name: localechooser/shortlist/pt
+Template: localechooser/shortlist/pt
+Owners: d-i
+
+Name: localechooser/shortlist/pt_BR
+Template: localechooser/shortlist/pt_BR
+Owners: d-i
+
+Name: localechooser/shortlist/ru
+Template: localechooser/shortlist/ru
+Owners: d-i
+
+Name: localechooser/shortlist/sq
+Template: localechooser/shortlist/sq
+Owners: d-i
+
+Name: localechooser/shortlist/sr
+Template: localechooser/shortlist/sr
+Owners: d-i
+
+Name: localechooser/shortlist/sv
+Template: localechooser/shortlist/sv
+Owners: d-i
+
+Name: localechooser/shortlist/ta
+Template: localechooser/shortlist/ta
+Owners: d-i
+
+Name: localechooser/shortlist/tr
+Template: localechooser/shortlist/tr
+Owners: d-i
+
+Name: localechooser/shortlist/zh_CN
+Template: localechooser/shortlist/zh_CN
+Owners: d-i
+
+Name: localechooser/shortlist/zh_TW
+Template: localechooser/shortlist/zh_TW
+Owners: d-i
+
+Name: localechooser/supported-locales
+Template: localechooser/supported-locales
+Value: 
+Owners: d-i
+Variables:
+ LOCALE = en_US.UTF-8
+ LOCALELIST = aa_DJ.UTF-8, aa_DJ, aa_ER, aa_ER@saaho, aa_ET, af_ZA.UTF-8, af_ZA, agr_PE, ak_GH, am_ET, an_ES.UTF-8, an_ES, anp_IN, ar_AE.UTF-8, ar_AE, ar_BH.UTF-8, ar_BH, ar_DZ.UTF-8, ar_DZ, ar_EG.UTF-8, ar_EG, ar_IN, ar_IQ.UTF-8, ar_IQ, ar_JO.UTF-8, ar_JO, ar_KW.UTF-8, ar_KW, ar_LB.UTF-8, ar_LB, ar_LY.UTF-8, ar_LY, ar_MA.UTF-8, ar_MA, ar_OM.UTF-8, ar_OM, ar_QA.UTF-8, ar_QA, ar_SA.UTF-8, ar_SA, ar_SD.UTF-8, ar_SD, ar_SS, ar_SY.UTF-8, ar_SY, ar_TN.UTF-8, ar_TN, ar_YE.UTF-8, ar_YE, ayc_PE, az_AZ, az_IR, as_IN, ast_ES.UTF-8, ast_ES, be_BY.UTF-8, be_BY, be_BY@latin, bem_ZM, ber_DZ, ber_MA, bg_BG.UTF-8, bg_BG, bhb_IN.UTF-8, bho_IN, bho_NP, bi_VU, bn_BD, bn_IN, bo_CN, bo_IN, br_FR.UTF-8, br_FR, br_FR@euro, brx_IN, bs_BA.UTF-8, bs_BA, byn_ER, ca_AD.UTF-8, ca_AD, ca_ES.UTF-8, ca_ES, ca_ES@euro, ca_ES@valencia, ca_FR.UTF-8, ca_FR, ca_IT.UTF-8, ca_IT, ce_RU, chr_US, cmn_TW, crh_UA, cs_CZ.UTF-8, cs_CZ, csb_PL, cv_RU, cy_GB.UTF-8, cy_GB, da_DK.UTF-8, da_DK, de_AT.UTF-8, de_AT, de_AT@euro, de_BE.UTF-8, de_BE, de_BE@euro, de_CH.UTF-8, de_CH, de_DE.UTF-8, de_DE, de_DE@euro, de_IT.UTF-8, de_IT, de_LI.UTF-8, de_LU.UTF-8, de_LU, de_LU@euro, doi_IN, dsb_DE, dv_MV, dz_BT, el_GR.UTF-8, el_GR, el_GR@euro, el_CY.UTF-8, el_CY, en_AG, en_AU.UTF-8, en_AU, en_BW.UTF-8, en_BW, en_CA.UTF-8, en_CA, en_DK.UTF-8, en_DK.ISO-8859-15, en_DK, en_GB.UTF-8, en_GB, en_GB.ISO-8859-15, en_HK.UTF-8, en_HK, en_IE.UTF-8, en_IE, en_IE@euro, en_IL, en_IN, en_NG, en_NZ.UTF-8, en_NZ, en_PH.UTF-8, en_PH, en_SC.UTF-8, en_SG.UTF-8, en_SG, en_US, en_US.ISO-8859-15, en_ZA.UTF-8, en_ZA, en_ZM, en_ZW.UTF-8, en_ZW, eo, es_AR.UTF-8, es_AR, es_BO.UTF-8, es_BO, es_CL.UTF-8, es_CL, es_CO.UTF-8, es_CO, es_CR.UTF-8, es_CR, es_CU, es_DO.UTF-8, es_DO, es_EC.UTF-8, es_EC, es_ES.UTF-8, es_ES, es_ES@euro, es_GT.UTF-8, es_GT, es_HN.UTF-8, es_HN, es_MX.UTF-8, es_MX, es_NI.UTF-8, es_NI, es_PA.UTF-8, es_PA, es_PE.UTF-8, es_PE, es_PR.UTF-8, es_PR, es_PY.UTF-8, es_PY, es_SV.UTF-8, es_SV, es_US.UTF-8, es_US, es_UY.UTF-8, es_UY, es_VE.UTF-8, es_VE, et_EE.UTF-8, et_EE, et_EE.ISO-8859-15, eu_ES.UTF-8, eu_ES, eu_ES@euro, eu_FR.UTF-8, eu_FR, eu_FR@euro, fa_IR, ff_SN, fi_FI.UTF-8, fi_FI, fi_FI@euro, fil_PH, fo_FO.UTF-8, fo_FO, fr_BE.UTF-8, fr_BE, fr_BE@euro, fr_CA.UTF-8, fr_CA, fr_CH.UTF-8, fr_CH, fr_FR.UTF-8, fr_FR, fr_FR@euro, fr_LU.UTF-8, fr_LU, fr_LU@euro, fur_IT, fy_NL, fy_DE, ga_IE.UTF-8, ga_IE, ga_IE@euro, gd_GB.UTF-8, gd_GB, gez_ER, gez_ER@abegede, gez_ET, gez_ET@abegede, gl_ES.UTF-8, gl_ES, gl_ES@euro, gu_IN, gv_GB.UTF-8, gv_GB, ha_NG, hak_TW, he_IL.UTF-8, he_IL, hi_IN, hif_FJ, hne_IN, hr_HR.UTF-8, hr_HR, hsb_DE.UTF-8, hsb_DE, ht_HT, hu_HU.UTF-8, hu_HU, hy_AM, hy_AM.ARMSCII-8, ia_FR, id_ID.UTF-8, id_ID, ig_NG, ik_CA, is_IS.UTF-8, is_IS, it_CH.UTF-8, it_CH, it_IT.UTF-8, it_IT, it_IT@euro, iu_CA, ja_JP.UTF-8, ja_JP.EUC-JP, ka_GE.UTF-8, ka_GE, kab_DZ, kk_KZ.UTF-8, kk_KZ, kk_KZ.RK1048, kl_GL.UTF-8, kl_GL, km_KH, kn_IN, ko_KR.UTF-8, ko_KR.EUC-KR, kok_IN, ks_IN, ks_IN@devanagari, ku_TR.UTF-8, ku_TR, kw_GB.UTF-8, kw_GB, ky_KG, lb_LU, lg_UG.UTF-8, lg_UG, li_BE, li_NL, lij_IT, ln_CD, lo_LA, lt_LT.UTF-8, lt_LT, lv_LV.UTF-8, lv_LV, lzh_TW, mag_IN, mai_IN, mai_NP, mfe_MU, mg_MG.UTF-8, mg_MG, mhr_RU, mi_NZ.UTF-8, mi_NZ, miq_NI, mjw_IN, mk_MK.UTF-8, mk_MK, ml_IN, mn_MN, mni_IN, mr_IN, ms_MY.UTF-8, ms_MY, mt_MT.UTF-8, mt_MT, my_MM, nan_TW, nan_TW@latin, nb_NO.UTF-8, nb_NO, nds_DE, nds_NL, ne_NP, nhn_MX, niu_NU, niu_NZ, nl_AW, nl_BE.UTF-8, nl_BE, nl_BE@euro, nl_NL.UTF-8, nl_NL, nl_NL@euro, nn_NO.UTF-8, nn_NO, nr_ZA, nso_ZA, oc_FR.UTF-8, oc_FR, om_ET, om_KE.UTF-8, om_KE, or_IN, os_RU, pa_IN, pa_PK, pap_AW, pap_CW, pl_PL.UTF-8, pl_PL, ps_AF, pt_BR.UTF-8, pt_BR, pt_PT.UTF-8, pt_PT, pt_PT@euro, quz_PE, raj_IN, ro_RO.UTF-8, ro_RO, ru_RU.UTF-8, ru_RU.KOI8-R, ru_RU, ru_RU.CP1251, ru_UA.UTF-8, ru_UA, rw_RW, sa_IN, sah_RU, sat_IN, sc_IT, sd_IN, sd_IN@devanagari, se_NO, sgs_LT, shn_MM, shs_CA, si_LK, sid_ET, sk_SK.UTF-8, sk_SK, sl_SI.UTF-8, sl_SI, sm_WS, so_DJ.UTF-8, so_DJ, so_ET, so_KE.UTF-8, so_KE, so_SO.UTF-8, so_SO, sq_AL.UTF-8, sq_AL, sq_MK, sr_ME, sr_RS, sr_RS@latin, ss_ZA, st_ZA.UTF-8, st_ZA, sv_FI.UTF-8, sv_FI, sv_FI@euro, sv_SE.UTF-8, sv_SE, sv_SE.ISO-8859-15, sw_KE, sw_TZ, szl_PL, ta_IN, ta_LK, tcy_IN.UTF-8, te_IN, tg_TJ.UTF-8, tg_TJ, th_TH.UTF-8, th_TH, the_NP, ti_ER, ti_ET, tig_ER, tk_TM, tl_PH.UTF-8, tl_PH, tn_ZA, to_TO, tpi_PG, tr_CY.UTF-8, tr_CY, tr_TR.UTF-8, tr_TR, ts_ZA, tt_RU, tt_RU@iqtelif, ug_CN, uk_UA.UTF-8, uk_UA, unm_US, ur_IN, ur_PK, uz_UZ.UTF-8, uz_UZ, uz_UZ@cyrillic, ve_ZA, vi_VN, wa_BE.UTF-8, wa_BE, wa_BE@euro, wae_CH, wal_ET, wo_SN, xh_ZA.UTF-8, xh_ZA, yi_US.UTF-8, yi_US, yo_NG, yue_HK, yuw_PG, zh_CN.UTF-8, zh_CN.GB18030, zh_CN.GBK, zh_CN, zh_HK.UTF-8, zh_HK, zh_SG.UTF-8, zh_SG.GBK, zh_SG, zh_TW.UTF-8, zh_TW.EUC-TW, zh_TW, zu_ZA.UTF-8, zu_ZA
+
+Name: localechooser/text/country/1/continent
+Template: localechooser/text/country/1/continent
+Owners: d-i
+
+Name: localechooser/text/country/1/country
+Template: localechooser/text/country/1/country
+Owners: d-i
+
+Name: localechooser/text/country/2
+Template: localechooser/text/country/2
+Owners: d-i
+
+Name: localechooser/text/country/3/continent
+Template: localechooser/text/country/3/continent
+Owners: d-i
+
+Name: localechooser/text/country/3/country
+Template: localechooser/text/country/3/country
+Owners: d-i
+
+Name: localechooser/text/country/3/shortlist
+Template: localechooser/text/country/3/shortlist
+Owners: d-i
+
+Name: localechooser/text/preferred-locale/multi
+Template: localechooser/text/preferred-locale/multi
+Owners: d-i
+
+Name: localechooser/text/preferred-locale/none
+Template: localechooser/text/preferred-locale/none
+Owners: d-i
+
+Name: localechooser/title/language
+Template: localechooser/title/language
+Owners: d-i
+
+Name: localechooser/title/locale
+Template: localechooser/title/locale
+Owners: d-i
+
+Name: localechooser/title/location
+Template: localechooser/title/location
+Owners: d-i
+
+Name: localechooser/translation/no-select
+Template: localechooser/translation/no-select
+Owners: d-i
+
+Name: localechooser/translation/none-yet
+Template: localechooser/translation/none-yet
+Owners: d-i
+
+Name: localechooser/translation/text/abort
+Template: localechooser/translation/text/abort
+Owners: d-i
+
+Name: localechooser/translation/text/maybe-abort
+Template: localechooser/translation/text/maybe-abort
+Owners: d-i
+
+Name: localechooser/translation/text/warn_exceptions
+Template: localechooser/translation/text/warn_exceptions
+Owners: d-i
+
+Name: localechooser/translation/text/warn_incomplete
+Template: localechooser/translation/text/warn_incomplete
+Owners: d-i
+
+Name: localechooser/translation/text/warn_incomplete/nb_NO
+Template: localechooser/translation/text/warn_incomplete/nb_NO
+Owners: d-i
+
+Name: localechooser/translation/text/warn_incomplete/nn_NO
+Template: localechooser/translation/text/warn_incomplete/nn_NO
+Owners: d-i
+
+Name: localechooser/translation/text/warn_incomplete/pt
+Template: localechooser/translation/text/warn_incomplete/pt
+Owners: d-i
+
+Name: localechooser/translation/text/warn_incomplete/pt_BR
+Template: localechooser/translation/text/warn_incomplete/pt_BR
+Owners: d-i
+
+Name: localechooser/translation/text/warn_incomplete/se_NO
+Template: localechooser/translation/text/warn_incomplete/se_NO
+Owners: d-i
+
+Name: localechooser/translation/text/warn_incomplete/zh_CN
+Template: localechooser/translation/text/warn_incomplete/zh_CN
+Owners: d-i
+
+Name: localechooser/translation/text/warn_mostly-ok
+Template: localechooser/translation/text/warn_mostly-ok
+Owners: d-i
+
+Name: localechooser/translation/text/warn_mostly-ok/nb_NO
+Template: localechooser/translation/text/warn_mostly-ok/nb_NO
+Owners: d-i
+
+Name: localechooser/translation/text/warn_mostly-ok/nn_NO
+Template: localechooser/translation/text/warn_mostly-ok/nn_NO
+Owners: d-i
+
+Name: localechooser/translation/text/warn_mostly-ok/pt
+Template: localechooser/translation/text/warn_mostly-ok/pt
+Owners: d-i
+
+Name: localechooser/translation/text/warn_mostly-ok/pt_BR
+Template: localechooser/translation/text/warn_mostly-ok/pt_BR
+Owners: d-i
+
+Name: localechooser/translation/text/warn_mostly-ok/se_NO
+Template: localechooser/translation/text/warn_mostly-ok/se_NO
+Owners: d-i
+
+Name: localechooser/translation/text/warn_mostly-ok/zh_CN
+Template: localechooser/translation/text/warn_mostly-ok/zh_CN
+Owners: d-i
+
+Name: localechooser/translation/text/warn_normal-ok
+Template: localechooser/translation/text/warn_normal-ok
+Owners: d-i
+
+Name: localechooser/translation/text/warn_normal-ok/nb_NO
+Template: localechooser/translation/text/warn_normal-ok/nb_NO
+Owners: d-i
+
+Name: localechooser/translation/text/warn_normal-ok/nn_NO
+Template: localechooser/translation/text/warn_normal-ok/nn_NO
+Owners: d-i
+
+Name: localechooser/translation/text/warn_normal-ok/pt
+Template: localechooser/translation/text/warn_normal-ok/pt
+Owners: d-i
+
+Name: localechooser/translation/text/warn_normal-ok/pt_BR
+Template: localechooser/translation/text/warn_normal-ok/pt_BR
+Owners: d-i
+
+Name: localechooser/translation/text/warn_normal-ok/se_NO
+Template: localechooser/translation/text/warn_normal-ok/se_NO
+Owners: d-i
+
+Name: localechooser/translation/text/warn_normal-ok/zh_CN
+Template: localechooser/translation/text/warn_normal-ok/zh_CN
+Owners: d-i
+
+Name: localechooser/translation/text/warn_partial
+Template: localechooser/translation/text/warn_partial
+Owners: d-i
+
+Name: localechooser/translation/text/warn_partial/nb_NO
+Template: localechooser/translation/text/warn_partial/nb_NO
+Owners: d-i
+
+Name: localechooser/translation/text/warn_partial/nn_NO
+Template: localechooser/translation/text/warn_partial/nn_NO
+Owners: d-i
+
+Name: localechooser/translation/text/warn_partial/pt
+Template: localechooser/translation/text/warn_partial/pt
+Owners: d-i
+
+Name: localechooser/translation/text/warn_partial/pt_BR
+Template: localechooser/translation/text/warn_partial/pt_BR
+Owners: d-i
+
+Name: localechooser/translation/text/warn_partial/se_NO
+Template: localechooser/translation/text/warn_partial/se_NO
+Owners: d-i
+
+Name: localechooser/translation/text/warn_partial/zh_CN
+Template: localechooser/translation/text/warn_partial/zh_CN
+Owners: d-i
+
+Name: localechooser/translation/warn-light
+Template: localechooser/translation/warn-light
+Owners: d-i
+
+Name: localechooser/translation/warn-severe
+Template: localechooser/translation/warn-severe
+Owners: d-i
+
+Name: lowmem/info
+Template: lowmem/info
+Owners: d-i
+
+Name: lowmem/insufficient
+Template: lowmem/insufficient
+Owners: d-i
+
+Name: lowmem/low
+Template: lowmem/low
+Owners: d-i
+
+Name: mirror/bad
+Template: mirror/bad
+Owners: choose-mirror-bin
+
+Name: mirror/checking_download
+Template: mirror/checking_download
+Owners: choose-mirror-bin
+
+Name: mirror/checking_title
+Template: mirror/checking_title
+Owners: choose-mirror-bin
+
+Name: mirror/codename
+Template: mirror/codename
+Value: buster
+Owners: choose-mirror-bin
+
+Name: mirror/country
+Template: mirror/country
+Value: manual
+Owners: choose-mirror-bin
+Flags: seen
+
+Name: mirror/ftp/directory
+Template: mirror/ftp/directory
+Owners: choose-mirror-bin
+
+Name: mirror/ftp/hostname
+Template: mirror/ftp/hostname
+Owners: choose-mirror-bin
+
+Name: mirror/ftp/proxy
+Template: mirror/ftp/proxy
+Owners: choose-mirror-bin
+
+Name: mirror/http/countries
+Template: mirror/http/countries
+Value: manual
+Owners: choose-mirror-bin
+Flags: seen
+
+Name: mirror/http/directory
+Template: mirror/http/directory
+Value: /debian
+Owners: choose-mirror-bin
+Flags: seen
+
+Name: mirror/http/hostname
+Template: mirror/http/hostname
+Value: deb.debian.org
+Owners: choose-mirror-bin
+Flags: seen
+
+Name: mirror/http/mirror
+Template: mirror/http/mirror
+Owners: choose-mirror-bin
+
+Name: mirror/http/proxy
+Template: mirror/http/proxy
+Value: 
+Owners: choose-mirror-bin
+Flags: seen
+
+Name: mirror/https/countries
+Template: mirror/https/countries
+Owners: choose-mirror-bin
+
+Name: mirror/https/directory
+Template: mirror/http/directory
+Owners: d-i
+
+Name: mirror/https/hostname
+Template: mirror/http/hostname
+Owners: d-i
+
+Name: mirror/https/mirror
+Template: mirror/http/mirror
+Owners: d-i
+
+Name: mirror/https/proxy
+Template: mirror/http/proxy
+Owners: d-i
+
+Name: mirror/no-default
+Template: mirror/no-default
+Owners: choose-mirror-bin
+
+Name: mirror/noarch
+Template: mirror/noarch
+Owners: choose-mirror-bin
+
+Name: mirror/protocol
+Template: mirror/protocol
+Owners: choose-mirror-bin
+Variables:
+ protocols = http, https, ftp
+
+Name: mirror/suite
+Template: mirror/suite
+Value: stable
+Owners: choose-mirror-bin
+Variables:
+ CHOICES-C = stable
+ CHOICES = buster${!TAB}-${!TAB}stable
+
+Name: mirror/suites/oldstable
+Template: mirror/suites/oldstable
+Owners: choose-mirror-bin
+
+Name: mirror/suites/stable
+Template: mirror/suites/stable
+Owners: choose-mirror-bin
+
+Name: mirror/suites/testing
+Template: mirror/suites/testing
+Owners: choose-mirror-bin
+
+Name: mirror/suites/unstable
+Template: mirror/suites/unstable
+Owners: choose-mirror-bin
+
+Name: netcfg/bad_ipaddress
+Template: netcfg/bad_ipaddress
+Owners: netcfg
+
+Name: netcfg/bad_link_wait_timeout
+Template: netcfg/bad_link_wait_timeout
+Owners: netcfg
+
+Name: netcfg/choose_interface
+Template: netcfg/choose_interface
+Owners: netcfg
+
+Name: netcfg/confirm_static
+Template: netcfg/confirm_static
+Owners: netcfg
+
+Name: netcfg/dhcp_failed
+Template: netcfg/dhcp_failed
+Owners: netcfg
+
+Name: netcfg/dhcp_hostname
+Template: netcfg/dhcp_hostname
+Owners: netcfg
+
+Name: netcfg/dhcp_ntp_servers
+Template: netcfg/dhcp_ntp_servers
+Owners: netcfg
+
+Name: netcfg/dhcp_options
+Template: netcfg/dhcp_options
+Owners: netcfg
+
+Name: netcfg/dhcp_progress
+Template: netcfg/dhcp_progress
+Owners: netcfg
+
+Name: netcfg/dhcp_progress_note
+Template: netcfg/dhcp_progress_note
+Owners: netcfg
+
+Name: netcfg/dhcp_success_note
+Template: netcfg/dhcp_success_note
+Owners: netcfg
+
+Name: netcfg/dhcp_timeout
+Template: netcfg/dhcp_timeout
+Owners: netcfg
+
+Name: netcfg/dhcpv6_progress
+Template: netcfg/dhcpv6_progress
+Owners: netcfg
+
+Name: netcfg/dhcpv6_timeout
+Template: netcfg/dhcpv6_timeout
+Owners: netcfg
+
+Name: netcfg/disable_autoconfig
+Template: netcfg/disable_autoconfig
+Owners: netcfg
+
+Name: netcfg/disable_dhcp
+Template: netcfg/disable_dhcp
+Owners: netcfg
+
+Name: netcfg/enable
+Template: netcfg/enable
+Owners: netcfg
+
+Name: netcfg/error
+Template: netcfg/error
+Owners: netcfg
+
+Name: netcfg/gateway_unreachable
+Template: netcfg/gateway_unreachable
+Owners: netcfg
+
+Name: netcfg/get_domain
+Template: netcfg/get_domain
+Value: localdomain
+Owners: netcfg
+Flags: seen
+
+Name: netcfg/get_gateway
+Template: netcfg/get_gateway
+Owners: netcfg
+
+Name: netcfg/get_hostname
+Template: netcfg/get_hostname
+Value: debian
+Owners: netcfg
+Flags: seen
+
+Name: netcfg/get_ipaddress
+Template: netcfg/get_ipaddress
+Owners: netcfg
+
+Name: netcfg/get_nameservers
+Template: netcfg/get_nameservers
+Owners: netcfg
+
+Name: netcfg/get_netmask
+Template: netcfg/get_netmask
+Owners: netcfg
+
+Name: netcfg/get_pointopoint
+Template: netcfg/get_pointopoint
+Owners: netcfg
+
+Name: netcfg/hostname
+Template: netcfg/hostname
+Owners: netcfg
+
+Name: netcfg/internal-arc
+Template: netcfg/internal-arc
+Owners: netcfg
+
+Name: netcfg/internal-ctc
+Template: netcfg/internal-ctc
+Owners: netcfg
+
+Name: netcfg/internal-escon
+Template: netcfg/internal-escon
+Owners: netcfg
+
+Name: netcfg/internal-eth
+Template: netcfg/internal-eth
+Owners: netcfg
+
+Name: netcfg/internal-hsi
+Template: netcfg/internal-hsi
+Owners: netcfg
+
+Name: netcfg/internal-ippp
+Template: netcfg/internal-ippp
+Owners: netcfg
+
+Name: netcfg/internal-iucv
+Template: netcfg/internal-iucv
+Owners: netcfg
+
+Name: netcfg/internal-none
+Template: netcfg/internal-none
+Owners: netcfg
+
+Name: netcfg/internal-plip
+Template: netcfg/internal-plip
+Owners: netcfg
+
+Name: netcfg/internal-ppp
+Template: netcfg/internal-ppp
+Owners: netcfg
+
+Name: netcfg/internal-sit
+Template: netcfg/internal-sit
+Owners: netcfg
+
+Name: netcfg/internal-slip
+Template: netcfg/internal-slip
+Owners: netcfg
+
+Name: netcfg/internal-tr
+Template: netcfg/internal-tr
+Owners: netcfg
+
+Name: netcfg/internal-unknown-iface
+Template: netcfg/internal-unknown-iface
+Owners: netcfg
+
+Name: netcfg/internal-usb
+Template: netcfg/internal-usb
+Owners: netcfg
+
+Name: netcfg/internal-wifi
+Template: netcfg/internal-wifi
+Owners: netcfg
+
+Name: netcfg/internal-wifireconf
+Template: netcfg/internal-wifireconf
+Owners: netcfg
+
+Name: netcfg/internal-wireless
+Template: netcfg/internal-wireless
+Owners: netcfg
+
+Name: netcfg/invalid_essid
+Template: netcfg/invalid_essid
+Owners: netcfg
+
+Name: netcfg/invalid_hostname
+Template: netcfg/invalid_hostname
+Owners: netcfg
+
+Name: netcfg/invalid_pass
+Template: netcfg/invalid_pass
+Owners: netcfg
+
+Name: netcfg/invalid_wep
+Template: netcfg/invalid_wep
+Owners: netcfg
+
+Name: netcfg/ipv6_config_flags_wait_title
+Template: netcfg/ipv6_config_flags_wait_title
+Owners: netcfg
+
+Name: netcfg/ipv6_link_local_wait_title
+Template: netcfg/ipv6_link_local_wait_title
+Owners: netcfg
+
+Name: netcfg/kill_switch_enabled
+Template: netcfg/kill_switch_enabled
+Owners: netcfg
+
+Name: netcfg/link_detect_progress
+Template: netcfg/link_detect_progress
+Owners: netcfg
+Variables:
+ interface = ens33
+
+Name: netcfg/link_wait_timeout
+Template: netcfg/link_wait_timeout
+Owners: netcfg
+
+Name: netcfg/no_default_route
+Template: netcfg/no_default_route
+Owners: netcfg
+
+Name: netcfg/no_dhcp_client
+Template: netcfg/no_dhcp_client
+Owners: netcfg
+
+Name: netcfg/no_interfaces
+Template: netcfg/no_interfaces
+Owners: netcfg
+
+Name: netcfg/no_ipv6_pointopoint
+Template: netcfg/no_ipv6_pointopoint
+Owners: netcfg
+
+Name: netcfg/slaac_wait_title
+Template: netcfg/slaac_wait_title
+Owners: netcfg
+
+Name: netcfg/target_network_config
+Template: netcfg/target_network_config
+Value: ifupdown
+Owners: netcfg
+
+Name: netcfg/use_autoconfig
+Template: netcfg/use_autoconfig
+Value: true
+Owners: netcfg
+
+Name: netcfg/wifi_progress_info
+Template: netcfg/wifi_progress_info
+Owners: netcfg
+
+Name: netcfg/wifi_progress_title
+Template: netcfg/wifi_progress_title
+Owners: netcfg
+
+Name: netcfg/wireless_adhoc_managed
+Template: netcfg/wireless_adhoc_managed
+Owners: netcfg
+
+Name: netcfg/wireless_essid
+Template: netcfg/wireless_essid
+Owners: netcfg
+
+Name: netcfg/wireless_essid_again
+Template: netcfg/wireless_essid_again
+Owners: netcfg
+
+Name: netcfg/wireless_security_type
+Template: netcfg/wireless_security_type
+Owners: netcfg
+
+Name: netcfg/wireless_show_essids
+Template: netcfg/wireless_show_essids
+Owners: netcfg
+
+Name: netcfg/wireless_wep
+Template: netcfg/wireless_wep
+Owners: netcfg
+
+Name: netcfg/wireless_wpa
+Template: netcfg/wireless_wpa
+Owners: netcfg
+
+Name: netcfg/wpa_progress
+Template: netcfg/wpa_progress
+Owners: netcfg
+
+Name: netcfg/wpa_progress_note
+Template: netcfg/wpa_progress_note
+Owners: netcfg
+
+Name: netcfg/wpa_success_note
+Template: netcfg/wpa_success_note
+Owners: netcfg
+
+Name: netcfg/wpa_supplicant_failed
+Template: netcfg/wpa_supplicant_failed
+Owners: netcfg
+
+Name: nobootloader/confirmation_common
+Template: nobootloader/confirmation_common
+Owners: nobootloader
+
+Name: nobootloader/confirmation_powerpc_chrp_pegasos
+Template: nobootloader/confirmation_powerpc_chrp_pegasos
+Owners: nobootloader
+
+Name: nobootloader/confirmation_powerpc_pasemi
+Template: nobootloader/confirmation_powerpc_pasemi
+Owners: nobootloader
+
+Name: nobootloader/mounterr
+Template: nobootloader/mounterr
+Owners: nobootloader
+
+Name: partman-auto-crypto/erase_disks
+Template: partman-auto-crypto/erase_disks
+Owners: partman-auto-crypto
+
+Name: partman-auto-crypto/text/choice
+Template: partman-auto-crypto/text/choice
+Owners: partman-auto-crypto
+
+Name: partman-auto-lvm/bad_guided_size
+Template: partman-auto-lvm/bad_guided_size
+Owners: partman-auto-lvm
+
+Name: partman-auto-lvm/big_guided_size
+Template: partman-auto-lvm/big_guided_size
+Owners: partman-auto-lvm
+
+Name: partman-auto-lvm/guided_size
+Template: partman-auto-lvm/guided_size
+Value: max
+Owners: d-i, partman-auto-lvm
+Flags: seen
+Variables:
+ ID = partman-auto-lvm/guided_size
+ MINSIZE = 4.0 GB
+ MAXSIZE = 21.5 GB
+ PERCENT = 18%
+
+Name: partman-auto-lvm/new_vg_name
+Template: partman-auto-lvm/new_vg_name
+Value: vg-main
+Owners: d-i, partman-auto-lvm
+Flags: seen
+Variables:
+ ID = partman-auto-lvm/new_vg_name
+
+Name: partman-auto-lvm/new_vg_name_exists
+Template: partman-auto-lvm/new_vg_name_exists
+Owners: partman-auto-lvm
+
+Name: partman-auto-lvm/no_boot
+Template: partman-auto-lvm/no_boot
+Value: true
+Owners: d-i, partman-auto-lvm
+Flags: seen
+Variables:
+ ID = partman-auto-lvm/no_boot
+
+Name: partman-auto-lvm/no_pv_in_vg
+Template: partman-auto-lvm/no_pv_in_vg
+Owners: partman-auto-lvm
+
+Name: partman-auto-lvm/no_such_pv
+Template: partman-auto-lvm/no_such_pv
+Owners: partman-auto-lvm
+
+Name: partman-auto-lvm/small_guided_size
+Template: partman-auto-lvm/small_guided_size
+Owners: partman-auto-lvm
+
+Name: partman-auto-lvm/text/choice
+Template: partman-auto-lvm/text/choice
+Owners: partman-auto-lvm
+
+Name: partman-auto-lvm/text/multiple_disks
+Template: partman-auto-lvm/text/multiple_disks
+Owners: partman-auto-lvm
+
+Name: partman-auto-lvm/unusable_recipe
+Template: partman-auto-lvm/unusable_recipe
+Owners: partman-auto-lvm
+
+Name: partman-auto-lvm/vg_create_error
+Template: partman-auto-lvm/vg_create_error
+Owners: partman-auto-lvm
+
+Name: partman-auto-lvm/vg_exists
+Template: partman-auto-lvm/vg_exists
+Owners: partman-auto-lvm
+
+Name: partman-auto-raid/error
+Template: partman-auto-raid/error
+Owners: partman-auto-raid
+
+Name: partman-auto-raid/notenoughparts
+Template: partman-auto-raid/notenoughparts
+Owners: partman-auto-raid
+
+Name: partman-auto-raid/raidnum
+Template: partman-auto-raid/raidnum
+Owners: partman-auto-raid
+
+Name: partman-auto-raid/recipe
+Template: partman-auto-raid/recipe
+Owners: partman-auto-raid
+
+Name: partman-auto/automatically_partition
+Template: partman-auto/automatically_partition
+Owners: partman-auto
+
+Name: partman-auto/autopartitioning_failed
+Template: partman-auto/autopartitioning_failed
+Owners: partman-auto
+
+Name: partman-auto/choose_recipe
+Template: partman-auto/choose_recipe
+Value: my-recipe
+Owners: partman-auto
+Flags: seen
+
+Name: partman-auto/disk
+Template: partman-auto/disk
+Value: /dev/sda
+Owners: partman-auto
+Flags: seen
+
+Name: partman-auto/expert_recipe
+Template: partman-auto/expert_recipe
+Value: my-recipe :: 100 1000 -1 ext4 $defaultignore{ } $primary{ } method{ lvm } vg_name{ vg-main } . 1000 5000 6000 ext4 $bootable{ } $lvmok{ } in_vg{ vg-main } lv_name{ lv-root } method{ format } format{ } use_filesystem{ } filesystem{ ext4 } mountpoint{ / } . 3000 10000 -1 ext4 $lvmok{ } in_vg{ vg-main } lv_name{ lv-var } method{ format } format{ } use_filesystem{ } filesystem{ ext4 } mountpoint{ /var } .
+Owners: partman-auto
+Flags: seen
+
+Name: partman-auto/expert_recipe_file
+Template: partman-auto/expert_recipe_file
+Value: /tmp/expert_recipe
+Owners: partman-auto
+
+Name: partman-auto/init_automatically_partition
+Template: partman-auto/init_automatically_partition
+Owners: partman-auto
+
+Name: partman-auto/method
+Template: partman-auto/method
+Value: lvm
+Owners: partman-auto
+Flags: seen
+
+Name: partman-auto/no_recipe
+Template: partman-auto/no_recipe
+Owners: partman-auto
+
+Name: partman-auto/progress/info
+Template: partman-auto/progress/info
+Owners: partman-auto
+
+Name: partman-auto/progress/title
+Template: partman-auto/progress/title
+Owners: partman-auto
+
+Name: partman-auto/select_disk
+Template: partman-auto/select_disk
+Owners: partman-auto
+
+Name: partman-auto/text/atomic_scheme
+Template: partman-auto/text/atomic_scheme
+Owners: partman-auto
+
+Name: partman-auto/text/auto_free_space
+Template: partman-auto/text/auto_free_space
+Owners: partman-auto
+
+Name: partman-auto/text/automatically_partition
+Template: partman-auto/text/automatically_partition
+Owners: partman-auto
+
+Name: partman-auto/text/custom_partitioning
+Template: partman-auto/text/custom_partitioning
+Owners: partman-auto
+
+Name: partman-auto/text/home_scheme
+Template: partman-auto/text/home_scheme
+Owners: partman-auto
+
+Name: partman-auto/text/multi_scheme
+Template: partman-auto/text/multi_scheme
+Owners: partman-auto
+
+Name: partman-auto/text/small_disk
+Template: partman-auto/text/small_disk
+Owners: partman-auto
+
+Name: partman-auto/text/use_biggest_free
+Template: partman-auto/text/use_biggest_free
+Owners: partman-auto
+
+Name: partman-auto/text/use_device
+Template: partman-auto/text/use_device
+Owners: partman-auto
+
+Name: partman-auto/unusable_space
+Template: partman-auto/unusable_space
+Owners: partman-auto
+
+Name: partman-base/devicelocked
+Template: partman-base/devicelocked
+Owners: partman-base
+
+Name: partman-base/partlocked
+Template: partman-base/partlocked
+Owners: partman-base
+
+Name: partman-basicfilesystems/bad_mountpoint
+Template: partman-basicfilesystems/bad_mountpoint
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/boot_not_ext2
+Template: partman-basicfilesystems/boot_not_ext2
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/boot_not_first_partition
+Template: partman-basicfilesystems/boot_not_first_partition
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/check_failed
+Template: partman-basicfilesystems/check_failed
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/choose_label
+Template: partman-basicfilesystems/choose_label
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/create_failed
+Template: partman-basicfilesystems/create_failed
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/create_swap_failed
+Template: partman-basicfilesystems/create_swap_failed
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/fat_mountpoint
+Template: partman-basicfilesystems/fat_mountpoint
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/mountoptions
+Template: partman-basicfilesystems/mountoptions
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/mountpoint
+Template: partman-basicfilesystems/mountpoint
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/mountpoint_manual
+Template: partman-basicfilesystems/mountpoint_manual
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/no_mount_point
+Template: partman-basicfilesystems/no_mount_point
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/no_swap
+Template: partman-basicfilesystems/no_swap
+Value: false
+Owners: partman-basicfilesystems
+Flags: seen
+
+Name: partman-basicfilesystems/posix_filesystem_required
+Template: partman-basicfilesystems/posix_filesystem_required
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/progress_checking
+Template: partman-basicfilesystems/progress_checking
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/progress_formatting
+Template: partman-basicfilesystems/progress_formatting
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/progress_formatting_mountable
+Template: partman-basicfilesystems/progress_formatting_mountable
+Owners: partman-basicfilesystems
+Variables:
+ MOUNT_POINT = /var
+ TYPE = ext4
+ PARTITION = 1
+ DEVICE = LVM VG vg-main, LV lv-var
+
+Name: partman-basicfilesystems/progress_swap_checking
+Template: partman-basicfilesystems/progress_swap_checking
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/progress_swap_formatting
+Template: partman-basicfilesystems/progress_swap_formatting
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/specify_reserved
+Template: partman-basicfilesystems/specify_reserved
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/specify_usage
+Template: partman-basicfilesystems/specify_usage
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/swap_check_failed
+Template: partman-basicfilesystems/swap_check_failed
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/acls
+Template: partman-basicfilesystems/text/acls
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/discard
+Template: partman-basicfilesystems/text/discard
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/format_swap
+Template: partman-basicfilesystems/text/format_swap
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/grpquota
+Template: partman-basicfilesystems/text/grpquota
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/no
+Template: partman-basicfilesystems/text/no
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/no_mountpoint
+Template: partman-basicfilesystems/text/no_mountpoint
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/noatime
+Template: partman-basicfilesystems/text/noatime
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/nodev
+Template: partman-basicfilesystems/text/nodev
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/nodiratime
+Template: partman-basicfilesystems/text/nodiratime
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/noexec
+Template: partman-basicfilesystems/text/noexec
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/none
+Template: partman-basicfilesystems/text/none
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/nosuid
+Template: partman-basicfilesystems/text/nosuid
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/notail
+Template: partman-basicfilesystems/text/notail
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/options
+Template: partman-basicfilesystems/text/options
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/quiet
+Template: partman-basicfilesystems/text/quiet
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/relatime
+Template: partman-basicfilesystems/text/relatime
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/reserved_for_root
+Template: partman-basicfilesystems/text/reserved_for_root
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/ro
+Template: partman-basicfilesystems/text/ro
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/shortnames
+Template: partman-basicfilesystems/text/shortnames
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/specify_label
+Template: partman-basicfilesystems/text/specify_label
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/specify_mountpoint
+Template: partman-basicfilesystems/text/specify_mountpoint
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/sync
+Template: partman-basicfilesystems/text/sync
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/typical_usage
+Template: partman-basicfilesystems/text/typical_usage
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/usage
+Template: partman-basicfilesystems/text/usage
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/user_xattr
+Template: partman-basicfilesystems/text/user_xattr
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/usrquota
+Template: partman-basicfilesystems/text/usrquota
+Owners: partman-basicfilesystems
+
+Name: partman-basicfilesystems/text/yes
+Template: partman-basicfilesystems/text/yes
+Owners: partman-basicfilesystems
+
+Name: partman-basicmethods/method_only
+Template: partman-basicmethods/method_only
+Owners: partman-basicmethods
+
+Name: partman-basicmethods/text/dont_use
+Template: partman-basicmethods/text/dont_use
+Owners: partman-basicmethods
+
+Name: partman-basicmethods/text/format
+Template: partman-basicmethods/text/format
+Owners: partman-basicmethods
+
+Name: partman-basicmethods/text/no_dont_format
+Template: partman-basicmethods/text/no_dont_format
+Owners: partman-basicmethods
+
+Name: partman-basicmethods/text/yes_format
+Template: partman-basicmethods/text/yes_format
+Owners: partman-basicmethods
+
+Name: partman-btrfs/btrfs_boot
+Template: partman-btrfs/btrfs_boot
+Owners: partman-btrfs
+
+Name: partman-btrfs/btrfs_root
+Template: partman-btrfs/btrfs_root
+Owners: partman-btrfs
+
+Name: partman-btrfs/text/btrfs
+Template: partman-btrfs/text/btrfs
+Owners: partman-btrfs
+
+Name: partman-crypto/cipher
+Template: partman-crypto/cipher
+Owners: partman-crypto
+
+Name: partman-crypto/commit_failed
+Template: partman-crypto/commit_failed
+Owners: partman-crypto
+
+Name: partman-crypto/confirm
+Template: partman-crypto/confirm
+Owners: partman-crypto
+
+Name: partman-crypto/confirm_nochanges
+Template: partman-crypto/confirm_nochanges
+Owners: partman-crypto
+
+Name: partman-crypto/confirm_nooverwrite
+Template: partman-crypto/confirm
+Owners: d-i
+
+Name: partman-crypto/create/nosel
+Template: partman-crypto/create/nosel
+Owners: partman-crypto
+
+Name: partman-crypto/create/partitions
+Template: partman-crypto/create/partitions
+Owners: partman-crypto
+
+Name: partman-crypto/crypto_boot_not_possible
+Template: partman-crypto/crypto_boot_not_possible
+Owners: partman-crypto
+
+Name: partman-crypto/crypto_erase_failed
+Template: partman-crypto/crypto_erase_failed
+Owners: partman-crypto
+
+Name: partman-crypto/crypto_root_needs_boot
+Template: partman-crypto/crypto_root_needs_boot
+Owners: partman-crypto
+
+Name: partman-crypto/crypto_type
+Template: partman-crypto/crypto_type
+Owners: partman-crypto
+
+Name: partman-crypto/crypto_type/dm-crypt
+Template: partman-crypto/crypto_type/dm-crypt
+Owners: partman-crypto
+
+Name: partman-crypto/crypto_warn_erase
+Template: partman-crypto/crypto_warn_erase
+Owners: partman-crypto
+
+Name: partman-crypto/entropy
+Template: partman-crypto/entropy
+Owners: partman-crypto
+
+Name: partman-crypto/entropy-success
+Template: partman-crypto/entropy-success
+Owners: partman-crypto
+
+Name: partman-crypto/init_failed
+Template: partman-crypto/init_failed
+Owners: partman-crypto
+
+Name: partman-crypto/install_udebs_failure
+Template: partman-crypto/install_udebs_failure
+Owners: partman-crypto
+
+Name: partman-crypto/install_udebs_low_mem
+Template: partman-crypto/install_udebs_low_mem
+Owners: partman-crypto
+
+Name: partman-crypto/ivalgorithm
+Template: partman-crypto/ivalgorithm
+Owners: partman-crypto
+
+Name: partman-crypto/keyfile-problem
+Template: partman-crypto/keyfile-problem
+Owners: partman-crypto
+
+Name: partman-crypto/keyhash
+Template: partman-crypto/keyhash
+Owners: partman-crypto
+
+Name: partman-crypto/keysize
+Template: partman-crypto/keysize
+Owners: partman-crypto
+
+Name: partman-crypto/keytype
+Template: partman-crypto/keytype
+Owners: partman-crypto
+
+Name: partman-crypto/mainmenu
+Template: partman-crypto/mainmenu
+Owners: partman-crypto
+
+Name: partman-crypto/module_package_missing
+Template: partman-crypto/module_package_missing
+Owners: partman-crypto
+
+Name: partman-crypto/nothing_to_setup
+Template: partman-crypto/nothing_to_setup
+Owners: partman-crypto
+
+Name: partman-crypto/options_missing
+Template: partman-crypto/options_missing
+Owners: partman-crypto
+
+Name: partman-crypto/passphrase-empty
+Template: partman-crypto/passphrase-empty
+Owners: partman-crypto
+
+Name: partman-crypto/passphrase-mismatch
+Template: partman-crypto/passphrase-mismatch
+Owners: partman-crypto
+
+Name: partman-crypto/plain_erase_failed
+Template: partman-crypto/plain_erase_failed
+Owners: partman-crypto
+
+Name: partman-crypto/plain_warn_erase
+Template: partman-crypto/plain_warn_erase
+Owners: partman-crypto
+
+Name: partman-crypto/progress/crypto_erase_text
+Template: partman-crypto/progress/crypto_erase_text
+Owners: partman-crypto
+
+Name: partman-crypto/progress/crypto_erase_title
+Template: partman-crypto/progress/crypto_erase_title
+Owners: partman-crypto
+
+Name: partman-crypto/progress/plain_erase_text
+Template: partman-crypto/progress/plain_erase_text
+Owners: partman-crypto
+
+Name: partman-crypto/progress/plain_erase_title
+Template: partman-crypto/progress/plain_erase_title
+Owners: partman-crypto
+
+Name: partman-crypto/text/configure_crypto
+Template: partman-crypto/text/configure_crypto
+Owners: partman-crypto
+
+Name: partman-crypto/text/cryptdev_description
+Template: partman-crypto/text/cryptdev_description
+Owners: partman-crypto
+
+Name: partman-crypto/text/erase_data
+Template: partman-crypto/text/erase_data
+Owners: partman-crypto
+
+Name: partman-crypto/text/erase_data_partition
+Template: partman-crypto/text/erase_data_partition
+Owners: partman-crypto
+
+Name: partman-crypto/text/in_use
+Template: partman-crypto/text/in_use
+Owners: partman-crypto
+
+Name: partman-crypto/text/keytype/keyfile
+Template: partman-crypto/text/keytype/keyfile
+Owners: partman-crypto
+
+Name: partman-crypto/text/keytype/passphrase
+Template: partman-crypto/text/keytype/passphrase
+Owners: partman-crypto
+
+Name: partman-crypto/text/keytype/random
+Template: partman-crypto/text/keytype/random
+Owners: partman-crypto
+
+Name: partman-crypto/text/missing
+Template: partman-crypto/text/missing
+Owners: partman-crypto
+
+Name: partman-crypto/text/no_erase_data
+Template: partman-crypto/text/no_erase_data
+Owners: partman-crypto
+
+Name: partman-crypto/text/not_active
+Template: partman-crypto/text/not_active
+Owners: partman-crypto
+
+Name: partman-crypto/text/specify_cipher
+Template: partman-crypto/text/specify_cipher
+Owners: partman-crypto
+
+Name: partman-crypto/text/specify_crypto_type
+Template: partman-crypto/text/specify_crypto_type
+Owners: partman-crypto
+
+Name: partman-crypto/text/specify_ivalgorithm
+Template: partman-crypto/text/specify_ivalgorithm
+Owners: partman-crypto
+
+Name: partman-crypto/text/specify_keyhash
+Template: partman-crypto/text/specify_keyhash
+Owners: partman-crypto
+
+Name: partman-crypto/text/specify_keysize
+Template: partman-crypto/text/specify_keysize
+Owners: partman-crypto
+
+Name: partman-crypto/text/specify_keytype
+Template: partman-crypto/text/specify_keytype
+Owners: partman-crypto
+
+Name: partman-crypto/text/yes_erase_data
+Template: partman-crypto/text/yes_erase_data
+Owners: partman-crypto
+
+Name: partman-crypto/tools_missing
+Template: partman-crypto/tools_missing
+Owners: partman-crypto
+
+Name: partman-crypto/unsafe_swap
+Template: partman-crypto/unsafe_swap
+Owners: partman-crypto
+
+Name: partman-crypto/use_random_for_nonswap
+Template: partman-crypto/use_random_for_nonswap
+Owners: partman-crypto
+
+Name: partman-crypto/weak_passphrase
+Template: partman-crypto/weak_passphrase
+Owners: partman-crypto
+
+Name: partman-efi/no_efi
+Template: partman-efi/no_efi
+Owners: partman-efi
+
+Name: partman-efi/non_efi_system
+Template: partman-efi/non_efi_system
+Owners: partman-efi
+
+Name: partman-efi/text/efi
+Template: partman-efi/text/efi
+Owners: partman-efi
+
+Name: partman-efi/too_small_efi
+Template: partman-efi/too_small_efi
+Owners: partman-efi
+
+Name: partman-ext3/bad_alignment
+Template: partman-ext3/bad_alignment
+Owners: partman-ext3
+
+Name: partman-ext3/boot_not_bootable
+Template: partman-ext3/boot_not_bootable
+Owners: partman-ext3
+
+Name: partman-ext3/boot_not_ext2_or_ext3
+Template: partman-ext3/boot_not_ext2_or_ext3
+Owners: partman-ext3
+
+Name: partman-ext3/text/ext3
+Template: partman-ext3/text/ext3
+Owners: partman-ext3
+
+Name: partman-ext3/text/ext4
+Template: partman-ext3/text/ext4
+Owners: partman-ext3
+
+Name: partman-iscsi/login/address
+Template: partman-iscsi/login/address
+Owners: partman-iscsi
+
+Name: partman-iscsi/login/all_targets
+Template: partman-iscsi/login/all_targets
+Owners: partman-iscsi
+
+Name: partman-iscsi/login/empty_password
+Template: partman-iscsi/login/empty_password
+Owners: partman-iscsi
+
+Name: partman-iscsi/login/failed
+Template: partman-iscsi/login/failed
+Owners: partman-iscsi
+
+Name: partman-iscsi/login/incoming_username
+Template: partman-iscsi/login/incoming_username
+Owners: partman-iscsi
+
+Name: partman-iscsi/login/no_targets
+Template: partman-iscsi/login/no_targets
+Owners: partman-iscsi
+
+Name: partman-iscsi/login/targets
+Template: partman-iscsi/login/targets
+Owners: partman-iscsi
+
+Name: partman-iscsi/login/username
+Template: partman-iscsi/login/username
+Owners: partman-iscsi
+
+Name: partman-iscsi/mainmenu
+Template: partman-iscsi/mainmenu
+Owners: partman-iscsi
+
+Name: partman-iscsi/text/configure_iscsi
+Template: partman-iscsi/text/configure_iscsi
+Owners: partman-iscsi
+
+Name: partman-jfs/jfs_boot
+Template: partman-jfs/jfs_boot
+Owners: partman-jfs
+
+Name: partman-jfs/jfs_root
+Template: partman-jfs/jfs_root
+Owners: partman-jfs
+
+Name: partman-jfs/text/jfs
+Template: partman-jfs/text/jfs
+Owners: partman-jfs
+
+Name: partman-lvm/badnamegiven
+Template: partman-lvm/badnamegiven
+Owners: partman-lvm
+
+Name: partman-lvm/commit_failed
+Template: partman-lvm/commit_failed
+Owners: partman-lvm
+
+Name: partman-lvm/confirm
+Template: partman-lvm/confirm
+Value: true
+Owners: d-i, partman-lvm
+Flags: seen
+Variables:
+ ID = partman-lvm/confirm
+
+Name: partman-lvm/confirm_nochanges
+Template: partman-lvm/confirm_nochanges
+Owners: partman-lvm
+
+Name: partman-lvm/confirm_nooverwrite
+Template: partman-lvm/confirm
+Owners: d-i
+Variables:
+ ID = partman-lvm/confirm_nooverwrite
+ ITEMS = The partition tables of the following devices are changed:\n   SCSI3 (0,0,0) (sda)
+
+Name: partman-lvm/device_remove_lvm
+Template: partman-lvm/device_remove_lvm
+Value: true
+Owners: d-i, partman-lvm
+Flags: seen
+Variables:
+ ID = partman-lvm/device_remove_lvm
+
+Name: partman-lvm/device_remove_lvm_span
+Template: partman-lvm/device_remove_lvm_span
+Owners: partman-lvm
+
+Name: partman-lvm/displayall
+Template: partman-lvm/displayall
+Owners: partman-lvm
+
+Name: partman-lvm/help
+Template: partman-lvm/help
+Owners: partman-lvm
+
+Name: partman-lvm/lvcreate_error
+Template: partman-lvm/lvcreate_error
+Owners: partman-lvm
+
+Name: partman-lvm/lvcreate_exists
+Template: partman-lvm/lvcreate_exists
+Owners: partman-lvm
+
+Name: partman-lvm/lvcreate_name
+Template: partman-lvm/lvcreate_name
+Owners: partman-lvm
+
+Name: partman-lvm/lvcreate_nofreevg
+Template: partman-lvm/lvcreate_nofreevg
+Owners: partman-lvm
+
+Name: partman-lvm/lvcreate_nonamegiven
+Template: partman-lvm/lvcreate_nonamegiven
+Owners: partman-lvm
+
+Name: partman-lvm/lvcreate_size
+Template: partman-lvm/lvcreate_size
+Owners: partman-lvm
+
+Name: partman-lvm/lvcreate_vgnames
+Template: partman-lvm/lvcreate_vgnames
+Owners: partman-lvm
+
+Name: partman-lvm/lvdelete_error
+Template: partman-lvm/lvdelete_error
+Owners: partman-lvm
+
+Name: partman-lvm/lvdelete_lvnames
+Template: partman-lvm/lvdelete_lvnames
+Owners: partman-lvm
+
+Name: partman-lvm/lvdelete_nolv
+Template: partman-lvm/lvdelete_nolv
+Owners: partman-lvm
+
+Name: partman-lvm/mainmenu
+Template: partman-lvm/mainmenu
+Owners: partman-lvm
+
+Name: partman-lvm/menu/createlv
+Template: partman-lvm/menu/createlv
+Owners: partman-lvm
+
+Name: partman-lvm/menu/createvg
+Template: partman-lvm/menu/createvg
+Owners: partman-lvm
+
+Name: partman-lvm/menu/deletelv
+Template: partman-lvm/menu/deletelv
+Owners: partman-lvm
+
+Name: partman-lvm/menu/deletevg
+Template: partman-lvm/menu/deletevg
+Owners: partman-lvm
+
+Name: partman-lvm/menu/display
+Template: partman-lvm/menu/display
+Owners: partman-lvm
+
+Name: partman-lvm/menu/extendvg
+Template: partman-lvm/menu/extendvg
+Owners: partman-lvm
+
+Name: partman-lvm/menu/finish
+Template: partman-lvm/menu/finish
+Owners: partman-lvm
+
+Name: partman-lvm/menu/reducevg
+Template: partman-lvm/menu/reducevg
+Owners: partman-lvm
+
+Name: partman-lvm/nolvm
+Template: partman-lvm/nolvm
+Owners: partman-lvm
+
+Name: partman-lvm/nopartitions
+Template: partman-lvm/nopartitions
+Owners: partman-lvm
+
+Name: partman-lvm/pvcreate_error
+Template: partman-lvm/pvcreate_error
+Owners: partman-lvm
+
+Name: partman-lvm/text/configuration_freepvs
+Template: partman-lvm/text/configuration_freepvs
+Owners: partman-lvm
+
+Name: partman-lvm/text/configuration_lv
+Template: partman-lvm/text/configuration_lv
+Owners: partman-lvm
+
+Name: partman-lvm/text/configuration_none_pvs
+Template: partman-lvm/text/configuration_none_pvs
+Owners: partman-lvm
+
+Name: partman-lvm/text/configuration_none_vgs
+Template: partman-lvm/text/configuration_none_vgs
+Owners: partman-lvm
+
+Name: partman-lvm/text/configuration_pv
+Template: partman-lvm/text/configuration_pv
+Owners: partman-lvm
+
+Name: partman-lvm/text/configuration_vgs
+Template: partman-lvm/text/configuration_vgs
+Owners: partman-lvm
+
+Name: partman-lvm/text/configure_lvm
+Template: partman-lvm/text/configure_lvm
+Owners: partman-lvm
+
+Name: partman-lvm/text/in_use
+Template: partman-lvm/text/in_use
+Owners: partman-lvm
+Variables:
+ VG = vg-main
+
+Name: partman-lvm/text/lvdelete_invg
+Template: partman-lvm/text/lvdelete_invg
+Owners: partman-lvm
+
+Name: partman-lvm/text/pvs
+Template: partman-lvm/text/pvs
+Owners: partman-lvm
+
+Name: partman-lvm/vgcreate_devnameused
+Template: partman-lvm/vgcreate_devnameused
+Owners: partman-lvm
+
+Name: partman-lvm/vgcreate_error
+Template: partman-lvm/vgcreate_error
+Owners: partman-lvm
+
+Name: partman-lvm/vgcreate_name
+Template: partman-lvm/vgcreate_name
+Owners: partman-lvm
+
+Name: partman-lvm/vgcreate_nameused
+Template: partman-lvm/vgcreate_nameused
+Owners: partman-lvm
+
+Name: partman-lvm/vgcreate_nonamegiven
+Template: partman-lvm/vgcreate_nonamegiven
+Owners: partman-lvm
+
+Name: partman-lvm/vgcreate_nosel
+Template: partman-lvm/vgcreate_nosel
+Owners: partman-lvm
+
+Name: partman-lvm/vgcreate_parts
+Template: partman-lvm/vgcreate_parts
+Owners: partman-lvm
+
+Name: partman-lvm/vgdelete_confirm
+Template: partman-lvm/vgdelete_confirm
+Owners: partman-lvm
+
+Name: partman-lvm/vgdelete_error
+Template: partman-lvm/vgdelete_error
+Owners: partman-lvm
+
+Name: partman-lvm/vgdelete_names
+Template: partman-lvm/vgdelete_names
+Owners: partman-lvm
+
+Name: partman-lvm/vgdelete_novg
+Template: partman-lvm/vgdelete_novg
+Owners: partman-lvm
+
+Name: partman-lvm/vgextend_error
+Template: partman-lvm/vgextend_error
+Owners: partman-lvm
+
+Name: partman-lvm/vgextend_names
+Template: partman-lvm/vgextend_names
+Owners: partman-lvm
+
+Name: partman-lvm/vgextend_nosel
+Template: partman-lvm/vgextend_nosel
+Owners: partman-lvm
+
+Name: partman-lvm/vgextend_novg
+Template: partman-lvm/vgextend_novg
+Owners: partman-lvm
+
+Name: partman-lvm/vgextend_parts
+Template: partman-lvm/vgextend_parts
+Owners: partman-lvm
+
+Name: partman-lvm/vgreduce_error
+Template: partman-lvm/vgreduce_error
+Owners: partman-lvm
+
+Name: partman-lvm/vgreduce_names
+Template: partman-lvm/vgreduce_names
+Owners: partman-lvm
+
+Name: partman-lvm/vgreduce_nosel
+Template: partman-lvm/vgreduce_nosel
+Owners: partman-lvm
+
+Name: partman-lvm/vgreduce_novg
+Template: partman-lvm/vgreduce_novg
+Owners: partman-lvm
+
+Name: partman-lvm/vgreduce_parts
+Template: partman-lvm/vgreduce_parts
+Owners: partman-lvm
+
+Name: partman-md/commit_failed
+Template: partman-md/commit_failed
+Owners: partman-md
+
+Name: partman-md/confirm
+Template: partman-md/confirm
+Owners: partman-md
+
+Name: partman-md/confirm_nochanges
+Template: partman-md/confirm_nochanges
+Owners: partman-md
+
+Name: partman-md/confirm_nooverwrite
+Template: partman-md/confirm
+Owners: d-i
+
+Name: partman-md/createmain
+Template: partman-md/createmain
+Owners: partman-md
+
+Name: partman-md/delete_no_md
+Template: partman-md/delete_no_md
+Owners: partman-md
+
+Name: partman-md/deletefailed
+Template: partman-md/deletefailed
+Owners: partman-md
+
+Name: partman-md/deletemenu
+Template: partman-md/deletemenu
+Owners: partman-md
+
+Name: partman-md/deleteverify
+Template: partman-md/deleteverify
+Owners: partman-md
+
+Name: partman-md/device_remove_md
+Template: partman-md/device_remove_md
+Owners: partman-md
+
+Name: partman-md/mainmenu
+Template: partman-md/mainmenu
+Owners: partman-md
+
+Name: partman-md/nomd
+Template: partman-md/nomd
+Owners: partman-md
+
+Name: partman-md/noparts
+Template: partman-md/noparts
+Owners: partman-md
+
+Name: partman-md/notenoughparts
+Template: partman-md/notenoughparts
+Owners: partman-md
+
+Name: partman-md/raid0devs
+Template: partman-md/raid0devs
+Owners: partman-md
+
+Name: partman-md/raid10layout
+Template: partman-md/raid10layout
+Owners: partman-md
+
+Name: partman-md/raiddevcount
+Template: partman-md/raiddevcount
+Owners: partman-md
+
+Name: partman-md/raiddevs
+Template: partman-md/raiddevs
+Owners: partman-md
+
+Name: partman-md/raidsparecount
+Template: partman-md/raidsparecount
+Owners: partman-md
+
+Name: partman-md/raidsparedevs
+Template: partman-md/raidsparedevs
+Owners: partman-md
+
+Name: partman-md/text/configure_md
+Template: partman-md/text/configure_md
+Owners: partman-md
+
+Name: partman-md/text/device
+Template: partman-md/text/device
+Owners: partman-md
+
+Name: partman-md/text/in_use
+Template: partman-md/text/in_use
+Owners: partman-md
+
+Name: partman-partitioning/bad_new_partition_size
+Template: partman-partitioning/bad_new_partition_size
+Owners: partman-partitioning
+
+Name: partman-partitioning/bad_new_size
+Template: partman-partitioning/bad_new_size
+Owners: partman-partitioning
+
+Name: partman-partitioning/big_new_size
+Template: partman-partitioning/big_new_size
+Owners: partman-partitioning
+
+Name: partman-partitioning/bootable_logical
+Template: partman-partitioning/bootable_logical
+Owners: partman-partitioning
+
+Name: partman-partitioning/choose_label
+Template: partman-partitioning/choose_label
+Owners: partman-partitioning
+Variables:
+ CHOICES = atari, aix, amiga, bsd, dvh, gpt, mac, msdos, pc98, sun, loop
+
+Name: partman-partitioning/confirm_new_label
+Template: partman-partitioning/confirm_new_label
+Owners: partman-partitioning
+
+Name: partman-partitioning/confirm_resize
+Template: partman-partitioning/confirm_resize
+Owners: partman-partitioning
+
+Name: partman-partitioning/confirm_write_new_label
+Template: partman-partitioning/confirm_write_new_label
+Owners: partman-partitioning
+
+Name: partman-partitioning/default_label
+Template: partman-partitioning/default_label
+Owners: partman-partitioning
+
+Name: partman-partitioning/impossible_resize
+Template: partman-partitioning/impossible_resize
+Owners: partman-partitioning
+
+Name: partman-partitioning/new_partition_place
+Template: partman-partitioning/new_partition_place
+Owners: partman-partitioning
+
+Name: partman-partitioning/new_partition_size
+Template: partman-partitioning/new_partition_size
+Owners: partman-partitioning
+
+Name: partman-partitioning/new_partition_type
+Template: partman-partitioning/new_partition_type
+Owners: partman-partitioning
+
+Name: partman-partitioning/new_size
+Template: partman-partitioning/new_size
+Owners: partman-partitioning
+
+Name: partman-partitioning/new_size_commit_failed
+Template: partman-partitioning/new_size_commit_failed
+Owners: partman-partitioning
+
+Name: partman-partitioning/new_state
+Template: partman-partitioning/new_state
+Owners: partman-partitioning
+
+Name: partman-partitioning/progress_resizing
+Template: partman-partitioning/progress_resizing
+Owners: partman-partitioning
+
+Name: partman-partitioning/set_flags
+Template: partman-partitioning/set_flags
+Owners: partman-partitioning
+
+Name: partman-partitioning/set_name
+Template: partman-partitioning/set_name
+Owners: partman-partitioning
+
+Name: partman-partitioning/small_new_size
+Template: partman-partitioning/small_new_size
+Owners: partman-partitioning
+
+Name: partman-partitioning/text/bootable
+Template: partman-partitioning/text/bootable
+Owners: partman-partitioning
+
+Name: partman-partitioning/text/delete
+Template: partman-partitioning/text/delete
+Owners: partman-partitioning
+
+Name: partman-partitioning/text/label
+Template: partman-partitioning/text/label
+Owners: partman-partitioning
+
+Name: partman-partitioning/text/new
+Template: partman-partitioning/text/new
+Owners: partman-partitioning
+
+Name: partman-partitioning/text/off
+Template: partman-partitioning/text/off
+Owners: partman-partitioning
+
+Name: partman-partitioning/text/on
+Template: partman-partitioning/text/on
+Owners: partman-partitioning
+
+Name: partman-partitioning/text/resize
+Template: partman-partitioning/text/resize
+Owners: partman-partitioning
+
+Name: partman-partitioning/text/set_flags
+Template: partman-partitioning/text/set_flags
+Owners: partman-partitioning
+
+Name: partman-partitioning/text/set_name
+Template: partman-partitioning/text/set_name
+Owners: partman-partitioning
+
+Name: partman-partitioning/unknown_label
+Template: partman-partitioning/unknown_label
+Owners: partman-partitioning
+
+Name: partman-partitioning/unsupported_label
+Template: partman-partitioning/unsupported_label
+Owners: partman-partitioning
+
+Name: partman-target/arch_help/i386/generic
+Template: partman-target/arch_help/i386/generic
+Owners: partman-target
+
+Name: partman-target/arch_help/ia64
+Template: partman-target/arch_help/ia64
+Owners: partman-efi
+
+Name: partman-target/arch_help/powerpc/powermac_newworld
+Template: partman-target/arch_help/powerpc/powermac_newworld
+Owners: partman-target
+
+Name: partman-target/choose_method
+Template: partman-target/choose_method
+Owners: partman-target
+
+Name: partman-target/help
+Template: partman-target/help
+Owners: partman-target
+Variables:
+ ARCHITECTURE_HELP = 
+ KEEP = K
+ DESTROY = F
+ FORMAT = f
+
+Name: partman-target/mount_failed
+Template: partman-target/mount_failed
+Owners: partman-target
+
+Name: partman-target/must_be_on_root
+Template: partman-target/must_be_on_root
+Owners: partman-target
+
+Name: partman-target/no_root
+Template: partman-target/no_root
+Owners: partman-target
+
+Name: partman-target/same_label
+Template: partman-target/same_label
+Owners: partman-target
+
+Name: partman-target/same_mountpoint
+Template: partman-target/same_mountpoint
+Owners: partman-target
+
+Name: partman-target/text/get_help
+Template: partman-target/text/get_help
+Owners: partman-target
+
+Name: partman-target/text/method
+Template: partman-target/text/method
+Owners: partman-target
+
+Name: partman-xfs/text/xfs
+Template: partman-xfs/text/xfs
+Owners: partman-xfs
+
+Name: partman/active_partition
+Template: partman/active_partition
+Owners: partman-base
+
+Name: partman/alignment
+Template: partman/alignment
+Owners: partman-base
+
+Name: partman/boot_not_first_partition
+Template: partman/boot_not_first_partition
+Owners: partman-ext3
+
+Name: partman/choose_partition
+Template: partman/choose_partition
+Value: 90finish__________finish
+Owners: partman-base
+Flags: seen
+Variables:
+ CHOICES = 20auto__________auto, 25md__________md, 30lvm__________lvm, 35crypto__________crypto, 40iscsi__________iscsi, 55divider_up__________divider, 60partition_tree__________/var/lib/partman/devices/=dev=mapper=vg--main-lv--root//, 60partition_tree__________/var/lib/partman/devices/=dev=mapper=vg--main-lv--root//0-5997854719, 60partition_tree__________/var/lib/partman/devices/=dev=mapper=vg--main-lv--var//, 60partition_tree__________/var/lib/partman/devices/=dev=mapper=vg--main-lv--var//0-15472787455, 60partition_tree__________/var/lib/partman/devices/=dev=sda//, 60partition_tree__________/var/lib/partman/devices/=dev=sda//1048576-21473787903, 65divider_down__________divider, 80undo__________undo, 90finish__________finish
+ DESCRIPTIONS = Guided partitioning, Configure software RAID, Configure the Logical Volume Manager, Configure encrypted volumes, Configure iSCSI volumes, , LVM VG vg-main\, LV lv-root - 6.0 GB Linux device-mapper (linear),    ${!TAB}${!ALIGN=RIGHT}#1${!TAB}${!TAB}${!ALIGN=RIGHT}6.0 GB${!TAB}${!TAB}f${!TAB}ext4${!TAB}${!TAB}/${!TAB}, LVM VG vg-main\, LV lv-var - 15.5 GB Linux device-mapper (linear),    ${!TAB}${!ALIGN=RIGHT}#1${!TAB}${!TAB}${!ALIGN=RIGHT}15.5 GB${!TAB}${!TAB}f${!TAB}ext4${!TAB}${!TAB}/var${!TAB}, SCSI3 (0\,0\,0) (sda) - 21.5 GB VMware\, VMware Virtual S,    ${!TAB}${!ALIGN=RIGHT}#1${!TAB}primary${!TAB}${!ALIGN=RIGHT}21.5 GB${!TAB}${!TAB}K${!TAB}lvm${!TAB}${!TAB}${!TAB}, , Undo changes to partitions, Finish partitioning and write changes to disk
+
+Name: partman/confirm
+Template: partman/confirm
+Value: true
+Owners: partman-base
+Flags: seen
+
+Name: partman/confirm_nochanges
+Template: partman/confirm_nochanges
+Owners: partman-base
+
+Name: partman/confirm_nooverwrite
+Template: partman/confirm_nooverwrite
+Owners: partman-base
+Variables:
+ ITEMS = The partition tables of the following devices are changed:\n   LVM VG vg-main, LV lv-root\n   LVM VG vg-main, LV lv-var\n\nThe following partitions are going to be formatted:\n   LVM VG vg-main, LV lv-root as ext4\n   LVM VG vg-main, LV lv-var as ext4
+
+Name: partman/default_filesystem
+Template: partman/default_filesystem
+Owners: partman-base
+
+Name: partman/early_command
+Template: partman/early_command
+Owners: partman-base
+
+Name: partman/exception_handler
+Template: partman/exception_handler
+Owners: partman-base
+
+Name: partman/exception_handler_note
+Template: partman/exception_handler_note
+Owners: partman-base
+
+Name: partman/filesystem_long/btrfs
+Template: partman/filesystem_long/btrfs
+Owners: partman-btrfs
+
+Name: partman/filesystem_long/ext2
+Template: partman/filesystem_long/ext2
+Owners: partman-basicfilesystems
+
+Name: partman/filesystem_long/ext3
+Template: partman/filesystem_long/ext3
+Owners: partman-ext3
+
+Name: partman/filesystem_long/ext4
+Template: partman/filesystem_long/ext4
+Owners: partman-ext3
+
+Name: partman/filesystem_long/fat16
+Template: partman/filesystem_long/fat16
+Owners: partman-basicfilesystems
+
+Name: partman/filesystem_long/fat32
+Template: partman/filesystem_long/fat32
+Owners: partman-basicfilesystems
+
+Name: partman/filesystem_long/jfs
+Template: partman/filesystem_long/jfs
+Owners: partman-jfs
+
+Name: partman/filesystem_long/linux-swap
+Template: partman/filesystem_long/linux-swap
+Owners: partman-basicfilesystems
+
+Name: partman/filesystem_long/ntfs
+Template: partman/filesystem_long/ntfs
+Owners: partman-basicfilesystems
+
+Name: partman/filesystem_long/xfs
+Template: partman/filesystem_long/xfs
+Owners: partman-xfs
+
+Name: partman/filesystem_short/btrfs
+Template: partman/filesystem_short/btrfs
+Owners: partman-btrfs
+
+Name: partman/filesystem_short/efi
+Template: partman/filesystem_short/efi
+Owners: partman-efi
+
+Name: partman/filesystem_short/ext2
+Template: partman/filesystem_short/ext2
+Owners: partman-basicfilesystems
+
+Name: partman/filesystem_short/ext3
+Template: partman/filesystem_short/ext3
+Owners: partman-ext3
+
+Name: partman/filesystem_short/ext4
+Template: partman/filesystem_short/ext4
+Owners: partman-ext3
+
+Name: partman/filesystem_short/fat16
+Template: partman/filesystem_short/fat16
+Owners: partman-basicfilesystems
+
+Name: partman/filesystem_short/fat32
+Template: partman/filesystem_short/fat32
+Owners: partman-basicfilesystems
+
+Name: partman/filesystem_short/jfs
+Template: partman/filesystem_short/jfs
+Owners: partman-jfs
+
+Name: partman/filesystem_short/linux-swap
+Template: partman/filesystem_short/linux-swap
+Owners: partman-basicfilesystems
+
+Name: partman/filesystem_short/ntfs
+Template: partman/filesystem_short/ntfs
+Owners: partman-basicfilesystems
+
+Name: partman/filesystem_short/xfs
+Template: partman/filesystem_short/xfs
+Owners: partman-xfs
+
+Name: partman/free_space
+Template: partman/free_space
+Owners: partman-base
+
+Name: partman/method_long/biosgrub
+Template: partman/method_long/biosgrub
+Owners: partman-partitioning
+
+Name: partman/method_long/crypto
+Template: partman/method_long/crypto
+Owners: partman-crypto
+
+Name: partman/method_long/dont_use
+Template: partman/method_long/dont_use
+Owners: partman-basicmethods
+
+Name: partman/method_long/efi
+Template: partman/method_long/efi
+Owners: partman-efi
+
+Name: partman/method_long/format
+Template: partman/method_long/format
+Owners: partman-basicmethods
+
+Name: partman/method_long/keep
+Template: partman/method_long/keep
+Owners: partman-basicmethods
+
+Name: partman/method_long/lvm
+Template: partman/method_long/lvm
+Owners: partman-lvm
+
+Name: partman/method_long/raid
+Template: partman/method_long/raid
+Owners: partman-md
+
+Name: partman/method_long/swap
+Template: partman/method_long/swap
+Owners: partman-basicfilesystems
+
+Name: partman/method_short/biosgrub
+Template: partman/method_short/biosgrub
+Owners: partman-partitioning
+
+Name: partman/method_short/crypto
+Template: partman/method_short/crypto
+Owners: partman-crypto
+
+Name: partman/method_short/dont_use
+Template: partman/method_short/dont_use
+Owners: partman-basicmethods
+
+Name: partman/method_short/efi
+Template: partman/method_short/efi
+Owners: partman-efi
+
+Name: partman/method_short/format
+Template: partman/method_short/format
+Owners: partman-basicmethods
+
+Name: partman/method_short/keep
+Template: partman/method_short/keep
+Owners: partman-basicmethods
+
+Name: partman/method_short/lvm
+Template: partman/method_short/lvm
+Owners: partman-lvm
+
+Name: partman/method_short/raid
+Template: partman/method_short/raid
+Owners: partman-md
+
+Name: partman/method_short/swap
+Template: partman/method_short/swap
+Owners: partman-basicfilesystems
+
+Name: partman/mount_style
+Template: partman/mount_style
+Owners: partman-target
+
+Name: partman/progress/init/crypto
+Template: partman/progress/init/crypto
+Owners: partman-crypto
+
+Name: partman/progress/init/fallback
+Template: partman/progress/init/fallback
+Owners: partman-base
+
+Name: partman/progress/init/parted
+Template: partman/progress/init/parted
+Owners: partman-base
+
+Name: partman/progress/init/title
+Template: partman/progress/init/title
+Owners: partman-base
+
+Name: partman/progress/init/update_partitions
+Template: partman/progress/init/update_partitions
+Owners: partman-base
+
+Name: partman/show_free_chs
+Template: partman/show_free_chs
+Owners: partman-base
+
+Name: partman/show_partition_chs
+Template: partman/show_partition_chs
+Owners: partman-base
+
+Name: partman/storage_device
+Template: partman/storage_device
+Owners: partman-base
+
+Name: partman/text/ata_disk
+Template: partman/text/ata_disk
+Owners: partman-base
+
+Name: partman/text/ata_partition
+Template: partman/text/ata_partition
+Owners: partman-base
+
+Name: partman/text/cancel_menu
+Template: partman/text/cancel_menu
+Owners: partman-base
+
+Name: partman/text/confirm_item
+Template: partman/text/confirm_item
+Owners: partman-base
+
+Name: partman/text/confirm_item_header
+Template: partman/text/confirm_item_header
+Owners: partman-base
+
+Name: partman/text/confirm_partitem_header
+Template: partman/text/confirm_partitem_header
+Owners: partman-base
+
+Name: partman/text/confirm_unpartitioned_item
+Template: partman/text/confirm_unpartitioned_item
+Owners: partman-base
+Variables:
+ TYPE = ext4
+ DEVICE = LVM VG vg-main, LV lv-var
+
+Name: partman/text/dasd_disk
+Template: partman/text/dasd_disk
+Owners: partman-base
+
+Name: partman/text/dasd_partition
+Template: partman/text/dasd_partition
+Owners: partman-base
+
+Name: partman/text/destroyed
+Template: partman/text/destroyed
+Owners: partman-base
+
+Name: partman/text/dmcrypt_volume
+Template: partman/text/dmcrypt_volume
+Owners: partman-base
+
+Name: partman/text/dmraid_part
+Template: partman/text/dmraid_part
+Owners: partman-base
+
+Name: partman/text/dmraid_volume
+Template: partman/text/dmraid_volume
+Owners: partman-base
+
+Name: partman/text/dump_partition_info
+Template: partman/text/dump_partition_info
+Owners: partman-base
+
+Name: partman/text/end_the_partitioning
+Template: partman/text/end_the_partitioning
+Owners: partman-base
+
+Name: partman/text/finished_with_partition
+Template: partman/text/finished_with_partition
+Owners: partman-base
+
+Name: partman/text/formatting
+Template: partman/text/formatting
+Owners: partman-base
+
+Name: partman/text/free_space
+Template: partman/text/free_space
+Owners: partman-base
+
+Name: partman/text/ide_master_disk
+Template: partman/text/ide_master_disk
+Owners: partman-base
+
+Name: partman/text/ide_master_partition
+Template: partman/text/ide_master_partition
+Owners: partman-base
+
+Name: partman/text/ide_slave_disk
+Template: partman/text/ide_slave_disk
+Owners: partman-base
+
+Name: partman/text/ide_slave_partition
+Template: partman/text/ide_slave_partition
+Owners: partman-base
+
+Name: partman/text/logical
+Template: partman/text/logical
+Owners: partman-base
+
+Name: partman/text/loopback
+Template: partman/text/loopback
+Owners: partman-base
+
+Name: partman/text/lvm_lv
+Template: partman/text/lvm_lv
+Owners: partman-base
+
+Name: partman/text/mmc_disk
+Template: partman/text/mmc_disk
+Owners: partman-base
+
+Name: partman/text/mmc_partition
+Template: partman/text/mmc_partition
+Owners: partman-base
+
+Name: partman/text/multipath
+Template: partman/text/multipath
+Owners: partman-base
+
+Name: partman/text/multipath_partition
+Template: partman/text/multipath_partition
+Owners: partman-base
+
+Name: partman/text/none_detected
+Template: partman/text/none_detected
+Owners: partman-base
+
+Name: partman/text/number
+Template: partman/text/number
+Owners: partman-base
+
+Name: partman/text/please_wait
+Template: partman/text/please_wait
+Owners: partman-base
+
+Name: partman/text/pri/log
+Template: partman/text/pri/log
+Owners: partman-base
+
+Name: partman/text/primary
+Template: partman/text/primary
+Owners: partman-base
+
+Name: partman/text/processing
+Template: partman/text/processing
+Owners: partman-base
+
+Name: partman/text/raid_device
+Template: partman/text/raid_device
+Owners: partman-base
+
+Name: partman/text/scsi_disk
+Template: partman/text/scsi_disk
+Owners: partman-base
+
+Name: partman/text/scsi_partition
+Template: partman/text/scsi_partition
+Owners: partman-base
+
+Name: partman/text/scsi_simple_disk
+Template: partman/text/scsi_simple_disk
+Owners: partman-base
+
+Name: partman/text/scsi_simple_partition
+Template: partman/text/scsi_simple_partition
+Owners: partman-base
+
+Name: partman/text/show_chs
+Template: partman/text/show_chs
+Owners: partman-base
+
+Name: partman/text/show_chs_free
+Template: partman/text/show_chs_free
+Owners: partman-base
+
+Name: partman/text/text_template
+Template: partman/text/text_template
+Owners: partman-base
+
+Name: partman/text/there_is_detected
+Template: partman/text/there_is_detected
+Owners: partman-base
+
+Name: partman/text/undo_everything
+Template: partman/text/undo_everything
+Owners: partman-base
+
+Name: partman/text/unusable
+Template: partman/text/unusable
+Owners: partman-base
+
+Name: partman/text/virtual_disk
+Template: partman/text/virtual_disk
+Owners: partman-base
+
+Name: partman/text/virtual_partition
+Template: partman/text/virtual_partition
+Owners: partman-base
+
+Name: partman/text/zfs_volume
+Template: partman/text/zfs_volume
+Owners: partman-base
+
+Name: passwd/make-user
+Template: passwd/make-user
+Owners: user-setup-udeb
+
+Name: passwd/root-login
+Template: passwd/root-login
+Value: true
+Owners: user-setup-udeb
+Flags: seen
+
+Name: passwd/shadow
+Template: passwd/shadow
+Owners: user-setup-udeb
+
+Name: passwd/user-default-groups
+Template: passwd/user-default-groups
+Owners: user-setup-udeb
+
+Name: passwd/user-fullname
+Template: passwd/user-fullname
+Value: packer
+Owners: user-setup-udeb
+Flags: seen
+
+Name: passwd/user-uid
+Template: passwd/user-uid
+Value: 1000
+Owners: user-setup-udeb
+Flags: seen
+
+Name: passwd/username
+Template: passwd/username
+Value: packer
+Owners: user-setup-udeb
+Flags: seen
+
+Name: passwd/username-bad
+Template: passwd/username-bad
+Owners: user-setup-udeb
+
+Name: passwd/username-reserved
+Template: passwd/username-reserved
+Owners: user-setup-udeb
+
+Name: pkgsel/include
+Template: pkgsel/include
+Value: sudo vim open-vm-tools build-essential net-tools htop dnsutils nfs-common curl
+Owners: pkgsel
+Flags: seen
+
+Name: pkgsel/install-language-support
+Template: debian-installer/dummy
+Value: false
+Owners: d-i
+Flags: seen
+Variables:
+ ID = pkgsel/install-language-support
+
+Name: pkgsel/progress/cleanup
+Template: pkgsel/progress/cleanup
+Owners: pkgsel
+
+Name: pkgsel/progress/fallback
+Template: pkgsel/progress/fallback
+Owners: pkgsel
+Variables:
+ SCRIPT = popcon
+
+Name: pkgsel/progress/init
+Template: pkgsel/progress/init
+Owners: pkgsel
+
+Name: pkgsel/progress/tasksel
+Template: pkgsel/progress/tasksel
+Owners: pkgsel
+
+Name: pkgsel/progress/upgrade
+Template: pkgsel/progress/upgrade
+Owners: pkgsel
+
+Name: pkgsel/update-policy
+Template: pkgsel/update-policy
+Value: none
+Owners: pkgsel
+Flags: seen
+
+Name: pkgsel/updatedb
+Template: pkgsel/updatedb
+Owners: pkgsel
+
+Name: pkgsel/upgrade
+Template: pkgsel/upgrade
+Owners: pkgsel
+
+Name: popularity-contest/participate
+Template: debian-installer/dummy
+Value: false
+Owners: d-i
+Flags: seen
+Variables:
+ ID = popularity-contest/participate
+
+Name: preseed/boot_command
+Template: preseed/boot_command
+Owners: d-i
+
+Name: preseed/checksum_error
+Template: preseed/checksum_error
+Owners: d-i
+
+Name: preseed/command_failed
+Template: preseed/command_failed
+Owners: d-i
+
+Name: preseed/early_command
+Template: preseed/early_command
+Owners: d-i
+
+Name: preseed/file
+Template: preseed/file
+Owners: d-i
+
+Name: preseed/file/checksum
+Template: preseed/file/checksum
+Owners: d-i
+
+Name: preseed/include
+Template: preseed/include
+Value: 
+Owners: d-i
+
+Name: preseed/include/checksum
+Template: preseed/include/checksum
+Value: 
+Owners: d-i
+
+Name: preseed/include_command
+Template: preseed/include_command
+Value: 
+Owners: d-i
+
+Name: preseed/interactive
+Template: preseed/interactive
+Owners: d-i
+
+Name: preseed/late_command
+Template: preseed/late_command
+Value: echo "packer ALL=(ALL:ALL) NOPASSWD:ALL" > /target/etc/sudoers.d/packer; chmod 0440 /target/etc/sudoers.d/packer; sed -i '/^deb cdrom:/s/^/#/' /target/etc/apt/sources.list;
+Owners: d-i
+Flags: seen
+
+Name: preseed/load_error
+Template: preseed/load_error
+Owners: d-i
+
+Name: preseed/retrieve_error
+Template: preseed/retrieve_error
+Owners: d-i
+
+Name: preseed/run
+Template: preseed/run
+Value: 
+Owners: d-i
+
+Name: preseed/run/checksum
+Template: preseed/run/checksum
+Value: 
+Owners: d-i
+
+Name: preseed/url
+Template: preseed/url
+Value: http://192.168.15.1:8157/preseed.cfg
+Owners: unknown, network-preseed
+Flags: seen
+Variables:
+ ID = preseed/url
+
+Name: preseed/url/checksum
+Template: preseed/url/checksum
+Owners: network-preseed
+
+Name: rescue/enable
+Template: rescue/enable
+Owners: d-i
+
+Name: rescue/info
+Template: rescue/info
+Owners: d-i
+
+Name: rescue/menu/grub-efi-force-removable
+Template: rescue/menu/grub-efi-force-removable
+Owners: grub-installer
+
+Name: rescue/menu/grub-reinstall
+Template: rescue/menu/grub-reinstall
+Owners: grub-installer
+
+Name: retriever/cdrom/error
+Template: retriever/cdrom/error
+Owners: d-i
+
+Name: retriever/media/error
+Template: retriever/media/error
+Owners: d-i
+
+Name: retriever/media/packages/progress
+Template: retriever/media/packages/progress
+Owners: d-i
+
+Name: save-logs/bad_directory
+Template: save-logs/bad_directory
+Owners: d-i
+
+Name: save-logs/directory
+Template: save-logs/directory
+Owners: d-i
+
+Name: save-logs/floppy_mount_failed
+Template: save-logs/floppy_mount_failed
+Owners: d-i
+
+Name: save-logs/httpd_running
+Template: save-logs/httpd_running
+Owners: d-i
+
+Name: save-logs/insert_floppy
+Template: save-logs/insert_floppy
+Owners: d-i
+
+Name: save-logs/menu
+Template: save-logs/menu
+Owners: d-i
+
+Name: save-logs/no_network
+Template: save-logs/no_network
+Owners: d-i
+
+Name: tasksel/first
+Template: debian-installer/dummy
+Value: standard, ssh-server
+Owners: d-i
+Flags: seen
+Variables:
+ ID = tasksel/first
+
+Name: tasksel/title
+Template: tasksel/title
+
+Name: time/zone
+Template: time/zone
+Value: UTC
+Owners: tzsetup-udeb
+Flags: seen
+
+Name: tzsetup/country/AQ
+Template: tzsetup/country/AQ
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/AU
+Template: tzsetup/country/AU
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/BR
+Template: tzsetup/country/BR
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/CA
+Template: tzsetup/country/CA
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/CD
+Template: tzsetup/country/CD
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/CL
+Template: tzsetup/country/CL
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/CY
+Template: tzsetup/country/CY
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/EC
+Template: tzsetup/country/EC
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/ES
+Template: tzsetup/country/ES
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/FM
+Template: tzsetup/country/FM
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/GL
+Template: tzsetup/country/GL
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/ID
+Template: tzsetup/country/ID
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/KI
+Template: tzsetup/country/KI
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/KZ
+Template: tzsetup/country/KZ
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/MN
+Template: tzsetup/country/MN
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/MX
+Template: tzsetup/country/MX
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/NZ
+Template: tzsetup/country/NZ
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/PF
+Template: tzsetup/country/PF
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/PG
+Template: tzsetup/country/PG
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/PT
+Template: tzsetup/country/PT
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/RU
+Template: tzsetup/country/RU
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/UM
+Template: tzsetup/country/UM
+Owners: tzsetup-udeb
+
+Name: tzsetup/country/US
+Template: tzsetup/country/US
+Owners: tzsetup-udeb
+
+Name: tzsetup/descriptions/city
+Template: tzsetup/descriptions/city
+Owners: tzsetup-udeb
+
+Name: tzsetup/descriptions/location
+Template: tzsetup/descriptions/location
+Owners: tzsetup-udeb
+
+Name: tzsetup/descriptions/state
+Template: tzsetup/descriptions/state
+Owners: tzsetup-udeb
+
+Name: tzsetup/descriptions/zone
+Template: tzsetup/descriptions/zone
+Owners: tzsetup-udeb
+
+Name: tzsetup/text/UTC
+Template: tzsetup/text/UTC
+Owners: tzsetup-udeb
+
+Name: ucf/title
+Template: ucf/title
+
+Name: user-setup/allow-password-weak
+Template: debian-installer/dummy
+Value: true
+Owners: d-i
+Flags: seen
+Variables:
+ ID = user-setup/allow-password-weak
+
+Name: user-setup/encrypt-home
+Template: debian-installer/dummy
+Value: false
+Owners: d-i
+Flags: seen
+Variables:
+ ID = user-setup/encrypt-home
+
+Name: user-setup/password-empty
+Template: user-setup/password-empty
+Owners: user-setup-udeb
+
+Name: user-setup/password-mismatch
+Template: user-setup/password-mismatch
+Owners: user-setup-udeb
+

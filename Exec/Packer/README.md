@@ -30,6 +30,8 @@
   - `d-i partman-auto-lvm/no_boot boolean true` - found in `/var/log/installer/cdebconf/questions.dat` 
   - `d-i partman-auto-lvm/new_vg_name string vg-main` and in recipe `vg_name{ vg-main }` which is the main ref value
 - **`/var/log/installer/cdebconf/questions.dat`** - contains answered questions during installation (the solution to find questions to add to `preseed.cfg`)
+  - [[questions.dat](questions.dat)] for this installation
+  - Search `Value:` for answered questions
 - RUN
   - `packer build -only=vmware-iso.vmware debian10.pkr.hcl` - HCL (MAIN)
   - `packer build -only=vmware-iso debian10.pkr.json` - JSON
