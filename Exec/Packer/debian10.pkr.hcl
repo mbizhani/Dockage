@@ -41,7 +41,7 @@ variable "memory_GB" {
 
 variable "mirror" {
   type    = bool
-  default = false
+  default = true
 }
 
 variable "ssh_password" {
