@@ -1,7 +1,6 @@
 
 variable "base_output_dir" {
-  type    = string
-  default = "/home/mehdi/App/VM/"
+  type = string
 }
 
 variable "boot_wait" {
@@ -25,13 +24,11 @@ variable "disk_size_GB" {
 }
 
 variable "iso_checksum" {
-  type    = string
-  default = "none"
+  type = string
 }
 
 variable "iso_url" {
-  type    = string
-  default = "/home/mehdi/Downloads/ISO/debian-10.6.0-amd64-DVD-1.iso"
+  type = string
 }
 
 variable "memory_GB" {
@@ -45,27 +42,24 @@ variable "mirror" {
 }
 
 variable "ssh_password" {
-  type    = string
-  default = "packer"
+  type = string
 }
 
 variable "ssh_username" {
-  type    = string
-  default = "packer"
+  type = string
 }
 
 variable "vm_name" {
-  type    = string
-  default = "deb10pkr"
+  type = string
 }
 
 source "vmware-iso" "vmware" {
-  boot_command      = [
+  boot_command = [
     "<esc><wait>",
     "auto ",
     "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
     "apt-setup/use_mirror=${var.mirror} <wait>",
-    "<enter>"]
+  "<enter>"]
   boot_wait         = "${var.boot_wait}"
   cores             = "${var.cpus_cores}"
   cpus              = "${var.cpus * var.cpus_cores}"

@@ -4,6 +4,7 @@
 - `/etc/vmware/netmap.conf` required
   - The file may not be generated for VMware Workstation 16! [[REF](https://bleepcoder.com/packer/710568243/vmware-workstation-16-does-not-generate-netmap-conf-during)] 
   - `sudo vmware-netcfg` and press `Save` button
+- Download Debian stable first DVD [[ISO](https://cdimage.debian.org/debian-cd/current/amd64/iso-dvd/)] 
 
 ### Install Packer
 - [[REF](https://learn.hashicorp.com/tutorials/packer/getting-started-install)]
@@ -32,7 +33,12 @@
 - **`/var/log/installer/cdebconf/questions.dat`** - contains answered questions during installation (the solution to find questions to add to `preseed.cfg`)
   - [[questions.dat](questions.dat)] for this installation
   - Search `Value:` for answered questions
-- RUN: `packer build debian.pkr.hcl` - HCL
+- **RUN**
+  - Set variables in `myVars.pkrvars.hcl`
+  - `packer build -var-file=myVars.pkrvars.hcl debian.pkr.hcl`
+- Users
+  - `packer` is defined in `preseed.cfg` file with `packer` password
+  - `root` has `packer` password due to `preseed.cfg` file
 
 Note: Call `packer hcl2_upgrade debian.json` to convert `json` to `hcl2` [[REF](https://www.packer.io/guides/hcl/from-json-v1)] 
 
