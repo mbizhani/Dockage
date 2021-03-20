@@ -1,4 +1,4 @@
-## Install Debian 10 on VMware Workstation via Packer
+## Install Debian on VMware Workstation via Packer
 
 ### Prerequisites
 - `/etc/vmware/netmap.conf` required
@@ -32,11 +32,9 @@
 - **`/var/log/installer/cdebconf/questions.dat`** - contains answered questions during installation (the solution to find questions to add to `preseed.cfg`)
   - [[questions.dat](questions.dat)] for this installation
   - Search `Value:` for answered questions
-- RUN
-  - `packer build -only=vmware-iso.vmware debian10.pkr.hcl` - HCL (MAIN)
-  - `packer build -only=vmware-iso debian10.pkr.json` - JSON
+- RUN: `packer build debian.pkr.hcl` - HCL
 
-Note: Call `packer hcl2_upgrade debian10.json` to convert `json` to `hcl2` [[REF](https://www.packer.io/guides/hcl/from-json-v1)] 
+Note: Call `packer hcl2_upgrade debian.json` to convert `json` to `hcl2` [[REF](https://www.packer.io/guides/hcl/from-json-v1)] 
 
 
 ### Other Configuration for Preseeding
