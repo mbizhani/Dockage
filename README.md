@@ -14,4 +14,5 @@ Using Docker Compose, Swarm, and Kubernetes besides DevOps tools such as Packer
 - [DevOps](/Exec/DevOps) - Setup a DevOps environment with CI/CD [Docker to the Point - Part 3](https://www.devocative.org/article/tech/docker03)
 - [K8S Sample](/Exec/K8S/Sample) - Simple sample K8S objects for [Kubernetes Objects in a Nutshell](https://www.devocative.org/article/tech/k8s-objects)
 - [Debian VM by Packer](/Exec/Packer/Debian) - Using [Packer](https://www.packer.io/) to install Debian as a VM
+- [RKE2 Kubernetes by Packer](/Exec/Packer/RKE2) - Using [Packer](https://www.packer.io/) to create RKE2 Kubernetes Cluster
 

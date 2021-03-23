@@ -1,0 +1,13 @@
+base_output_dir  = ""
+net_ip           = ""
+net_gateway      = ""
+net_dns          = ""
+rke2_cis_enabled = false
+rke2_registry    = "http://"
+rke2_sans        = ["rke2-01", "rke2-02", "rke2-03"]
+rke2_server_host = "" //IP Address of First Server Node to Join
+rke2_token       = "6776ecb8d64aa655906725df5938262a68d77e003720193a"
+source_vmx       = ""
+ssh_password     = "packer"
+ssh_username     = "packer"
+vm_name          = "rke2-02"
