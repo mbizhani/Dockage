@@ -41,6 +41,11 @@ variable "mirror" {
   default = true
 }
 
+variable "single_partition" {
+  type    = bool
+  default = false
+}
+
 variable "ssh_password" {
   type = string
 }
@@ -53,11 +58,15 @@ variable "vm_name" {
   type = string
 }
 
+locals {
+  preseed_file = "${var.single_partition ? "preseed-sp.cfg" : "preseed.cfg"}"
+}
+
 source "vmware-iso" "vmware" {
   boot_command = [
     "<esc><wait>",
     "auto ",
-    "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
+    "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/${local.preseed_file} <wait>",
     "apt-setup/use_mirror=${var.mirror} <wait>",
   "<enter>"]
   boot_wait         = "${var.boot_wait}"
