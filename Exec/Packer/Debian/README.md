@@ -1,25 +1,23 @@
 ## Install Debian on VMware Workstation via Packer
 
+I created this project with
+- VMware Workstation 16.0
+- Debian 10 (`debian-10.6.0-amd64-DVD-1.iso`)
+- Packer v1.7.0 [[REF](https://learn.hashicorp.com/tutorials/packer/getting-started-install)]
+
 ### Prerequisites
 - `/etc/vmware/netmap.conf` required
   - The file may not be generated for VMware Workstation 16! [[REF](https://bleepcoder.com/packer/710568243/vmware-workstation-16-does-not-generate-netmap-conf-during)] 
   - `sudo vmware-netcfg` and press `Save` button
-- Download Debian stable first DVD [[ISO](https://cdimage.debian.org/debian-cd/current/amd64/iso-dvd/)] 
-
-### Install Packer
-- [[REF](https://learn.hashicorp.com/tutorials/packer/getting-started-install)]
-  - `curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -`
-  - `sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"`
-  - `sudo apt-get update && sudo apt-get install packer`
-  - `packer` - verify installation
+- Download Debian stable first DVD [[ISO-DVD](https://cdimage.debian.org/debian-cd/current/amd64/iso-dvd/)] 
 
 ### Install Debian
-- [[packer-Debian10](https://github.com/eaksel/packer-Debian10)]
+- The main REF is [[packer-Debian10](https://github.com/eaksel/packer-Debian10)]
   - Another REF - [[How to use Packer to Build a Debian 10 Template for VMware vSphere](https://gmusumeci.medium.com/how-to-use-packer-to-build-a-debian-10-template-for-vmware-vsphere-28da6338c87e)]
 - Use a local file for `iso_url`
-  - `sha1sum FILE` for `iso_checksum` variable
+  - `sha1sum FILE` - generate checksum value for `iso_checksum` variable
 - [VMware ISO Builder](https://www.packer.io/docs/builders/vmware/iso)
-- Refs
+- Other Refs
   - [Appendix B. Automating the installation using preseeding (1)](https://www.debian.org/releases/buster/amd64/apb.en.html)
   - [Appendix B. Automating the installation using preseeding (2)](https://d-i.debian.org/manual/en.amd64/apb.html)
   - [Packer - Unattended Installation for Debian](https://www.packer.io/guides/automatic-operating-system-installs/preseed_ubuntu)  
@@ -30,12 +28,13 @@
   - `d-i partman-basicfilesystems/no_swap boolean false` - [[REF](https://lists.debian.org/debian-user/2012/08/msg01558.html)
   - `d-i partman-auto-lvm/no_boot boolean true` - found in `/var/log/installer/cdebconf/questions.dat` 
   - `d-i partman-auto-lvm/new_vg_name string vg-main` and in recipe `vg_name{ vg-main }` which is the main ref value
-- **`/var/log/installer/cdebconf/questions.dat`** - contains answered questions during installation (the solution to find questions to add to `preseed.cfg`)
-  - [[questions.dat](questions.dat)] for this installation
+- **`/var/log/installer/cdebconf/questions.dat`**
+  - it contains answered questions during installation (the solution to find questions for addition to `preseed.cfg`)
+  - The [[questions.dat](questions.dat)] for this installation
   - Search `Value:` for answered questions
 - **RUN**
   - Set variables in `myVars.pkrvars.hcl`
-  - `packer build -var-file=myVars.pkrvars.hcl debian.pkr.hcl`
+  - `packer build -var-file myVars.pkrvars.hcl debian.pkr.hcl`
 - Users
   - `packer` is defined in `preseed.cfg` file with `packer` password
   - `root` has `packer` password due to `preseed.cfg` file
