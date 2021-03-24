@@ -31,8 +31,10 @@ echo "${VIMRC}" >> /root/.vimrc
 
 
 if [ -f "/etc/vmware-tools/tools.conf" ]; then
-  NIC="$(ip a | awk '/inet.*brd/{print $NF; exit}')"
-  if [ "${NIC}" ]; then
-    printf "\n[guestinfo]\nprimary-nics=%s\n" ${NIC} >> /etc/vmware-tools/tools.conf
-  fi
+  printf "\n[guestinfo]\nprimary-nics=en*\n" >> /etc/vmware-tools/tools.conf
 fi
+
+#  NIC="$(ip a | awk '/inet.*brd/{print $NF; exit}')"
+#  if [ "${NIC}" ]; then
+#    printf "\n[guestinfo]\nprimary-nics=%s\n" ${NIC} >> /etc/vmware-tools/tools.conf
+#  fi
