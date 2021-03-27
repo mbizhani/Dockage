@@ -20,7 +20,7 @@ variable "cpus_cores" {
 
 variable "disk_size_GB" {
   type    = number
-  default = 20
+  default = 15
 }
 
 variable "iso_checksum" {
