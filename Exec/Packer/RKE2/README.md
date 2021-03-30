@@ -30,3 +30,5 @@ journalctl -u rke2-server -f
   - `kubectl get po -A` & `kubectl cluster-info` - check K8S
 - After completion, run previous steps for second and third nodes
 - `kubectl get no -o wide` - at the enb, check all nodes
+- `scp packer@rke2-01:/etc/rancher/rke2/rke2.yaml kube_config_cluster.yml`
+  - `sed -i 's/127.0.0.1/rke2-01/' kube_config_cluster.yml`
