@@ -20,7 +20,7 @@ variable "cpus_cores" {
 
 variable "disk_size_GB" {
   type    = number
-  default = 15
+  default = 20
 }
 
 variable "iso_checksum" {
@@ -41,9 +41,9 @@ variable "mirror" {
   default = true
 }
 
-variable "single_partition" {
-  type    = bool
-  default = false
+variable "partition" {
+  type    = string
+  default = "main"
 }
 
 variable "ssh_password" {
@@ -59,7 +59,7 @@ variable "vm_name" {
 }
 
 locals {
-  preseed_file = "${var.single_partition ? "preseed-sp.cfg" : "preseed.cfg"}"
+  preseed_file = "preseed-${var.partition}.cfg"
 }
 
 source "vmware-iso" "vmware" {
@@ -94,7 +94,7 @@ source "vmware-iso" "vmware" {
 
 /*
 source "virtualbox-iso" "vbox" {
-  boot_command     = ["<esc><wait>", "auto ", "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<wait>", "<enter>"]
+  boot_command     = ["<esc><wait>", "auto ", "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed-main.cfg<wait>", "<enter>"]
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   guest_os_type    = "Debian_64"

@@ -17,13 +17,23 @@ ceph/ceph:v15.2.10
 ```
 
 ## Steps
+- On VM
+  - `mkdir /dev/ceph`
+  - `ln -s /dev/sdb /dev/ceph/ceph01`
+
 - `helm repo add rook-release https://charts.rook.io/release`
 - `helm pull rook-release/rook-ceph --untar`
+
 - `kubectl create namespace rook-ceph`
-- `helm install rook-ceph rook-ceph/ --namespace rook-ceph -f values.yml` - in `Helm` dir
-- `kubectl apply -f cluster-dev.yml`
-- `kubectl apply -f toolbox.yml`
+- `helm install rook-ceph Helm/rook-ceph/ --namespace rook-ceph -f Helm/values.yml`
+- `kubectl apply -f Cluster/cluster-dev.yml`
+- `kubectl apply -f Cluster/toolbox.yml`
   - `kubectl -n rook-ceph exec -it $(kubectl -n rook-ceph get pod -l "app=rook-ceph-tools" -o jsonpath='{.items[0].metadata.name}') -- bash`
   - `ceph status`
   - `ceph df`
   - `ceph osd status`
+
+## Notes
+- It seems Ceph does not work on LVs [[issue](https://github.com/rook/rook/issues/2047)]
+  - [One Solution](https://github.com/rook/rook/issues/2047#issuecomment-509484812)
+  - [Another Solution - Cluster on PVC](https://bleepcoder.com/rook/650083003/cannot-use-with-lvm-lv)

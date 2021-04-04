@@ -15,7 +15,7 @@ apiVersion: ceph.rook.io/v1
 kind: CephCluster
 metadata:
   name: rook-ceph
-  namespace: rook-ceph # namespace:cluster
+  namespace: rook-ceph
 spec:
   cephVersion:
     image: reg.local/ceph/ceph:v15.2.10
@@ -30,8 +30,9 @@ spec:
     disable: true
   storage:
     useAllNodes: true
-    useAllDevices: true
+    useAllDevices: false
     #deviceFilter:
+    devicePathFilter: "^/dev/ceph/.*"
   healthCheck:
     daemonHealth:
       mon:
