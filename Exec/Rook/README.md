@@ -17,10 +17,6 @@ ceph/ceph:v15.2.10
 ```
 
 ## Steps
-- On VM
-  - `mkdir /dev/ceph`
-  - `ln -s /dev/sdb /dev/ceph/ceph01`
-
 - `helm repo add rook-release https://charts.rook.io/release`
 - `helm pull rook-release/rook-ceph --untar`
 
@@ -32,8 +28,10 @@ ceph/ceph:v15.2.10
   - `ceph status`
   - `ceph df`
   - `ceph osd status`
+  - `ceph mgr services` - show you all endpoints that are currently configured
 
 ## Notes
 - It seems Ceph does not work on LVs [[issue](https://github.com/rook/rook/issues/2047)]
   - [One Solution](https://github.com/rook/rook/issues/2047#issuecomment-509484812)
   - [Another Solution - Cluster on PVC](https://bleepcoder.com/rook/650083003/cannot-use-with-lvm-lv)
+  - [HTTP Dashboard](https://gitmemory.com/issue/rook/rook/4649/573108591)

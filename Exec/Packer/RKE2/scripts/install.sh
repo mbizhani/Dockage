@@ -38,20 +38,24 @@ RKE2_CMD=$(cat << 'EOF'
 
 # Added by Packer
 alias ctr='ctr -a /run/k3s/containerd/containerd.sock --namespace k8s.io'
-
 export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
-
 if [ -f "/usr/local/bin/kubectl" ]; then
   source <(kubectl completion bash)
 fi
-
 EOF
 )
 echo "${RKE2_CMD}" >> /root/.bashrc
 [ -f "/home/packer/.bashrc" ] && echo "${RKE2_CMD}" >> /home/packer/.bashrc
 
+cat > /root/install-rke2.sh << 'EOF'
+systemctl enable rke2-server.service
+systemctl start  rke2-server.service
+journalctl -u rke2-server -f
+EOF
+chmod 700 /root/install-rke2.sh
+
 ##
 ## Finalization
-rm /etc/network/interfaces.d/packer
-mv /root/interfaces /etc/network/
-mv /root/resolv.conf /etc/
+#rm /etc/network/interfaces.d/packer
+#mv /root/interfaces /etc/network/
+#mv /root/resolv.conf /etc/
