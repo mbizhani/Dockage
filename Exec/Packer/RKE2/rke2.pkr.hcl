@@ -3,6 +3,11 @@ variable "base_output_dir" {
   type = string
 }
 
+variable "extra_disk_GB" {
+  type    = number
+  default = 0
+}
+
 variable "net_ip" {
   type = string
 }
@@ -83,20 +88,25 @@ locals {
 }
 
 source "vmware-vmx" "rke2-node" {
-  disk_adapter_type = "scsi"
-  disk_type_id      = "1"
-  display_name      = "${var.vm_name}"
-  headless          = false
-  linked            = false // 'full' clone of the source VM
-  output_directory  = "${var.base_output_dir}/${var.vm_name}"
-  shutdown_command  = "echo '${var.ssh_password}' | sudo -S /sbin/shutdown -hP now"
-  source_path       = "${var.source_vmx}" // REQUIRED
-  ssh_password      = "${var.ssh_password}"
-  ssh_port          = 22
-  ssh_timeout       = "30m"
-  ssh_username      = "${var.ssh_username}"
-  vm_name           = "${var.vm_name}"
-  vmdk_name         = "${var.vm_name}"
+  disk_additional_size = var.extra_disk_GB > 0 ? [var.extra_disk_GB * 1024] : []
+  disk_adapter_type    = "scsi"
+  disk_type_id         = "1"
+  display_name         = "${var.vm_name}"
+  headless             = false
+  linked               = false // 'full' clone of the source VM
+  output_directory     = "${var.base_output_dir}/${var.vm_name}"
+  shutdown_command     = "echo '${var.ssh_password}' | sudo -S /sbin/shutdown -hP now"
+  source_path          = "${var.source_vmx}" // REQUIRED
+  ssh_password         = "${var.ssh_password}"
+  ssh_port             = 22
+  ssh_timeout          = "30m"
+  ssh_username         = "${var.ssh_username}"
+  vm_name              = "${var.vm_name}"
+  vmdk_name            = "extra01"
+  vmx_data = var.extra_disk_GB == 0 ? {} : {
+    "scsi0:1.fileName" = "extra01-1.vmdk",
+    "scsi0:1.present"  = "TRUE"
+  }
 }
 
 build {
@@ -110,8 +120,8 @@ build {
   provisioner "shell" {
     execute_command   = "echo '${var.ssh_password}' | sudo -S env {{ .Vars }} {{ .Path }}"
     script            = "scripts/init.sh"
-    expect_disconnect = true
-    skip_clean        = true
+    //expect_disconnect = true
+    //skip_clean        = true
     environment_vars = [
       "P_IP=${var.net_ip}",
       "P_GW=${var.net_gateway}",
@@ -123,7 +133,7 @@ build {
   provisioner "shell" {
     execute_command = "echo '${var.ssh_password}' | sudo -S env {{ .Vars }} {{ .Path }}"
     script          = "scripts/install.sh"
-    pause_before    = "20s"
+    //pause_before    = "20s"
     environment_vars = [
       "P_REGISTRY=${trimspace(local.registry)}",
       "P_CONFIG=${trimspace(local.config)}",

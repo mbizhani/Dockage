@@ -4,6 +4,7 @@ I created this project with
 - VMware Workstation 16.0
 - Debian 10 (`debian-10.6.0-amd64-DVD-1.iso`)
 - Packer v1.7.0 [[REF](https://learn.hashicorp.com/tutorials/packer/getting-started-install)]
+  - `packer -autocomplete-install` - bash Completion - [[REF](https://www.packer.io/docs/commands#autocompletion)]
 
 ### Prerequisites
 - `/etc/vmware/netmap.conf` required
