@@ -26,13 +26,17 @@ spec:
     allowMultiplePerNode: true
   dashboard:
     enabled: true
+    ssl: true
   crashCollector:
     disable: true
   storage:
     useAllNodes: true
     useAllDevices: false
-    #deviceFilter:
-    devicePathFilter: "^/dev/ceph/.*"
+    #deviceFilter: "sdb"
+    #devicePathFilter: "^/dev/ceph/.*"
+    devices:
+      - name: sdb
+      - name: sdc
   healthCheck:
     daemonHealth:
       mon:

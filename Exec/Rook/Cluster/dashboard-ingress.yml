@@ -3,17 +3,20 @@ kind: Ingress
 metadata:
   name: rook-ceph-mgr-dashboard
   namespace: rook-ceph
-  labels:
-    app: rook-ceph-mgr
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/server-snippet: |
+      proxy_ssl_verify off;
 
 spec:
   rules:
-    - http:
+    - host: rook.local
+      http:
         paths:
-          - path: /cephboard
+          - path: /
             pathType: Prefix
             backend:
               service:
                 name: rook-ceph-mgr-dashboard
                 port:
-                  number: 8080
+                  name: https-dashboard

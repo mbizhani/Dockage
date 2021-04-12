@@ -17,7 +17,7 @@ waitForPod "app=rook-ceph-operator"
 kubectl apply -f Cluster/cluster-dev.yml
 waitForPod "app=rook-ceph-mgr"
 
-#kubectl apply -f Cluster/dashboard-ingress.yml
+kubectl apply -f Cluster/dashboard-ingress.yml
 
 kubectl apply -f Cluster/toolbox.yml
 waitForPod "app=rook-ceph-tools"
