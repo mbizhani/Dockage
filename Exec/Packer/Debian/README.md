@@ -15,6 +15,7 @@ I created this project with
 ### Install Debian
 - The main REF is [[packer-Debian10](https://github.com/eaksel/packer-Debian10)]
   - Another REF - [[How to use Packer to Build a Debian 10 Template for VMware vSphere](https://gmusumeci.medium.com/how-to-use-packer-to-build-a-debian-10-template-for-vmware-vsphere-28da6338c87e)]
+  - ESX REF - [[Automated VMWare Templates with HashiCorp Packer](https://www.infralovers.com/en/articles/2019/10/15/automated-vmware-templates-with-hashicorp-packer/)]
 - Use a local file for `iso_url`
   - `sha1sum FILE` - generate checksum value for `iso_checksum` variable
 - [VMware ISO Builder](https://www.packer.io/docs/builders/vmware/iso)
