@@ -1,66 +1,66 @@
 
-variable "base_output_dir" {
+variable base_output_dir {
   type = string
 }
 
-variable "extra_disk_GB" {
+variable extra_disk_GB {
   type    = number
   default = 0
 }
 
-variable "net_ip" {
+variable net_ip {
   type = string
 }
 
-variable "net_gateway" {
+variable net_gateway {
   type = string
 }
 
-variable "net_dns" {
+variable net_dns {
   type = string
 }
 
-variable "rke2_cis_enabled" {
+variable rke2_cis_enabled {
   type    = bool
   default = false
 }
 
-variable "rke2_is_server" {
+variable rke2_is_server {
   type    = bool
   default = true
 }
 
-variable "rke2_registry" {
+variable rke2_registry {
   type = string
 }
 
-variable "rke2_sans" {
+variable rke2_sans {
   type = list(string)
 }
 
-variable "rke2_server_host" {
+variable rke2_server_host {
   type    = string
   default = ""
 }
 
-variable "rke2_token" {
+variable rke2_token {
   type    = string
   default = ""
 }
 
-variable "source_vmx" {
+variable source_vmx {
   type = string
 }
 
-variable "ssh_password" {
+variable ssh_password {
   type = string
 }
 
-variable "ssh_username" {
+variable ssh_username {
   type = string
 }
 
-variable "vm_name" {
+variable vm_name {
   type = string
 }
 
@@ -120,8 +120,6 @@ build {
   provisioner "shell" {
     execute_command   = "echo '${var.ssh_password}' | sudo -S env {{ .Vars }} {{ .Path }}"
     script            = "scripts/init.sh"
-    //expect_disconnect = true
-    //skip_clean        = true
     environment_vars = [
       "P_IP=${var.net_ip}",
       "P_GW=${var.net_gateway}",
@@ -133,7 +131,6 @@ build {
   provisioner "shell" {
     execute_command = "echo '${var.ssh_password}' | sudo -S env {{ .Vars }} {{ .Path }}"
     script          = "scripts/install.sh"
-    //pause_before    = "20s"
     environment_vars = [
       "P_REGISTRY=${trimspace(local.registry)}",
       "P_CONFIG=${trimspace(local.config)}",
