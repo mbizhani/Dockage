@@ -1,60 +1,60 @@
 
-variable "base_output_dir" {
+variable base_output_dir {
   type = string
 }
 
-variable "boot_wait" {
+variable boot_wait {
   type    = string
   default = "5s"
 }
 
-variable "cpus" {
+variable cpus {
   type    = number
   default = 2
 }
 
-variable "cpus_cores" {
+variable cpus_cores {
   type    = number
   default = 2
 }
 
-variable "disk_size_GB" {
+variable disk_size_GB {
   type    = number
   default = 20
 }
 
-variable "iso_checksum" {
+variable iso_checksum {
   type = string
 }
 
-variable "iso_url" {
+variable iso_url {
   type = string
 }
 
-variable "memory_GB" {
+variable memory_GB {
   type    = number
   default = 2
 }
 
-variable "mirror" {
+variable mirror {
   type    = bool
   default = true
 }
 
-variable "partition" {
+variable partition {
   type    = string
   default = "main"
 }
 
-variable "ssh_password" {
+variable ssh_password {
   type = string
 }
 
-variable "ssh_username" {
+variable ssh_username {
   type = string
 }
 
-variable "vm_name" {
+variable vm_name {
   type = string
 }
 
@@ -91,25 +91,6 @@ source "vmware-iso" "vmware" {
   vm_name           = "${var.vm_name}"
   vmdk_name         = "${var.vm_name}"
 }
-
-/*
-source "virtualbox-iso" "vbox" {
-  boot_command     = ["<esc><wait>", "auto ", "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed-main.cfg<wait>", "<enter>"]
-  boot_wait        = "${var.boot_wait}"
-  disk_size        = "${var.disk_size}"
-  guest_os_type    = "Debian_64"
-  headless         = false
-  http_directory   = "http"
-  iso_checksum     = "${var.iso_checksum}"
-  iso_url          = "${var.iso_url}"
-  shutdown_command = "echo 'packer' | sudo -S /sbin/shutdown -hP now"
-  ssh_password     = "${var.ssh_password}"
-  ssh_port         = 22
-  ssh_timeout      = "30m"
-  ssh_username     = "${var.ssh_username}"
-  vboxmanage       = [["modifyvm", "{{ .Name }}", "--memory", "${var.memory}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.cpus}"]]
-  vm_name          = "${var.vm_name}"
-}*/
 
 build {
   sources = ["source.vmware-iso.vmware"]

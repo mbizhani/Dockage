@@ -1,20 +1,20 @@
 
-variable "boot_wait" {
+variable boot_wait {
   type    = string
   default = "5s"
 }
 
-variable "cpus" {
+variable cpus {
   type    = number
   default = 2
 }
 
-variable "cpus_cores" {
+variable cpus_cores {
   type    = number
   default = 2
 }
 
-variable "disk_size_GB" {
+variable disk_size_GB {
   type    = number
   default = 20
 }
@@ -43,38 +43,38 @@ variable esx_ssh_password {
   type = string
 }
 
-variable "iso_checksum" {
+variable iso_checksum {
   type = string
 }
 
-variable "iso_url" {
+variable iso_url {
   type = string
 }
 
-variable "memory_GB" {
+variable memory_GB {
   type    = number
   default = 2
 }
 
-variable "mirror" {
+variable mirror {
   type    = bool
   default = true
 }
 
-variable "partition" {
+variable partition {
   type    = string
   default = "main"
 }
 
-variable "ssh_password" {
+variable ssh_password {
   type = string
 }
 
-variable "ssh_username" {
+variable ssh_username {
   type = string
 }
 
-variable "vm_name" {
+variable vm_name {
   type = string
 }
 
