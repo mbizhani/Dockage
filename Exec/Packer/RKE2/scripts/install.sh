@@ -53,9 +53,3 @@ systemctl start  rke2-server.service
 journalctl -u rke2-server -f
 EOF
 chmod 700 /root/install-rke2.sh
-
-##
-## Finalization
-#rm /etc/network/interfaces.d/packer
-#mv /root/interfaces /etc/network/
-#mv /root/resolv.conf /etc/

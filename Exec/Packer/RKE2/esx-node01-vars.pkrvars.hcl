@@ -13,7 +13,7 @@ rke2_sans        = ["rke2-01", "rke2-02", "rke2-03"]
 rke2_server_host = "" // Empty for First Node
 rke2_token       = ""
 
-source_vmx       = ""
+source_vmx       = "/deb-pkr/deb-pkr.vmx"
 ssh_password     = "packer"
 ssh_username     = "packer"
 vm_name          = "rke2-01"
