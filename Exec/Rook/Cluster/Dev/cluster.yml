@@ -36,7 +36,7 @@ spec:
     #devicePathFilter: "^/dev/ceph/.*"
     devices:
       - name: sdb
-      - name: sdc
+      #- name: sdc
   healthCheck:
     daemonHealth:
       mon:

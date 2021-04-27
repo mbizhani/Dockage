@@ -25,9 +25,10 @@ ceph/ceph:v15.2.10
 - `kubectl apply -f Cluster/cluster-dev.yml`
 - `kubectl apply -f Cluster/toolbox.yml`
   - `kubectl -n rook-ceph exec -it $(kubectl -n rook-ceph get pod -l "app=rook-ceph-tools" -o jsonpath='{.items[0].metadata.name}') -- bash`
-    - `ceph status`
+    - `ceph status`, `ceph health detail`
     - `ceph df`
     - `ceph osd status`
+    - `ceph osd pool ls detail`
     - `ceph mgr services` - show you all endpoints that are currently configured (e.g. `dashboard` and `prometheus n`)
     - `ceph dashboard set-login-credentials USER -i FILE`
     - `ceph dashboard ac-user-set-password USER -i FILE` - change dashboard's user password

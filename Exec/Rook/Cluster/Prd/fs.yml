@@ -1,0 +1,27 @@
+apiVersion: ceph.rook.io/v1
+kind: CephFilesystem
+metadata:
+  name: myfs
+  namespace: rook-ceph
+spec:
+  metadataPool:
+    replicated:
+      size: 3
+      requireSafeReplicaSize: true
+    parameters:
+      compression_mode: none
+  dataPools:
+    # 'NAME-data0' - First Pool - Replication 3
+    - failureDomain: host
+      replicated:
+        size: 3
+        requireSafeReplicaSize: true
+    # 'NAME-data1' - Second Pool - Replication 1
+    - failureDomain: host
+      replicated:
+        size: 1
+        requireSafeReplicaSize: false
+  preserveFilesystemOnDelete: false
+  metadataServer:
+    activeCount: 1
+    activeStandby: true
