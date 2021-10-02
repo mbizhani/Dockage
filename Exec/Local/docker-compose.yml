@@ -92,6 +92,17 @@ services:
     networks:
       - net
 
+  jupyter:
+    image: jupyter/base-notebook:lab-3.1.13
+    environment:
+      JUPYTER_ENABLE_LAB: "yes"
+    volumes:
+      - ./Jupyter:/home/jovyan/work
+    ports:
+      - 10000:8888
+    networks:
+      - net
+
 networks:
   net:
     external: true
