@@ -103,6 +103,16 @@ services:
     networks:
       - net
 
+  consul:
+    image: consul:1.10.2
+    ports:
+      - 8500:8500
+      - 8600:8600/udp
+    volumes:
+      - ./Consul:/consul/data
+    networks:
+      - net
+
 networks:
   net:
     external: true
