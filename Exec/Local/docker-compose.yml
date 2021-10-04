@@ -93,7 +93,7 @@ services:
       - net
 
   jupyter:
-    image: jupyter/base-notebook:lab-3.1.13
+    image: jupyter/scipy-notebook:lab-3.1.13
     environment:
       JUPYTER_ENABLE_LAB: "yes"
     volumes:
