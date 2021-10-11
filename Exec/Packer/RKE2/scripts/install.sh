@@ -33,11 +33,13 @@ fi
 RKE2_HOME="/var/lib/rancher/rke2"
 ln -s ${RKE2_HOME}/bin/kubectl /usr/local/bin/kubectl
 ln -s ${RKE2_HOME}/bin/ctr     /usr/local/bin/ctr
+ln -s ${RKE2_HOME}/bin/crictl     /usr/local/bin/crictl
 
 RKE2_CMD=$(cat << 'EOF'
 
 # Added by Packer
 alias ctr='ctr -a /run/k3s/containerd/containerd.sock --namespace k8s.io'
+alias crictl='crictl -r unix:///run/k3s/containerd/containerd.sock'
 export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
 if [ -f "/usr/local/bin/kubectl" ]; then
   source <(kubectl completion bash)
