@@ -92,6 +92,21 @@ services:
     networks:
       - net
 
+  registry_sec:
+    image: registry:2.7.1
+    environment:
+      # REQUIRED TO DELETE IMAGES
+      REGISTRY_STORAGE_DELETE_ENABLED: "true"
+      REGISTRY_HTTP_TLS_CERTIFICATE: "/certs/reg.local.crt"
+      REGISTRY_HTTP_TLS_KEY: "/certs/reg.local.key"
+    volumes:
+      - ./Registry:/var/lib/registry
+      - ./certs:/certs
+    ports:
+      - 443:5000
+    networks:
+      - net
+
   jupyter:
     image: jupyter/scipy-notebook:lab-3.1.13
     environment:
