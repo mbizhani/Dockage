@@ -1,0 +1,21 @@
+{
+  "datacenter": "test",
+  "node_name": "consul-server",
+  "server": true,
+  "ui_config": {
+    "enabled": true
+  },
+  "data_dir": "/consul/data",
+  "addresses": {
+    "http": "0.0.0.0"
+  },
+  "acl": {
+    "enabled": true,
+    "default_policy": "deny",
+    "down_policy": "extend-cache",
+    "enable_token_persistence": true,
+    "tokens": {
+      "master": "0527f6e7-ea8c-49b7-91c3-4d21be73d508"
+    }
+  }
+}

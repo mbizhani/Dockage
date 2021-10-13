@@ -120,11 +120,26 @@ services:
 
   consul:
     image: consul:1.10.2
+    entrypoint: ""
+    command:
+      - /bin/sh
+      - -c
+      - |
+        {
+          sleep 8
+          echo "----- BACKGROUND -----"
+          consul acl policy create -name anonymous_read -rules 'service_prefix "" {policy = "read"}'
+          consul acl token update -id 00000000-0000-0000-0000-000000000002 -policy-name anonymous_read
+        } &
+        docker-entrypoint.sh agent -dev
+    environment:
+      CONSUL_HTTP_TOKEN: "0527f6e7-ea8c-49b7-91c3-4d21be73d508"
     ports:
       - 8500:8500
       - 8600:8600/udp
     volumes:
-      - ./Consul:/consul/data
+      - ./Consul/Data:/consul/data
+      - ./Consul/Config:/consul/config:ro
     networks:
       - net
 
