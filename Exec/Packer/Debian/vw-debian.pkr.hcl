@@ -75,7 +75,7 @@ source "vmware-iso" "vmware" {
   disk_adapter_type = "scsi"
   disk_size         = "${var.disk_size_GB * 1024}"
   disk_type_id      = "1"
-  guest_os_type     = "debian10-64"
+  guest_os_type     = "debian11-64"
   headless          = false
   http_directory    = "http"
   iso_checksum      = "${var.iso_checksum}"

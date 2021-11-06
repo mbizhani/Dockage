@@ -95,7 +95,7 @@ source "vmware-iso" "vmware" {
   disk_size              = "${var.disk_size_GB * 1024}"
   disk_type_id           = "thin"  // DEFAULT: zeroedthick
   display_name           = "${var.vm_name}"
-  guest_os_type          = "debian10-64"
+  guest_os_type          = "debian11-64"
   headless               = true
   http_directory         = "http"
   iso_checksum           = "${var.iso_checksum}"
