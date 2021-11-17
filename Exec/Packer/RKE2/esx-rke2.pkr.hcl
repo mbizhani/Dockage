@@ -24,6 +24,10 @@ variable extra_disk_GB {
   default = 0
 }
 
+variable extra_disk_for_partition {
+  type    = string
+}
+
 variable memory_GB {
   type    = number
   default = 4
@@ -160,7 +164,8 @@ build {
       "P_IP=${var.net_ip}",
       "P_GW=${var.net_gateway}",
       "P_HOST=${var.vm_name}",
-      "P_DNS=${var.net_dns}"
+      "P_DNS=${var.net_dns}",
+      "P_EXTEND=${var.extra_disk_GB > 0 && var.extra_disk_for_partition != null ? var.extra_disk_for_partition : ""}"
     ]
   }
 

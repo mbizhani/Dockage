@@ -88,6 +88,7 @@ source "vmware-iso" "vmware" {
     "auto ",
     "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/${local.preseed_file} <wait>",
     "apt-setup/use_mirror=${var.mirror} <wait>",
+    "${var.mirror ? "" : "apt-setup/security_host=\"\""} <wait>",
   "<enter>"]
   boot_wait              = "${var.boot_wait}"
   cores                  = "${var.cpus_cores}"
@@ -95,7 +96,7 @@ source "vmware-iso" "vmware" {
   disk_size              = "${var.disk_size_GB * 1024}"
   disk_type_id           = "thin"  // DEFAULT: zeroedthick
   display_name           = "${var.vm_name}"
-  guest_os_type          = "debian11-64"
+  guest_os_type          = "debian10-64"
   headless               = true
   http_directory         = "http"
   iso_checksum           = "${var.iso_checksum}"
