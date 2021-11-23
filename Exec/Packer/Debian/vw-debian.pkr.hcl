@@ -41,6 +41,11 @@ variable mirror {
   default = true
 }
 
+variable net_mac_address {
+  type    = string
+  default = ""
+}
+
 variable partition {
   type    = string
   default = "main"
@@ -59,7 +64,9 @@ variable vm_name {
 }
 
 locals {
-  preseed_file = "preseed-${var.partition}.cfg"
+  preseed_file    = "preseed-${var.partition}.cfg"
+
+  common_vmx_data = {}
 }
 
 source "vmware-iso" "vmware" {
@@ -91,6 +98,10 @@ source "vmware-iso" "vmware" {
   version           = 15
   vm_name           = "${var.vm_name}"
   vmdk_name         = "${var.vm_name}"
+  vmx_data          = merge(
+    local.common_vmx_data,
+    var.net_mac_address != "" ? { "ethernet0.addressType" = "static", "ethernet0.address" = var.net_mac_address} : {}
+  )
 }
 
 build {

@@ -9,15 +9,23 @@ variable extra_disk_GB {
 }
 
 variable net_ip {
-  type = string
+  type    = string
+  default = ""
 }
 
 variable net_gateway {
-  type = string
+  type    = string
+  default = ""
 }
 
 variable net_dns {
-  type = string
+  type    = string
+  default = ""
+}
+
+variable net_mac_address {
+  type    = string
+  default = ""
 }
 
 variable rke2_cis_enabled {
@@ -85,6 +93,8 @@ locals {
     EOF
 
   file_base = "/home/${var.ssh_username}/"
+
+  common_vmx_data = {}
 }
 
 source "vmware-vmx" "rke2-node" {
@@ -103,10 +113,11 @@ source "vmware-vmx" "rke2-node" {
   ssh_username         = "${var.ssh_username}"
   vm_name              = "${var.vm_name}"
   vmdk_name            = "extra01"
-  vmx_data = var.extra_disk_GB == 0 ? {} : {
-    "scsi0:1.fileName" = "extra01-1.vmdk",
-    "scsi0:1.present"  = "TRUE"
-  }
+  vmx_data             = merge(
+    local.common_vmx_data,
+    var.extra_disk_GB > 0 ? {"scsi0:1.fileName" = "extra01-1.vmdk", "scsi0:1.present"  = "TRUE"} : {},
+    var.net_mac_address != "" ? { "ethernet0.addressType" = "static", "ethernet0.address" = var.net_mac_address} : {"ethernet0.addressType" = "generated"}
+  )
 }
 
 build {

@@ -3,10 +3,6 @@
 ip -c a
 echo "Hostname: $(hostname)"
 
-if [[ "${P_IP}" && "${P_GW}" ]]; then
-  sed -i "s|dhcp|static\n  address ${P_IP}/24\n  gateway ${P_GW}|g" /etc/network/interfaces
-fi
-
 if [ "${P_HOST}" ]; then
   hostnamectl --static set-hostname "${P_HOST}"
 
@@ -15,8 +11,19 @@ if [ "${P_HOST}" ]; then
   fi
 fi
 
-if [ "${P_DNS}" ]; then
-  printf "\ndns-nameservers ${P_DNS}\n" >> /etc/network/interfaces
+## Debian
+if [ -f /etc/network/interfaces ]; then
+  if [[ "${P_IP}" && "${P_GW}" ]]; then
+    sed -i "s|dhcp|static\n  address ${P_IP}/24\n  gateway ${P_GW}|g" /etc/network/interfaces
+  fi
+
+  if [ "${P_DNS}" ]; then
+    printf "\ndns-nameservers ${P_DNS}\n" >> /etc/network/interfaces
+
+    if [[ "${P_IP}" && -f /etc/resolv.conf && ! -L /etc/resolv.conf ]]; then
+      printf "nameserver ${P_DNS}\n" > /etc/resolv.conf
+    fi
+  fi
 fi
 
 if [ "${P_EXTEND}" ]; then

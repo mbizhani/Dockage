@@ -26,6 +26,7 @@ variable extra_disk_GB {
 
 variable extra_disk_for_partition {
   type    = string
+  default = null
 }
 
 variable memory_GB {
@@ -43,6 +44,11 @@ variable net_gateway {
 
 variable net_dns {
   type = string
+}
+
+variable net_mac_address {
+  type    = string
+  default = ""
 }
 
 variable rke2_cis_enabled {
@@ -143,10 +149,10 @@ source "vmware-vmx" "rke2-node" {
   ssh_username         = "${var.ssh_username}"
   vm_name              = "${var.vm_name}"
   vmdk_name            = "extra01"
-  vmx_data = var.extra_disk_GB == 0 ? local.common_vmx_data : merge(local.common_vmx_data, {
-    "scsi0:1.fileName" = "extra01-1.vmdk",
-    "scsi0:1.present"  = "TRUE"
-  })
+  vmx_data             = merge(local.common_vmx_data,
+    var.extra_disk_GB > 0 ? {"scsi0:1.fileName" = "extra01-1.vmdk", "scsi0:1.present"  = "TRUE"} : {},
+    var.net_mac_address != "" ? { "ethernet0.addressType" = "static", "ethernet0.address" = var.net_mac_address, "ethernet0.checkMACAddress" = "FALSE"} : {"ethernet0.addressType" = "generated"}
+  )
 }
 
 build {
