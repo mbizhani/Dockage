@@ -7,6 +7,8 @@ This section has real examples for creating Docker images for specific purposes:
 - [L2TP/IPSec VPN with SOCKS Proxy](/Image/L2TP.SOCKS)
 - [OpenVPN with SOCKS5/HTTP Proxy](/Image/OpenVPN.Proxy)
 - [OpenConnect VPN with SOCKS Proxy](/Image/OpenConnect.SOCKS)
+- [Lightweight DNS Server with dnsmasq](/Image/DNS.MASQ)
+- [Adminer for MySQL + Postgres + Mongo + Oracle](/Image/Adminer)
 
 ## Exec
 Using Docker Compose, Swarm, and Kubernetes besides DevOps tools such as Packer
