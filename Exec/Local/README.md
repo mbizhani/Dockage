@@ -8,4 +8,4 @@ For more information about `docker-compose`, refer to [Docker to the Point - Par
 ## Exec Steps
 - Copy `docker-compose.yml` file
 - `docker network create mynet`
-- `docker-compose up -d`
+- `docker-compose up -d [SERVICE1 SERVICE2 ...]`

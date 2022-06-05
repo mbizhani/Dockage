@@ -3,9 +3,11 @@ version: '3.6'
 services:
 
   mongo:
-    image: mongo:4.0.13-xenial
+    image: mongo:4.4.14-focal
+    hostname: app-mongo
+    container_name: app-mongo
     ports:
-      - 27017:27017
+      - "27017:27017"
     volumes:
       - ./MongoDB:/data/db
     networks:
@@ -14,17 +16,21 @@ services:
   oracle:
     image: store/oracle/database-enterprise:12.2.0.1
     tty: true
+    hostname: app-oracle
+    container_name: app-oracle
     ports:
-      - 1521:1521
+      - "1521:1521"
     volumes:
       - ./OracleDB:/ORCL
     networks:
       - net
 
   postgres:
-    image: postgres:12.2
+    image: postgres:14.2-bullseye
+    hostname: app-postgres
+    container_name: app-postgres
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
       # POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -33,11 +39,13 @@ services:
     networks:
       - net
 
-  mysql8:
-    image: mysql:8.0.19
+  mysql:
+    image: mysql:8.0.28-debian
     command: --default-authentication-plugin=mysql_native_password
+    hostname: app-mysql
+    container_name: app-mysql
     ports:
-      - 3306:3306
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
     volumes:
@@ -46,75 +54,92 @@ services:
       - net
 
   zookeeper:
-    image: confluentinc/cp-zookeeper:5.3.1-1
+    image: confluentinc/cp-zookeeper:7.1.0
+    hostname: app-zookeeper
+    container_name: app-zookeeper
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
     volumes:
       - ./ZookeeperData:/var/lib/zookeeper/data
       - ./ZookeeperLog:/var/lib/zookeeper/log
     ports:
-      - 2181:2181
+      - "2181:2181"
     networks:
       - net
 
   kafka:
-    image: confluentinc/cp-kafka:5.3.1-1
+    image: confluentinc/cp-kafka:7.1.0
     depends_on:
       - zookeeper
     environment:
+      KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-
-      # Multi-Net Config
-      # KAFKA_LISTENERS: INSIDE://:29092,OUTSIDE://:9092
-      # KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:29092,OUTSIDE://localhost:9092
-      # KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
-      # KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
-
-      # All-Same-Net Simple Config
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_LISTENERS: INSIDE://:29092,OUTSIDE://:9092
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:29092,OUTSIDE://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
     volumes:
       - ./Kafka/data:/var/lib/kafka/data
     ports:
-      - 9092:9092
+      - "9092:9092"
     networks:
       - net
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:0.3.3
+    hostname: app-kafka-ui
+    container_name: app-kafka-ui
+    ports:
+      - "8080:8080"
+    depends_on:
+      - zookeeper
+      - kafka
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
 
   registry:
     image: registry:2.7.1
+    hostname: app-registry
+    container_name: app-registry
+    restart: always
     environment:
       # REQUIRED TO DELETE IMAGES
       REGISTRY_STORAGE_DELETE_ENABLED: "true"
     volumes:
       - ./Registry:/var/lib/registry
     ports:
-      - 80:5000
+      - "80:5000"
     networks:
       - net
 
-  registry_sec:
-    image: registry:2.7.1
-    environment:
-      # REQUIRED TO DELETE IMAGES
-      REGISTRY_STORAGE_DELETE_ENABLED: "true"
-      REGISTRY_HTTP_TLS_CERTIFICATE: "/certs/reg.local.crt"
-      REGISTRY_HTTP_TLS_KEY: "/certs/reg.local.key"
-    volumes:
-      - ./Registry:/var/lib/registry
-      - ./certs:/certs
-    ports:
-      - 443:5000
-    networks:
-      - net
+#  registry_sec:
+#    image: registry:2.7.1
+#    environment:
+#      # REQUIRED TO DELETE IMAGES
+#      REGISTRY_STORAGE_DELETE_ENABLED: "true"
+#      REGISTRY_HTTP_TLS_CERTIFICATE: "/certs/reg.local.crt"
+#      REGISTRY_HTTP_TLS_KEY: "/certs/reg.local.key"
+#    volumes:
+#      - ./Registry:/var/lib/registry
+#      - ./certs:/certs
+#    ports:
+#      - 443:5000
+#    networks:
+#      - net
 
   jupyter:
     image: jupyter/scipy-notebook:lab-3.1.13
+    hostname: app-jupyter
+    container_name: app-jupyter
     environment:
       JUPYTER_ENABLE_LAB: "yes"
     volumes:
       - ./Jupyter:/home/jovyan/work
     ports:
-      - 10000:8888
+      - "10000:8888"
     networks:
       - net
 
@@ -132,16 +157,19 @@ services:
           consul acl token update -id 00000000-0000-0000-0000-000000000002 -policy-name anonymous_read
         } &
         docker-entrypoint.sh agent -dev
+    hostname: app-consul
+    container_name: app-consul
     environment:
       CONSUL_HTTP_TOKEN: "0527f6e7-ea8c-49b7-91c3-4d21be73d508"
     ports:
-      - 8500:8500
-      - 8600:8600/udp
+      - "8500:8500"
+      - "8600:8600/udp"
     volumes:
       - ./Consul/Data:/consul/data
       - ./Consul/Config:/consul/config:ro
     networks:
       - net
+
 
 networks:
   net:

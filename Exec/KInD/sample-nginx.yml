@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-dep
+  template:
+    metadata:
+      labels:
+        app: test-dep
+    spec:
+      containers:
+        - name: nginx
+          image: app-registry:5000/nginx:1.18.0
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-srv
+spec:
+  selector:
+    app: test-dep
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sample-ingress
+spec:
+  rules:
+    - host: devops.local
+      http:
+        paths:
+          - path: "/"
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: sample-srv
+                port:
+                  number: 80
