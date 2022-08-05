@@ -1,5 +1,11 @@
 #!/bin/bash
 
+cat > /etc/apt/sources.list << EOF
+deb http://deb.debian.org/debian ${P_DEBIAN_DISTRIBUTION} main contrib non-free
+deb http://deb.debian.org/debian ${P_DEBIAN_DISTRIBUTION}-updates main contrib non-free
+deb http://deb.debian.org/debian-security ${P_DEBIAN_DISTRIBUTION}-security main contrib non-free
+EOF
+
 apt-get update
 apt-get upgrade --yes
 

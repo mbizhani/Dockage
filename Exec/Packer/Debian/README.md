@@ -2,8 +2,8 @@
 
 I created this project with
 - VMware Workstation 16.2
-- Debian 11 (`debian-11.0.0-amd64-DVD-1.iso`)
-- Packer v1.7.8 [[REF](https://learn.hashicorp.com/tutorials/packer/get-started-install-cli#installing-packer)]
+- Debian 11 (`debian-11.4.0-amd64-DVD-1.iso`)
+- Packer v1.8.3 [[REF](https://learn.hashicorp.com/tutorials/packer/get-started-install-cli#installing-packer)]
   - `packer -autocomplete-install` - bash Completion - [[REF](https://www.packer.io/docs/commands#autocompletion)]
 
 ### Prerequisites

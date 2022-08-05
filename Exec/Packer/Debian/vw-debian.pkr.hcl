@@ -1,4 +1,3 @@
-
 variable base_output_dir {
   type = string
 }
@@ -16,6 +15,10 @@ variable cpus {
 variable cpus_cores {
   type    = number
   default = 2
+}
+
+variable debian_distribution {
+  type = string
 }
 
 variable disk_size_GB {
@@ -64,19 +67,20 @@ variable vm_name {
 }
 
 locals {
-  preseed_file    = "preseed-${var.partition}.cfg"
+  preseed_file = "preseed-${var.partition}.cfg"
 
   common_vmx_data = {}
 }
 
 source "vmware-iso" "vmware" {
-  boot_command = [
+  boot_command      = [
     "<esc><wait>",
     "auto ",
     "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/${local.preseed_file} <wait>",
     "apt-setup/use_mirror=${var.mirror} <wait>",
     "${var.mirror ? "" : "apt-setup/security_host=\"\""} <wait>",
-  "<enter>"]
+    "<enter>"
+  ]
   boot_wait         = "${var.boot_wait}"
   cores             = "${var.cpus_cores}"
   cpus              = "${var.cpus * var.cpus_cores}"
@@ -108,7 +112,10 @@ build {
   sources = ["source.vmware-iso.vmware"]
 
   provisioner "shell" {
-    execute_command = "echo '${var.ssh_password}' | sudo -S env {{ .Vars }} {{ .Path }}"
-    script          = "scripts/init.sh"
+    execute_command  = "echo '${var.ssh_password}' | sudo -S env {{ .Vars }} {{ .Path }}"
+    script           = "scripts/init.sh"
+    environment_vars = [
+      "P_DEBIAN_DISTRIBUTION=${var.debian_distribution}"
+    ]
   }
 }
