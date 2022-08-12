@@ -44,7 +44,7 @@ echo 'source <(kubectl completion bash)' >> $HOME/.bashrc
 ## Run kubeadm init
 ## REF: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
 
-# Hint: kubeadm config print init-defaults > $HOME/kubeadm-config.yml
+# TIP: kubeadm config print init-defaults > $HOME/kubeadm-config.yml
 
 kubeadm init \
   --apiserver-advertise-address "${P_IP}" \
@@ -58,25 +58,6 @@ kubeadm init \
 echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> $HOME/.bashrc
 export KUBECONFIG=/etc/kubernetes/admin.conf
 
-## kubectl get pod -A -o wide
-# NAMESPACE     NAME                                 READY   STATUS    RESTARTS   AGE     IP              NODE         NOMINATED NODE   READINESS GATES
-# kube-system   coredns-55568ff8d7-bplvb             0/1     Pending   0          3m46s   <none>          <none>       <none>           <none>
-# kube-system   coredns-55568ff8d7-k42ng             0/1     Pending   0          3m46s   <none>          <none>       <none>           <none>
-# kube-system   etcd-k8s-master                      1/1     Running   0          4m      192.168.15.10   k8s-master   <none>           <none>
-# kube-system   kube-apiserver-k8s-master            1/1     Running   0          4m      192.168.15.10   k8s-master   <none>           <none>
-# kube-system   kube-controller-manager-k8s-master   1/1     Running   0          4m      192.168.15.10   k8s-master   <none>           <none>
-# kube-system   kube-proxy-9rxzd                     1/1     Running   0          3m47s   192.168.15.10   k8s-master   <none>           <none>
-# kube-system   kube-scheduler-k8s-master            1/1     Running   0          4m2s    192.168.15.10   k8s-master   <none>           <none>
-
-## kubectl get svc -A -o wide
-# NAMESPACE     NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE     SELECTOR
-# default       kubernetes   ClusterIP   10.43.0.1    <none>        443/TCP                  4m51s   <none>
-# kube-system   kube-dns     ClusterIP   10.43.0.10   <none>        53/UDP,53/TCP,9153/TCP   4m49s   k8s-app=kube-dns
-
-## kubectl get nodes -o wide
-# NAME         STATUS     ROLES           AGE     VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION    CONTAINER-RUNTIME
-# k8s-master   NotReady   control-plane   3m24s   v1.24.3   192.168.15.10   <none>        Debian GNU/Linux 11 (bullseye)   5.10.0-16-amd64   containerd://1.6.6
-
 
 #######################
 ## Install CNI (Calico)
@@ -85,8 +66,4 @@ kubectl apply -f /tmp/calico/tigera-operator.yaml
 sleep 5
 kubectl apply -f /tmp/calico/tigera-custom-resources.yaml
 
-sleep 5
-
-kubectl get pod -A -o wide
-
-kubectl get nodes -o wide
+# TODO: wait for node to be ready!

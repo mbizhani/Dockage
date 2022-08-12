@@ -147,6 +147,8 @@ version = 2
           endpoint = ["http://reg.local"]
         [plugins."io.containerd.grpc.v1.cri".registry.mirrors."quay.io"]
           endpoint = ["http://reg.local"]
+        [plugins."io.containerd.grpc.v1.cri".registry.mirrors."registry.k8s.io"]
+          endpoint = ["http://reg.local"]
         [plugins."io.containerd.grpc.v1.cri".registry.mirrors."reg.local"]
           endpoint = ["http://reg.local"]
 

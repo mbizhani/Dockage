@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-dep
+  template:
+    metadata:
+      labels:
+        app: test-dep
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.18.0
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-service
+spec:
+  selector:
+    app: test-dep
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sample-ingress
+  labels:
+    app: test-dep
+spec:
+  rules:
+    - host: nginx.test.xyz
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sample-service
+                port:
+                  number: 80
