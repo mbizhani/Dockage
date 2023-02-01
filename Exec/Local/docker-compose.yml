@@ -170,6 +170,36 @@ services:
     networks:
       - net
 
+  vault:
+    image: vault:1.12.2
+    command: server
+    hostname: app-vault
+    container_name: app-vault
+    ports:
+      - "8200:8200"
+    volumes:
+      - ${VOL_BASE_DIR}/Vault/file:/vault/file
+      - ./vault:/vault/config:ro
+    networks:
+      - net
+
+  vault-init:
+    image: vault:1.12.2
+    hostname: app-vault-init
+    container_name: app-vault-init
+    environment:
+      - VAULT_ADDR=http://vault:8200
+      - MY_VAULT_TOKEN=${MY_VAULT_TOKEN:-test}
+    volumes:
+      - ${VOL_BASE_DIR}/Vault/file:/vault/file
+      - ./vault/config.hcl:/vault/config/config.hcl:ro
+      - ./vault/vault-init.sh:/usr/local/bin/vault-init.sh
+    command: /usr/local/bin/vault-init.sh
+    restart: on-failure
+    depends_on:
+      - vault
+    networks:
+      - net
 
 networks:
   net:
