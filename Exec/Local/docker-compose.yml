@@ -3,13 +3,13 @@ version: '3.6'
 services:
 
   mongo:
-    image: mongo:4.4.14-focal
+    image: mongo:6.0.3-focal
     hostname: app-mongo
     container_name: app-mongo
     ports:
       - "27017:27017"
     volumes:
-      - ./MongoDB:/data/db
+      - ${VOL_BASE_DIR}/MongoDB:/data/db
     networks:
       - net
 
@@ -49,7 +49,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - ./Mysql8:/var/lib/mysql
+      - ${VOL_BASE_DIR}/MySQL:/var/lib/mysql
+      - ./mysql-exp-imp:/mysql-exp-imp
     networks:
       - net
 
@@ -201,7 +202,13 @@ services:
     networks:
       - net
 
+##########
+# NETWORK
+##########
 networks:
   net:
+    external: true
+    name: mynet
+  default:
     external: true
     name: mynet

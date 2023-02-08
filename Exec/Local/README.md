@@ -9,3 +9,9 @@ For more information about `docker-compose`, refer to [Docker to the Point - Par
 - Copy `docker-compose.yml` file
 - `docker network create mynet`
 - `docker-compose up -d [SERVICE1 SERVICE2 ...]`
+
+### MySQL
+- `docker-compose up -d mysql`
+- Import **Sakila** dataset
+  - `docker-compose exec mysql bash -c "mysql -uroot -proot < /mysql-exp-imp/sakila/sakila-schema.sql"`
+  - `docker-compose exec mysql bash -c "mysql -uroot -proot < /mysql-exp-imp/sakila/sakila-data.sql"`
