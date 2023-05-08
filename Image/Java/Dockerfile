@@ -25,7 +25,7 @@ COPY --from=build /javaruntime $JAVA_HOME
 
 RUN apt-get update && \
     apt-get upgrade --yes && \
-    apt-get install --no-install-recommends --yes curl fontconfig telnet procps tini && \
+    apt-get install --no-install-recommends --yes fontconfig tini procps && \
     rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["tini", "-v","-g", "--"]
