@@ -4,6 +4,7 @@ This repo is for a bunch of works around Docker & K8S.
 ## Images
 This section has real examples for creating Docker images for specific purposes:
 
+- [Java (JRE)](/Image/Java)
 - [L2TP/IPSec VPN with SOCKS Proxy](/Image/L2TP.SOCKS)
 - [OpenVPN with SOCKS5/HTTP Proxy](/Image/OpenVPN.Proxy)
 - [OpenConnect VPN with SOCKS Proxy](/Image/OpenConnect.SOCKS)
